@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/login"
+    android:layout_height="match_parent"
+    tools:context=".activity.RegisterActivity">
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="昵称"
+        android:textColor="#ffff"
+        android:layout_margin="20dp"
+        android:textColorHint="#ffffff"
+        android:id="@+id/edit_regiter_name"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="手机号"
+        android:textColor="#ffff"
+        android:layout_margin="20dp"
+        android:textColorHint="#ffffff"
+        android:id="@+id/edit_register_number"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="登录密码"
+        android:textColor="#ffff"
+        android:textColorHint="#ffffff"
+        android:id="@+id/edit_register_pwd"
+        android:layout_margin="20dp"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="确认密码"
+        android:textColor="#ffff"
+        android:textColorHint="#ffffff"
+        android:id="@+id/edit_register_pwd2"
+        android:layout_margin="20dp"
+        />
+
+    <EditText
+        android:textColor="#ffff"
+        android:id="@+id/edit_register_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="15"
+        android:layout_margin="20dp"
+        android:hint="邮箱地址"
+        android:textColorHint="#ffffff" />
+
+    <TextView
+        android:textColor="#ffff"
+        android:id="@+id/edit_register_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="15"
+        android:layout_margin="20dp"
+        android:text="2018-11-14" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:hint="性别"
+            android:textColorHint="#ffffff"
+            android:layout_marginLeft="20dp"
+            android:textSize="15sp"/>
+
+        <RadioGroup
+            android:id="@+id/radio_register"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/btn_boys"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:layout_marginLeft="80dp"
+                android:textColor="#fff"
+                android:text="男" />
+
+            <RadioButton
+                android:id="@+id/btn_girl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:textColor="#fff"
+                android:text="女" />
+        </RadioGroup>
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="短信快速注册"
+        android:textColor="#ffffff"
+        android:layout_marginLeft="280dp"
+        />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="注册"
+            android:textSize="20sp"
+            android:background="#F8993A"
+            android:id="@+id/btn_register"
+            />
+
+    </RelativeLayout>
+</LinearLayout>
