@@ -17,7 +17,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import zyw1.com.big.MApp;
+import com.why.happy_movie.MApp;
 
 
 public class UIUtils {

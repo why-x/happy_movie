@@ -12,12 +12,7 @@ import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 
-import java.util.List;
-
 import butterknife.ButterKnife;
-import zyw1.com.big.bean.LoginBean;
-import zyw1.com.big.dao.DaoMaster;
-import zyw1.com.big.dao.LoginBeanDao;
 
 
 /**
@@ -36,17 +31,17 @@ public abstract class WDActivity extends AppCompatActivity {
      */
     private static WDActivity mForegroundActivity = null;
 
-    public LoginBean LOGIN_USER;
+   // public LoginBean LOGIN_USER;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //查询登录用户，方便每个页面使用
+    /*    //查询登录用户，方便每个页面使用
         LoginBeanDao userInfoDao = DaoMaster.newDevSession(this,LoginBeanDao.TABLENAME).getLoginBeanDao();
         List<LoginBean> userInfos = userInfoDao.queryBuilder().where(LoginBeanDao.Properties.UserId.eq(1)).list();
         if (userInfos!=null&&userInfos.size()>0){
             LOGIN_USER = userInfos.get(0);//读取第一项
-        }
+        }*/
         //打印堆栈ID
         LogUtils.e("getTaskId = " + getTaskId());
         initLoad();
