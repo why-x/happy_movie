@@ -6,20 +6,12 @@ public class Result<T> {
     String status;
     String message;
     T result;
-    T orderList;
     String headPath;
 
     public String getStatus() {
         return status;
     }
 
-    public T getOrderList() {
-        return orderList;
-    }
-
-    public void setOrderList(T orderList) {
-        this.orderList = orderList;
-    }
 
     public void setStatus(String status) {
         this.status = status;

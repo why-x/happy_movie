@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.why.happy_movie.R;
+import com.why.happy_movie.activity.HomeActivity;
 import com.why.happy_movie.activity.LoginActivity;
 
 /**
@@ -29,7 +30,7 @@ public class frag_four extends Fragment {
         linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), LoginActivity.class);
+                Intent intent = new Intent(getContext(),HomeActivity .class);
                 getActivity().finish();
                 startActivity(intent);
             }
