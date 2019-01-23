@@ -1,5 +1,7 @@
 package com.why.happy_movie.core;
 
+import com.why.happy_movie.bean.Result;
+
 import java.io.File;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +12,7 @@ import okhttp3.RequestBody;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.Field;
+import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
@@ -24,6 +27,24 @@ import retrofit2.http.Query;
  * 佛曰： 永无BUG 盘他！
  */
 public interface Interfacea {
+
+    //注册
+    @FormUrlEncoded
+    @POST("user/v1/registerUser")
+    Observable<Result> getRegisterData(@Field("nickName")String nickName,
+                                       @Field("phone")String phone,
+                                       @Field("pwd")String pwd,
+                                       @Field("pwd2")String pwd2,
+                                       @Field("sex")String sex,
+                                       @Field("birthday")String birthday,
+                                       @Field("email")String email);
+
+
+    @FormUrlEncoded
+    @POST("user/v1/login")
+    Observable<Result> getLogin(@Field("phone")String phone,
+                                       @Field("pwd")String pwd);
+
 
 
 }

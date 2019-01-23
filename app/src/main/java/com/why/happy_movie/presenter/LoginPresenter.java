@@ -12,7 +12,7 @@ import io.reactivex.Observable;
  * @date 2018/12/28 11:23
  * qq:1940870847
  */
-/*
+
 public class LoginPresenter extends BasePresenter {
 
     public LoginPresenter(DataCall dataCall) {
@@ -22,9 +22,9 @@ public class LoginPresenter extends BasePresenter {
     @Override
     protected Observable observable(Object... args) {
         Interfacea iRequest = NetWorkManager.getInstance().create(Interfacea.class);
-        return iRequest.login((String)args[0],(String)args[1]);
+        return iRequest.getLogin((String)args[0],(String)args[1]);
     }
 
 
 }
-*/
+

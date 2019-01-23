@@ -19,22 +19,23 @@
 
 
 
-    <!--11111111111111111111111111111111111111111111111-->
+        <!--11111111111111111111111111111111111111111111111-->
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_30"
-        android:layout_marginLeft="@dimen/dp_30"
-        android:layout_marginRight="@dimen/dp_30"
-        android:layout_marginTop="@dimen/dp_130">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_30"
+            android:layout_marginLeft="@dimen/dp_30"
+            android:layout_marginRight="@dimen/dp_30"
+            android:layout_marginTop="@dimen/dp_130">
 
-        <ImageView
-            android:layout_width="@dimen/dp_18"
-            android:layout_height="@dimen/dp_18"
-            android:layout_marginTop="@dimen/dp_5"
-            android:src="@drawable/register_icon_name_default"/>
+            <ImageView
+                android:layout_width="@dimen/dp_18"
+                android:layout_height="@dimen/dp_18"
+                android:layout_marginTop="@dimen/dp_5"
+                android:src="@drawable/register_icon_name_default"/>
 
             <EditText
+                android:id="@+id/nicheng"
                 android:textColor="#ffff"
                 android:hint="昵称"
                 android:textSize="@dimen/sp_12"
@@ -44,182 +45,201 @@
                 android:textColorHint="#eeeeee"
                 android:background="@null"/>
 
-        <View
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_1"
+                android:layout_alignParentBottom="true"
+                android:background="#666666" />
+
+        </RelativeLayout>
+
+        <!--11111111111111111111111111111111111111111111111-->
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_1"
-            android:layout_alignParentBottom="true"
-            android:background="#666666" />
+            android:layout_height="@dimen/dp_30"
+            android:layout_marginLeft="@dimen/dp_30"
+            android:layout_marginRight="@dimen/dp_30"
+            android:layout_marginTop="@dimen/dp_20">
 
-    </RelativeLayout>
+            <ImageView
+                android:layout_width="@dimen/dp_18"
+                android:layout_height="@dimen/dp_18"
+                android:layout_marginTop="@dimen/dp_5"
+                android:src="@drawable/register_icon_sex_default"/>
 
-    <!--11111111111111111111111111111111111111111111111-->
+            <RadioGroup
+                android:id="@+id/radio_register"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_30"
-        android:layout_marginLeft="@dimen/dp_30"
-        android:layout_marginRight="@dimen/dp_30"
-        android:layout_marginTop="@dimen/dp_20">
+                <RadioButton
+                    android:id="@+id/btn_boys"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:layout_marginLeft="40dp"
+                    android:textColor="#fff"
+                    android:text="男" />
 
-        <ImageView
-            android:layout_width="@dimen/dp_18"
-            android:layout_height="@dimen/dp_18"
-            android:layout_marginTop="@dimen/dp_5"
-            android:src="@drawable/register_icon_sex_default"/>
+                <RadioButton
+                    android:id="@+id/btn_girl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:textColor="#fff"
+                    android:text="女" />
+            </RadioGroup>
 
-        <EditText
-            android:textColor="#ffff"
-            android:hint="性别"
-            android:textSize="@dimen/sp_12"
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_1"
+                android:layout_alignParentBottom="true"
+                android:background="#666666" />
+
+        </RelativeLayout>
+
+
+        <!--11111111111111111111111111111111111111111111111-->
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="@dimen/dp_40"
-            android:textColorHint="#eeeeee"
-            android:background="@null"/>
+            android:layout_height="@dimen/dp_30"
+            android:layout_marginLeft="@dimen/dp_30"
+            android:layout_marginRight="@dimen/dp_30"
+            android:layout_marginTop="@dimen/dp_20">
 
-        <View
+            <ImageView
+                android:layout_width="@dimen/dp_18"
+                android:layout_height="@dimen/dp_18"
+                android:layout_marginTop="@dimen/dp_5"
+                android:src="@drawable/register_icon_date_default"/>
+
+            <EditText
+                android:id="@+id/date"
+                android:textColor="#ffff"
+                android:hint="出生日期"
+                android:textSize="@dimen/sp_12"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dp_40"
+                android:textColorHint="#eeeeee"
+                android:background="@null"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_1"
+                android:layout_alignParentBottom="true"
+                android:background="#666666" />
+
+        </RelativeLayout>
+
+
+        <!--11111111111111111111111111111111111111111111111-->
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_1"
-            android:layout_alignParentBottom="true"
-            android:background="#666666" />
+            android:layout_height="@dimen/dp_30"
+            android:layout_marginLeft="@dimen/dp_30"
+            android:layout_marginRight="@dimen/dp_30"
+            android:layout_marginTop="@dimen/dp_20">
 
-    </RelativeLayout>
+            <ImageView
+                android:layout_width="@dimen/dp_18"
+                android:layout_height="@dimen/dp_18"
+                android:layout_marginTop="@dimen/dp_5"
+                android:src="@drawable/register_icon_phone_default"/>
+
+            <EditText
+                android:id="@+id/phone"
+                android:textColor="#ffff"
+                android:hint="手机号"
+                android:textSize="@dimen/sp_12"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dp_40"
+                android:textColorHint="#eeeeee"
+                android:background="@null"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_1"
+                android:layout_alignParentBottom="true"
+                android:background="#666666" />
+
+        </RelativeLayout>
 
 
-    <!--11111111111111111111111111111111111111111111111-->
+        <!--11111111111111111111111111111111111111111111111-->
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_30"
-        android:layout_marginLeft="@dimen/dp_30"
-        android:layout_marginRight="@dimen/dp_30"
-        android:layout_marginTop="@dimen/dp_20">
-
-        <ImageView
-            android:layout_width="@dimen/dp_18"
-            android:layout_height="@dimen/dp_18"
-            android:layout_marginTop="@dimen/dp_5"
-            android:src="@drawable/register_icon_date_default"/>
-
-        <EditText
-            android:textColor="#ffff"
-            android:hint="出生日期"
-            android:textSize="@dimen/sp_12"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="@dimen/dp_40"
-            android:textColorHint="#eeeeee"
-            android:background="@null"/>
+            android:layout_height="@dimen/dp_30"
+            android:layout_marginLeft="@dimen/dp_30"
+            android:layout_marginRight="@dimen/dp_30"
+            android:layout_marginTop="@dimen/dp_20">
 
-        <View
+            <ImageView
+                android:layout_width="@dimen/dp_18"
+                android:layout_height="@dimen/dp_18"
+                android:layout_marginTop="@dimen/dp_5"
+                android:src="@drawable/register_icon_mail_default"/>
+
+            <EditText
+                android:id="@+id/emaile"
+                android:textColor="#ffff"
+                android:hint="邮箱"
+                android:textSize="@dimen/sp_12"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dp_40"
+                android:textColorHint="#eeeeee"
+                android:background="@null"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_1"
+                android:layout_alignParentBottom="true"
+                android:background="#666666" />
+
+        </RelativeLayout>
+
+
+        <!--11111111111111111111111111111111111111111111111-->
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_1"
-            android:layout_alignParentBottom="true"
-            android:background="#666666" />
+            android:layout_height="@dimen/dp_30"
+            android:layout_marginLeft="@dimen/dp_30"
+            android:layout_marginRight="@dimen/dp_30"
+            android:layout_marginTop="@dimen/dp_20">
 
-    </RelativeLayout>
+            <ImageView
+                android:layout_width="@dimen/dp_18"
+                android:layout_height="@dimen/dp_18"
+                android:layout_marginTop="@dimen/dp_5"
+                android:src="@drawable/register_icon_lock_default"/>
 
+            <EditText
+                android:id="@+id/pass"
+                android:textColor="#ffff"
+                android:hint="登录密码"
+                android:textSize="@dimen/sp_12"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dp_40"
+                android:textColorHint="#eeeeee"
+                android:background="@null"/>
 
-    <!--11111111111111111111111111111111111111111111111-->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_1"
+                android:layout_alignParentBottom="true"
+                android:background="#666666" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_30"
-        android:layout_marginLeft="@dimen/dp_30"
-        android:layout_marginRight="@dimen/dp_30"
-        android:layout_marginTop="@dimen/dp_20">
-
-        <ImageView
-            android:layout_width="@dimen/dp_18"
-            android:layout_height="@dimen/dp_18"
-            android:layout_marginTop="@dimen/dp_5"
-            android:src="@drawable/register_icon_phone_default"/>
-
-        <EditText
-            android:textColor="#ffff"
-            android:hint="手机号"
-            android:textSize="@dimen/sp_12"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="@dimen/dp_40"
-            android:textColorHint="#eeeeee"
-            android:background="@null"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_1"
-            android:layout_alignParentBottom="true"
-            android:background="#666666" />
-
-    </RelativeLayout>
-
-
-    <!--11111111111111111111111111111111111111111111111-->
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_30"
-        android:layout_marginLeft="@dimen/dp_30"
-        android:layout_marginRight="@dimen/dp_30"
-        android:layout_marginTop="@dimen/dp_20">
-
-        <ImageView
-            android:layout_width="@dimen/dp_18"
-            android:layout_height="@dimen/dp_18"
-            android:layout_marginTop="@dimen/dp_5"
-            android:src="@drawable/register_icon_mail_default"/>
-
-        <EditText
-            android:textColor="#ffff"
-            android:hint="邮箱"
-            android:textSize="@dimen/sp_12"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="@dimen/dp_40"
-            android:textColorHint="#eeeeee"
-            android:background="@null"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_1"
-            android:layout_alignParentBottom="true"
-            android:background="#666666" />
-
-    </RelativeLayout>
-
-
-    <!--11111111111111111111111111111111111111111111111-->
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_30"
-        android:layout_marginLeft="@dimen/dp_30"
-        android:layout_marginRight="@dimen/dp_30"
-        android:layout_marginTop="@dimen/dp_20">
-
-        <ImageView
-            android:layout_width="@dimen/dp_18"
-            android:layout_height="@dimen/dp_18"
-            android:layout_marginTop="@dimen/dp_5"
-            android:src="@drawable/register_icon_lock_default"/>
-
-        <EditText
-            android:textColor="#ffff"
-            android:hint="登录密码"
-            android:textSize="@dimen/sp_12"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="@dimen/dp_40"
-            android:textColorHint="#eeeeee"
-            android:background="@null"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_1"
-            android:layout_alignParentBottom="true"
-            android:background="#666666" />
-
-    </RelativeLayout>
+        </RelativeLayout>
 
 
         <Button
