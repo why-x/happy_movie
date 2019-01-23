@@ -1,6 +1,7 @@
 package com.why.happy_movie.core;
 
 import com.why.happy_movie.bean.LoginBean;
+import com.why.happy_movie.bean.MovieListBean;
 import com.why.happy_movie.bean.Result;
 
 import java.io.File;
@@ -40,11 +41,27 @@ public interface Interfacea {
                                        @Field("birthday")String birthday,
                                        @Field("email")String email);
 
-
+    /**
+     * 登录
+     * @param phone
+     * @param pwd
+     * @return
+     */
     @FormUrlEncoded
     @POST("user/v1/login")
     Observable<Result<LoginBean>> getLogin(@Field("phone")String phone,
                                            @Field("pwd")String pwd);
+
+
+    /**
+     * 查询热门电影列表
+     */
+    @GET("movie/v1/findHotMovieList")
+    Observable<Result<List<MovieListBean>>> findHotMovieList(@Header("userId") String userId,
+                                                             @Header("sessionId")String sessionId);
+
+
+
 
 
 
