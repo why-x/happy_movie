@@ -249,15 +249,13 @@
         </RelativeLayout>
 
     </RelativeLayout>
-
-    <Button
-        android:id="@+id/quit"
-        android:layout_width="@dimen/dp_116"
-        android:layout_height="@dimen/dp_30"
+    <ImageView
+        android:layout_width="@dimen/dp_50"
+        android:layout_height="@dimen/dp_50"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:id="@+id/my_myinfoback"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/dp_30"
-        android:text="退出当前账号"
-        android:textColor="#ffffff" />
-
+        android:src="@drawable/ic_xiangqing_back"
+        android:layout_marginBottom="@dimen/dp_26"
+        />
 </RelativeLayout>
