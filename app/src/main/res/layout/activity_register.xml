@@ -7,128 +7,235 @@
     android:background="@drawable/login"
     android:layout_height="match_parent"
     tools:context=".activity.RegisterActivity">
-    <EditText
+
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="昵称"
-        android:textColor="#ffff"
-        android:layout_margin="20dp"
-        android:textColorHint="#ffffff"
-        android:id="@+id/edit_regiter_name"
-        />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="手机号"
-        android:textColor="#ffff"
-        android:layout_margin="20dp"
-        android:textColorHint="#ffffff"
-        android:id="@+id/edit_register_number"
-        />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="登录密码"
-        android:textColor="#ffff"
-        android:textColorHint="#ffffff"
-        android:id="@+id/edit_register_pwd"
-        android:layout_margin="20dp"
-        />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="确认密码"
-        android:textColor="#ffff"
-        android:textColorHint="#ffffff"
-        android:id="@+id/edit_register_pwd2"
-        android:layout_margin="20dp"
-        />
-
-    <EditText
-        android:textColor="#ffff"
-        android:id="@+id/edit_register_email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="15"
-        android:layout_margin="20dp"
-        android:hint="邮箱地址"
-        android:textColorHint="#ffffff" />
-
-    <TextView
-        android:textColor="#ffff"
-        android:id="@+id/edit_register_data"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="15"
-        android:layout_margin="20dp"
-        android:text="2018-11-14" />
-
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="20dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:hint="性别"
-            android:textColorHint="#ffffff"
-            android:layout_marginLeft="20dp"
-            android:textSize="15sp"/>
-
-        <RadioGroup
-            android:id="@+id/radio_register"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/btn_boys"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:layout_marginLeft="80dp"
-                android:textColor="#fff"
-                android:text="男" />
-
-            <RadioButton
-                android:id="@+id/btn_girl"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
-                android:textColor="#fff"
-                android:text="女" />
-        </RadioGroup>
-
-    </RelativeLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="短信快速注册"
-        android:textColor="#ffffff"
-        android:layout_marginLeft="280dp"
-        />
-
-
-    <RelativeLayout
-        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_marginLeft="@dimen/dp_20"
+        android:layout_marginRight="@dimen/dp_20"
         android:layout_height="match_parent">
 
-        <Button
+
+
+
+    <!--11111111111111111111111111111111111111111111111-->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_30"
+        android:layout_marginLeft="@dimen/dp_30"
+        android:layout_marginRight="@dimen/dp_30"
+        android:layout_marginTop="@dimen/dp_130">
+
+        <ImageView
+            android:layout_width="@dimen/dp_18"
+            android:layout_height="@dimen/dp_18"
+            android:layout_marginTop="@dimen/dp_5"
+            android:src="@drawable/register_icon_name_default"/>
+
+            <EditText
+                android:textColor="#ffff"
+                android:hint="昵称"
+                android:textSize="@dimen/sp_12"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dp_40"
+                android:textColorHint="#eeeeee"
+                android:background="@null"/>
+
+        <View
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:text="注册"
-            android:textSize="20sp"
-            android:background="#F8993A"
-            android:id="@+id/btn_register"
-            />
+            android:layout_height="@dimen/dp_1"
+            android:layout_alignParentBottom="true"
+            android:background="#666666" />
 
     </RelativeLayout>
+
+    <!--11111111111111111111111111111111111111111111111-->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_30"
+        android:layout_marginLeft="@dimen/dp_30"
+        android:layout_marginRight="@dimen/dp_30"
+        android:layout_marginTop="@dimen/dp_20">
+
+        <ImageView
+            android:layout_width="@dimen/dp_18"
+            android:layout_height="@dimen/dp_18"
+            android:layout_marginTop="@dimen/dp_5"
+            android:src="@drawable/register_icon_sex_default"/>
+
+        <EditText
+            android:textColor="#ffff"
+            android:hint="性别"
+            android:textSize="@dimen/sp_12"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp_40"
+            android:textColorHint="#eeeeee"
+            android:background="@null"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"
+            android:layout_alignParentBottom="true"
+            android:background="#666666" />
+
+    </RelativeLayout>
+
+
+    <!--11111111111111111111111111111111111111111111111-->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_30"
+        android:layout_marginLeft="@dimen/dp_30"
+        android:layout_marginRight="@dimen/dp_30"
+        android:layout_marginTop="@dimen/dp_20">
+
+        <ImageView
+            android:layout_width="@dimen/dp_18"
+            android:layout_height="@dimen/dp_18"
+            android:layout_marginTop="@dimen/dp_5"
+            android:src="@drawable/register_icon_date_default"/>
+
+        <EditText
+            android:textColor="#ffff"
+            android:hint="出生日期"
+            android:textSize="@dimen/sp_12"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp_40"
+            android:textColorHint="#eeeeee"
+            android:background="@null"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"
+            android:layout_alignParentBottom="true"
+            android:background="#666666" />
+
+    </RelativeLayout>
+
+
+    <!--11111111111111111111111111111111111111111111111-->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_30"
+        android:layout_marginLeft="@dimen/dp_30"
+        android:layout_marginRight="@dimen/dp_30"
+        android:layout_marginTop="@dimen/dp_20">
+
+        <ImageView
+            android:layout_width="@dimen/dp_18"
+            android:layout_height="@dimen/dp_18"
+            android:layout_marginTop="@dimen/dp_5"
+            android:src="@drawable/register_icon_phone_default"/>
+
+        <EditText
+            android:textColor="#ffff"
+            android:hint="手机号"
+            android:textSize="@dimen/sp_12"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp_40"
+            android:textColorHint="#eeeeee"
+            android:background="@null"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"
+            android:layout_alignParentBottom="true"
+            android:background="#666666" />
+
+    </RelativeLayout>
+
+
+    <!--11111111111111111111111111111111111111111111111-->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_30"
+        android:layout_marginLeft="@dimen/dp_30"
+        android:layout_marginRight="@dimen/dp_30"
+        android:layout_marginTop="@dimen/dp_20">
+
+        <ImageView
+            android:layout_width="@dimen/dp_18"
+            android:layout_height="@dimen/dp_18"
+            android:layout_marginTop="@dimen/dp_5"
+            android:src="@drawable/register_icon_mail_default"/>
+
+        <EditText
+            android:textColor="#ffff"
+            android:hint="邮箱"
+            android:textSize="@dimen/sp_12"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp_40"
+            android:textColorHint="#eeeeee"
+            android:background="@null"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"
+            android:layout_alignParentBottom="true"
+            android:background="#666666" />
+
+    </RelativeLayout>
+
+
+    <!--11111111111111111111111111111111111111111111111-->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_30"
+        android:layout_marginLeft="@dimen/dp_30"
+        android:layout_marginRight="@dimen/dp_30"
+        android:layout_marginTop="@dimen/dp_20">
+
+        <ImageView
+            android:layout_width="@dimen/dp_18"
+            android:layout_height="@dimen/dp_18"
+            android:layout_marginTop="@dimen/dp_5"
+            android:src="@drawable/register_icon_lock_default"/>
+
+        <EditText
+            android:textColor="#ffff"
+            android:hint="登录密码"
+            android:textSize="@dimen/sp_12"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp_40"
+            android:textColorHint="#eeeeee"
+            android:background="@null"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"
+            android:layout_alignParentBottom="true"
+            android:background="#666666" />
+
+    </RelativeLayout>
+
+
+        <Button
+            android:id="@+id/btn_login2"
+            android:layout_width="@dimen/dp_280"
+            android:layout_height="@dimen/dp_40"
+            android:layout_below="@id/member_activity_login_layout"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dp_90"
+            android:background="@drawable/login_btn_shape"
+            android:text="注册"
+            android:textColor="#FFF"
+            android:textSize="@dimen/sp_16"/>
+
+    </LinearLayout>
+
+
+
 </LinearLayout>
