@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.why.happy_movie.R;
+import com.bw.movie.R;
 import com.why.happy_movie.bean.Result;
 import com.why.happy_movie.presenter.LoginPresenter;
 import com.why.happy_movie.utils.DataCall;

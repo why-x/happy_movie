@@ -7,7 +7,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Toast;
-import com.why.happy_movie.R;
+
+import com.bw.movie.R;
 import com.why.happy_movie.bean.Result;
 import com.why.happy_movie.presenter.RegisterPresenter;
 import com.why.happy_movie.utils.DataCall;

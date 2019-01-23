@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
-import com.why.happy_movie.R;
+import com.bw.movie.R;
 import com.why.happy_movie.myactivity.MessageActivity;
 
 import butterknife.BindView;

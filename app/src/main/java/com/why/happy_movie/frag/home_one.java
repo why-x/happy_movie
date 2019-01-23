@@ -10,8 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.why.happy_movie.R;
-import com.why.happy_movie.activity.LoginActivity;
+import com.bw.movie.R;
 
 /**
  * @author happy_movie

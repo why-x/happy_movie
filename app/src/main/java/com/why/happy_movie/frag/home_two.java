@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.why.happy_movie.R;
+import com.bw.movie.R;
 
 /**
  * @author happy_movie

@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioGroup;
 
-import com.why.happy_movie.R;
+import com.bw.movie.R;
 import com.why.happy_movie.frag.home_one;
 import com.why.happy_movie.frag.home_three;
 import com.why.happy_movie.frag.home_two;

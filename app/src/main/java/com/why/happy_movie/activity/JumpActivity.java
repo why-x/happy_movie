@@ -6,10 +6,9 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.RadioGroup;
 
-import com.why.happy_movie.R;
+import com.bw.movie.R;
 import com.why.happy_movie.frag.frag_four;
 import com.why.happy_movie.frag.frag_one;
 import com.why.happy_movie.frag.frag_three;

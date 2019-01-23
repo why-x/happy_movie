@@ -5,7 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.why.happy_movie.R;
+
+import com.bw.movie.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
