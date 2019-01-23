@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/login"
     android:orientation="vertical"
-    tools:context=".activity.LoginActivity">
+    tools:context="com.why.happy_movie.activity.LoginActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
