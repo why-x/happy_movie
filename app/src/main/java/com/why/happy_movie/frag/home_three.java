@@ -48,6 +48,7 @@ public class home_three extends Fragment implements View.OnClickListener {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.my_frag_all, container, false);
 
+
         unbinder = ButterKnife.bind(this, view);
         return view;
     }
