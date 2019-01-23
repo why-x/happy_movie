@@ -19,7 +19,11 @@
         <activity android:name=".activity.JumpActivity" />
         <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.HomeActivity" />
-        <activity android:name=".activity.RegisterActivity"></activity>
+        <activity android:name=".activity.RegisterActivity" />
+        <activity
+            android:name=".myactivity.MessageActivity"
+            android:label="@string/title_activity_message"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>
