@@ -1,5 +1,6 @@
 package com.why.happy_movie.core;
 
+import com.why.happy_movie.bean.LoginBean;
 import com.why.happy_movie.bean.Result;
 
 import java.io.File;
@@ -42,8 +43,8 @@ public interface Interfacea {
 
     @FormUrlEncoded
     @POST("user/v1/login")
-    Observable<Result> getLogin(@Field("phone")String phone,
-                                       @Field("pwd")String pwd);
+    Observable<Result<LoginBean>> getLogin(@Field("phone")String phone,
+                                           @Field("pwd")String pwd);
 
 
 

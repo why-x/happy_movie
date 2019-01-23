@@ -70,18 +70,17 @@
                     android:textColor="#ffff"
                     android:background="@null"
                     android:ems="11"
+                    android:inputType="textPassword"
                     android:hint="登录密码"
                     android:imeOptions="actionNext"
                     android:paddingLeft="@dimen/dp_50"
                     android:textColorHint="#eeeeee" />
 
-                <ToggleButton
+                <ImageView
                     android:id="@+id/btn_ying"
                     android:layout_width="@dimen/dp_24"
                     android:layout_height="@dimen/dp_15"
                     android:layout_alignParentRight="true"
-                    android:textOff=""
-                    android:textOn=""
                     android:background="@drawable/ic_eye"
                     android:layout_centerVertical="true" />
 

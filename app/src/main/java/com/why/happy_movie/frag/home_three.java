@@ -11,8 +11,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bw.movie.R;
+import com.why.happy_movie.activity.LoginActivity;
 import com.why.happy_movie.myactivity.MessageActivity;
 
 import butterknife.BindView;
@@ -42,12 +44,13 @@ public class home_three extends Fragment implements View.OnClickListener {
     @BindView(R.id.my_logout)
     ImageButton myLogout;
     Unbinder unbinder;
+    @BindView(R.id.my_name)
+    TextView my_name;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.my_frag_all, container, false);
-
 
         unbinder = ButterKnife.bind(this, view);
         return view;
@@ -57,7 +60,7 @@ public class home_three extends Fragment implements View.OnClickListener {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         myMessage.setOnClickListener(this);
-
+        my_name.setOnClickListener(this);
 
 
     }
@@ -74,6 +77,10 @@ public class home_three extends Fragment implements View.OnClickListener {
             case R.id.my_message:
                 Intent intentm=new Intent(getActivity(),MessageActivity.class);
                 startActivity(intentm);
+                break;
+            case  R.id.my_name:
+                Intent intentlo=new Intent(getActivity(),LoginActivity.class);
+                startActivity(intentlo);
                 break;
         }
     }
