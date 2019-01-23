@@ -94,7 +94,8 @@
                 android:background="#ffffff" />
 
             <LinearLayout
-                android:layout_width="@dimen/dp_300"
+                android:layout_marginTop="@dimen/dp_12"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
@@ -103,14 +104,20 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/save_pwd"
                     android:textColor="#fff"
+                    android:button="@null"
+                    android:drawablePadding="@dimen/dp_5"
+                    android:drawableLeft="@drawable/ck_sel"
                     android:text="记住密码"/>
 
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:drawablePadding="@dimen/dp_5"
                     android:layout_marginLeft="@dimen/dp_10"
                     android:id="@+id/zd_login"
                     android:textColor="#fff"
+                    android:button="@null"
+                    android:drawableLeft="@drawable/ck_sel"
                     android:text="自动登录"/>
 
                 <TextView
@@ -135,7 +142,7 @@
             android:background="@drawable/login_btn_shape"
             android:text="登录"
             android:textColor="#FFF"
-            android:textStyle="bold" />
+            android:textSize="@dimen/sp_16"/>
 
         <LinearLayout
             android:layout_width="@dimen/dp_280"
