@@ -77,24 +77,34 @@
             android:layout_width="@dimen/dp_58"
             android:layout_height="@dimen/dp_32" />
 
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
         <Button
-           android:layout_marginLeft="@dimen/dp_25"
             android:background="@drawable/details_btn"
             android:textColor="#ffffff"
             android:id="@+id/d_advance"
             android:text="预告"
             android:layout_width="@dimen/dp_58"
             android:layout_height="@dimen/dp_32" />
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
         <Button
             android:textColor="#ffffff"
-            android:layout_marginLeft="@dimen/dp_25"
             android:id="@+id/d_photo"
             android:background="@drawable/details_btn"
             android:text="剧照"
             android:layout_width="@dimen/dp_58"
             android:layout_height="@dimen/dp_32" />
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
         <Button
-            android:layout_marginLeft="@dimen/dp_25"
             android:id="@+id/d_comment"
             android:background="@drawable/details_btn"
             android:textColor="#ffffff"
@@ -129,7 +139,6 @@
             android:id="@+id/d_buy"
             android:background="@drawable/buy_shape"
             android:textColor="#ffffff"
-            android:textSize="@dimen/sp_18"
-            />
+            android:textSize="@dimen/sp_18" />
     </LinearLayout>
 </LinearLayout>

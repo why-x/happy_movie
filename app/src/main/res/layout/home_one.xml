@@ -78,6 +78,7 @@
                     android:visibility="gone"
                     android:layout_gravity="center_vertical"
                     android:textSize="@dimen/sp_10"
+                    android:paddingRight="@dimen/dp_10"
                     android:text="搜索"/>
 
             </LinearLayout>

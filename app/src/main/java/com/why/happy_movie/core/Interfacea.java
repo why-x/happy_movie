@@ -4,6 +4,7 @@ import com.why.happy_movie.bean.LoginBean;
 import com.why.happy_movie.bean.MovieDBean;
 import com.why.happy_movie.bean.MovieListBean;
 import com.why.happy_movie.bean.Result;
+import com.why.happy_movie.bean.YingYuanBean;
 
 import java.io.File;
 import java.util.List;
@@ -105,6 +106,22 @@ public interface Interfacea {
                                                   @Header("sessionId")String sessionId,
                                                   @Query("movieId")int movieId);
 
+
+
+    @GET("cinema/v1/findRecommendCinemas")
+    Observable<Result<List<YingYuanBean>>> findRecommendCinemas(@Header("userId") int userId,
+                                                                @Header("sessionId")String sessionId,
+                                                                @Query("page")int page,
+                                                                @Query("count")int count);
+
+
+    @GET("cinema/v1/findNearbyCinemas")
+    Observable<Result<List<YingYuanBean>>> findNearbyCinemas(@Header("userId") int userId,
+                                                                @Header("sessionId")String sessionId,
+                                                             @Query("longitude")String longitude,
+                                                             @Query("latitude")String latitude,
+                                                                @Query("page")int page,
+                                                                @Query("count")int count);
 
 
 
