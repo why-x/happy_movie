@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/details"
     android:orientation="vertical"
+    android:id="@+id/lll"
     tools:context="com.why.happy_movie.activity.DetailsActivity">
 
     <LinearLayout

@@ -15,11 +15,10 @@
 
 
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_30"
-        android:orientation="horizontal">
+        android:layout_marginTop="@dimen/dp_30">
 
         <ImageView
             android:layout_width="@dimen/dp_24"
@@ -29,21 +28,19 @@
 
 
         <TextView
-            android:layout_marginLeft="@dimen/dp_10"
+            android:id="@+id/addre"
+            android:layout_marginLeft="@dimen/dp_60"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#333333"
             android:textSize="@dimen/sp_14"
             android:text="北京"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
             android:background="@drawable/search_shape"
             android:orientation="horizontal">
 
@@ -80,7 +77,7 @@
         </LinearLayout>
 
 
-    </LinearLayout>
+    </RelativeLayout>
 
 
     <!--111111111111111111111111111111111111111111-->

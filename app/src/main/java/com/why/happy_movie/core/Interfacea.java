@@ -3,6 +3,7 @@ package com.why.happy_movie.core;
 import com.why.happy_movie.bean.LoginBean;
 import com.why.happy_movie.bean.MovieDBean;
 import com.why.happy_movie.bean.MovieListBean;
+import com.why.happy_movie.bean.MoviesDBean;
 import com.why.happy_movie.bean.Result;
 import com.why.happy_movie.bean.YingYuanBean;
 
@@ -95,7 +96,7 @@ public interface Interfacea {
 
 
     /**
-     * 电影详情
+     * 根据id查询电影
      * @param userId
      * @param sessionId
      * @param movieId
@@ -107,14 +108,30 @@ public interface Interfacea {
                                                   @Query("movieId")int movieId);
 
 
-
+    /**
+     * 推荐影院
+     * @param userId
+     * @param sessionId
+     * @param page
+     * @param count
+     * @return
+     */
     @GET("cinema/v1/findRecommendCinemas")
     Observable<Result<List<YingYuanBean>>> findRecommendCinemas(@Header("userId") int userId,
                                                                 @Header("sessionId")String sessionId,
                                                                 @Query("page")int page,
                                                                 @Query("count")int count);
 
-
+    /**
+     * 附近影院
+     * @param userId
+     * @param sessionId
+     * @param longitude
+     * @param latitude
+     * @param page
+     * @param count
+     * @return
+     */
     @GET("cinema/v1/findNearbyCinemas")
     Observable<Result<List<YingYuanBean>>> findNearbyCinemas(@Header("userId") int userId,
                                                                 @Header("sessionId")String sessionId,
@@ -122,6 +139,19 @@ public interface Interfacea {
                                                              @Query("latitude")String latitude,
                                                                 @Query("page")int page,
                                                                 @Query("count")int count);
+
+
+    /**
+     * 电影详情
+     * @param userId
+     * @param sessionId
+     * @param movieId
+     * @return
+     */
+    @GET("movie/v1/findMoviesDetail")
+    Observable<Result<MoviesDBean>> findMoviesDetail(@Header("userId") int userId,
+                                                     @Header("sessionId")String sessionId,
+                                                     @Query("movieId")int movieId);
 
 
 

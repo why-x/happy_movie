@@ -15,8 +15,11 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.bw.movie.R;
+import com.why.happy_movie.MApp;
 import com.why.happy_movie.bean.LoginBean;
 import com.why.happy_movie.bean.Result;
+import com.why.happy_movie.bean.UserBean;
+import com.why.happy_movie.bean.UserInfoBean;
 import com.why.happy_movie.presenter.LoginPresenter;
 import com.why.happy_movie.utils.DataCall;
 import com.why.happy_movie.utils.exception.ApiException;
@@ -87,15 +90,20 @@ public class LoginActivity extends AppCompatActivity implements DataCall<Result<
     }
 
     @Override
-    public void success(Result data) {
+    public void success(Result<LoginBean> data) {
         Toast.makeText(this, ""+data.getMessage(), Toast.LENGTH_SHORT).show();
         if(data.getStatus().equals("0000")){
+            LoginBean result = data.getResult();
+            UserInfoBean userInfo = result.getUserInfo();
+            UserBean userBean = new UserBean(1,result.getSessionId(),result.getUserId(),userInfo.getBirthday(),userInfo.getLastLoginTime(),userInfo.getNickName(),userInfo.getPhone(),userInfo.getSex(),userInfo.getHeadPic());
+            MApp.userBeanDao.insertOrReplace(userBean);
 
             SharedPreferences.Editor edit = sp.edit();
             boolean checked = save_pwd.isChecked();
             edit.putBoolean("jizhu",checked);
             edit.putString("phone",trim);
             edit.putString("pass",trim1);
+            edit.putBoolean("zai",true);
             edit.commit();
 
             /*Intent intent = new Intent(LoginActivity.this, HomeActivity.class);

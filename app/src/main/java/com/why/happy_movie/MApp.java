@@ -7,6 +7,9 @@ import android.os.Looper;
 import android.os.Handler;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.why.happy_movie.dao.DaoMaster;
+import com.why.happy_movie.dao.DaoSession;
+import com.why.happy_movie.dao.UserBeanDao;
 
 
 /**
@@ -28,18 +31,22 @@ public class MApp extends Application {
      * context 全局唯一的上下文
      */
     private static Context context;
-
-    private static SharedPreferences sharedPreferences;
+    public static SharedPreferences sharedPreferences;
+    public static UserBeanDao userBeanDao;
 
     @Override
     public void onCreate() {
         super.onCreate();
 
+        DaoSession daoSession = DaoMaster.newDevSession(this, UserBeanDao.TABLENAME);
+        userBeanDao = daoSession.getUserBeanDao();
+
+        context=this;
         mMainThreadId = android.os.Process.myTid();
         mMainThread = Thread.currentThread();
         mMainThreadHandler = new Handler();
         mMainLooper = getMainLooper();
-        sharedPreferences = getSharedPreferences("share.xml",MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("sp",MODE_PRIVATE);
 
         Fresco.initialize(this);
     }
