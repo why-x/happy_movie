@@ -57,9 +57,39 @@ public interface Interfacea {
      * 查询热门电影列表
      */
     @GET("movie/v1/findHotMovieList")
-    Observable<Result<List<MovieListBean>>> findHotMovieList(@Header("userId") String userId,
-                                                             @Header("sessionId")String sessionId);
+    Observable<Result<List<MovieListBean>>> findHotMovieList(@Header("userId") int userId,
+                                                             @Header("sessionId")String sessionId,
+                                                             @Query("page")int page,
+                                                             @Query("count")int count);
 
+
+    /**
+     * 正在热映
+     * @param userId
+     * @param sessionId
+     * @param page
+     * @param count
+     * @return
+     */
+    @GET("movie/v1/findReleaseMovieList")
+    Observable<Result<List<MovieListBean>>> findReleaseMovieList(@Header("userId") int userId,
+                                                             @Header("sessionId")String sessionId,
+                                                             @Query("page")int page,
+                                                             @Query("count")int count);
+
+    /**
+     * 即将上映
+     * @param userId
+     * @param sessionId
+     * @param page
+     * @param count
+     * @return
+     */
+    @GET("movie/v1/findComingSoonMovieList")
+    Observable<Result<List<MovieListBean>>> findComingSoonMovieList(@Header("userId") int userId,
+                                                                 @Header("sessionId")String sessionId,
+                                                                 @Query("page")int page,
+                                                                 @Query("count")int count);
 
 
 

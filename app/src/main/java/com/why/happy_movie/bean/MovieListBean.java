@@ -19,18 +19,19 @@ public class MovieListBean {
          * summary : 一位不速之客的意外到访，打破了神油店老板程勇（徐峥 饰）的平凡人生，他从一个交不起房租的男性保健品商贩，一跃成为印度仿制药“格列宁”的独家代理商。收获巨额利润的他，生活剧烈变化，被病患们冠以“药神”的称号。但是，一场关于救赎的拉锯战也在波涛暗涌中慢慢展开......
          */
 
-        private boolean followMovie;
+
+        private int followMovie;
         private int id;
         private String imageUrl;
         private String name;
         private int rank;
         private String summary;
 
-        public boolean isFollowMovie() {
+        public int isFollowMovie() {
             return followMovie;
         }
 
-        public void setFollowMovie(boolean followMovie) {
+        public void setFollowMovie(int followMovie) {
             this.followMovie = followMovie;
         }
 
