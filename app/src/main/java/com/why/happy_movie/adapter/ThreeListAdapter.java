@@ -22,12 +22,12 @@ import java.util.List;
  * QQ:45198565
  * 佛曰：永无BUG 盘他！
  */
-public class CinemaFlowAdapter extends RecyclerView.Adapter<CinemaFlowAdapter.MyViewHolder>  {
+public class ThreeListAdapter extends RecyclerView.Adapter<ThreeListAdapter.MyViewHolder>  {
     private List<MovieListBean> mDatas;
     private Context mContext;
     private LayoutInflater inflater;
 
-    public CinemaFlowAdapter(Context context, List<MovieListBean> datas){
+    public ThreeListAdapter(Context context, List<MovieListBean> datas){
         this.mContext=context;
         this.mDatas=datas;
         inflater=LayoutInflater.from(mContext);
@@ -42,12 +42,14 @@ public class CinemaFlowAdapter extends RecyclerView.Adapter<CinemaFlowAdapter.My
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         holder.simpleDraweeView.setImageURI(mDatas.get(position).getImageUrl());
-        holder.text_cinema_flow1.setText(mDatas.get(position).getName());
+        holder.name.setText(mDatas.get(position).getName());
+        holder.cont.setText(mDatas.get(position).getSummary());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, DetailsActivity.class);
-                intent.putExtra("id",mDatas.get(position).getId());
+                int id = mDatas.get(position).getId();
+                intent.putExtra("id",id);
                 mContext.startActivity(intent);
             }
         });
@@ -56,19 +58,21 @@ public class CinemaFlowAdapter extends RecyclerView.Adapter<CinemaFlowAdapter.My
     //重写onCreateViewHolder方法，返回一个自定义的ViewHolder
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.cinema_flow_item,parent,false);
+        View view = inflater.inflate(R.layout.threelist_item,parent,false);
         MyViewHolder holder=new MyViewHolder(view);
         return holder;
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder { //承载Item视图的子布局
         SimpleDraweeView simpleDraweeView;
-        TextView text_cinema_flow1;
+        TextView name;
+        TextView cont;
 
         public MyViewHolder(View view) {
             super(view);
-            simpleDraweeView = view.findViewById(R.id.simp_cinema_flow);
-           text_cinema_flow1  = view.findViewById(R.id.text_cinema_flow1);
+            simpleDraweeView = view.findViewById(R.id.iv);
+            name = view.findViewById(R.id.name);
+            cont = view.findViewById(R.id.cont);
         }
     }
 

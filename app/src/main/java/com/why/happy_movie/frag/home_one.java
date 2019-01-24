@@ -1,5 +1,6 @@
 package com.why.happy_movie.frag;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,11 +13,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bw.movie.R;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
+import com.why.happy_movie.activity.ThreeListActivity;
 import com.why.happy_movie.adapter.CinemaFlowAdapter;
 import com.why.happy_movie.adapter.DianyingAdapter;
 import com.why.happy_movie.bean.MovieListBean;
@@ -85,6 +88,31 @@ public class home_one extends Fragment implements DataCall<Result<List<MovieList
             public void onClick(View v) {
                 et_sou.setVisibility(View.GONE);
                 tv_sou.setVisibility(View.GONE);
+            }
+        });
+
+        LinearLayout ll1 = view.findViewById(R.id.ll1);
+        ll1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), ThreeListActivity.class);
+                startActivity(intent);
+            }
+        });
+        LinearLayout ll2 = view.findViewById(R.id.ll2);
+        ll2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), ThreeListActivity.class);
+                startActivity(intent);
+            }
+        });
+        LinearLayout ll3 = view.findViewById(R.id.ll3);
+        ll3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), ThreeListActivity.class);
+                startActivity(intent);
             }
         });
 

@@ -34,16 +34,17 @@
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
-        <ImageButton
+        <CheckBox
             android:id="@+id/d_love"
-            android:layout_width="@dimen/dp_24"
-            android:layout_height="@dimen/dp_24"
+            android:layout_width="@dimen/dp_15"
+            android:layout_height="@dimen/dp_15"
             android:layout_marginRight="@dimen/dp_24"
-            android:background="@android:color/transparent"
-            android:src="@drawable/d_love" />
+            android:background="@drawable/love_sel"
+            android:button="@null"/>
     </LinearLayout>
 
     <TextView
+        android:id="@+id/d_name"
         android:layout_marginTop="@dimen/dp_10"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
@@ -52,7 +53,7 @@
         android:textColor="#ffffff"
         android:textSize="@dimen/sp_20" />
 
-    <ImageView
+    <com.facebook.drawee.view.SimpleDraweeView
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/dp_30"
         android:id="@+id/details_movie"
@@ -108,7 +109,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_65">
 
-        <ImageButton
+        <ImageView
             android:background="@android:color/transparent"
             android:layout_width="@dimen/dp_60"
             android:layout_height="@dimen/dp_60"

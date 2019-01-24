@@ -1,6 +1,7 @@
 package com.why.happy_movie.core;
 
 import com.why.happy_movie.bean.LoginBean;
+import com.why.happy_movie.bean.MovieDBean;
 import com.why.happy_movie.bean.MovieListBean;
 import com.why.happy_movie.bean.Result;
 
@@ -91,6 +92,18 @@ public interface Interfacea {
                                                                  @Query("page")int page,
                                                                  @Query("count")int count);
 
+
+    /**
+     * 电影详情
+     * @param userId
+     * @param sessionId
+     * @param movieId
+     * @return
+     */
+    @GET("movie/v1/findMoviesById")
+    Observable<Result<MovieDBean>> findMoviesById(@Header("userId") int userId,
+                                                  @Header("sessionId")String sessionId,
+                                                  @Query("movieId")int movieId);
 
 
 

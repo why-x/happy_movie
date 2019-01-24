@@ -1,6 +1,7 @@
 package com.why.happy_movie.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,8 @@ import android.widget.TextView;
 
 import com.bw.movie.R;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.why.happy_movie.activity.DetailsActivity;
+import com.why.happy_movie.activity.ThreeListActivity;
 import com.why.happy_movie.bean.MovieListBean;
 
 import java.util.List;
@@ -40,6 +43,14 @@ public class DianyingAdapter extends RecyclerView.Adapter<DianyingAdapter.MyView
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         holder.simpleDraweeView.setImageURI(mDatas.get(position).getImageUrl());
         holder.text_cinema_flow1.setText(mDatas.get(position).getName());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, DetailsActivity.class);
+                intent.putExtra("id",mDatas.get(position).getId());
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     //重写onCreateViewHolder方法，返回一个自定义的ViewHolder
@@ -57,7 +68,7 @@ public class DianyingAdapter extends RecyclerView.Adapter<DianyingAdapter.MyView
         public MyViewHolder(View view) {
             super(view);
             simpleDraweeView = view.findViewById(R.id.simp_cinema_flow);
-           text_cinema_flow1  = view.findViewById(R.id.text_cinema_flow1);
+            text_cinema_flow1  = view.findViewById(R.id.text_cinema_flow1);
         }
     }
 
