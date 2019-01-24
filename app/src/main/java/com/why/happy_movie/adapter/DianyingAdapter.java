@@ -19,12 +19,12 @@ import java.util.List;
  * QQ:45198565
  * 佛曰：永无BUG 盘他！
  */
-public class CinemaFlowAdapter extends RecyclerView.Adapter<CinemaFlowAdapter.MyViewHolder>  {
+public class DianyingAdapter extends RecyclerView.Adapter<DianyingAdapter.MyViewHolder>  {
     private List<MovieListBean> mDatas;
     private Context mContext;
     private LayoutInflater inflater;
 
-    public CinemaFlowAdapter(Context context, List<MovieListBean> datas){
+    public DianyingAdapter(Context context, List<MovieListBean> datas){
         this.mContext=context;
         this.mDatas=datas;
         inflater=LayoutInflater.from(mContext);
@@ -45,7 +45,7 @@ public class CinemaFlowAdapter extends RecyclerView.Adapter<CinemaFlowAdapter.My
     //重写onCreateViewHolder方法，返回一个自定义的ViewHolder
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.cinema_flow_item,parent,false);
+        View view = inflater.inflate(R.layout.dianying_item,parent,false);
         MyViewHolder holder=new MyViewHolder(view);
         return holder;
     }
