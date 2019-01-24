@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <RelativeLayout
+        android:layout_marginTop="@dimen/dp_110"
+        android:background="@drawable/popu_shape"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+<ImageView
+
+    android:layout_marginLeft="@dimen/dp_24"
+    android:layout_width="@dimen/dp_111"
+    android:layout_height="@dimen/dp_149"
+    android:src="@drawable/details_movie"/>
+    </RelativeLayout>
+</RelativeLayout>
