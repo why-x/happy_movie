@@ -1,8 +1,10 @@
 package com.why.happy_movie.core;
 
+import com.why.happy_movie.bean.CimemaldListBean;
 import com.why.happy_movie.bean.LoginBean;
 import com.why.happy_movie.bean.MovieDBean;
 import com.why.happy_movie.bean.MovieListBean;
+import com.why.happy_movie.bean.MovieScheduleListBean;
 import com.why.happy_movie.bean.MoviesDBean;
 import com.why.happy_movie.bean.Result;
 import com.why.happy_movie.bean.YingYuanBean;
@@ -188,5 +190,26 @@ public interface Interfacea {
     @GET("user/v1/verify/userSignIn")
     Observable<Result> userSignIn(@Header("userId") int userId,
                                                         @Header("sessionId")String sessionId);
+
+
+    /**
+     * 根据影院ID查询该影院当前排期的电影列表
+     * @param cinemaId
+     * @return
+     */
+    @GET("movie/v1/findMovieListByCinemaId")
+    Observable<Result<List<CimemaldListBean>>> findMovieListByCinemaId(@Query("cinemaId")int cinemaId);
+
+
+    /**
+     * 根据电影ID和影院ID查询电影排期列表
+     * @param cinemaId
+     * @param movieId
+     * @return
+     */
+    @GET("movie/v1/findMovieScheduleList")
+    Observable<Result<List<MovieScheduleListBean>>> findMovieScheduleList(@Query("cinemasId")int cinemaId,
+                                                                          @Query("movieId")int movieId);
+
 
 }
