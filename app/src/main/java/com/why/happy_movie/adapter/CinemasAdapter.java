@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.bw.movie.R;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.why.happy_movie.activity.CinemaActivity;
 import com.why.happy_movie.activity.DetailsActivity;
 import com.why.happy_movie.bean.MovieListBean;
 import com.why.happy_movie.bean.YingYuanBean;
@@ -45,6 +46,14 @@ public class CinemasAdapter extends RecyclerView.Adapter<CinemasAdapter.MyViewHo
         holder.name.setText(mDatas.get(position).getName());
         holder.address.setText(mDatas.get(position).getAddress());
         holder.juli.setText(mDatas.get(position).getDistance()+"km");
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(mContext,CinemaActivity.class);
+                intent.putExtra("cid",mDatas.get(position).getId());
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     //重写onCreateViewHolder方法，返回一个自定义的ViewHolder

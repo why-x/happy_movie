@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/dianyingbeijing1"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_90"
+            android:layout_marginTop="@dimen/dp_15"
+            android:paddingLeft="@dimen/dp_24"
+            android:paddingRight="@dimen/dp_24">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/cinema_img"
+                android:layout_width="@dimen/dp_70"
+                android:layout_height="@dimen/dp_70"
+                android:layout_marginTop="@dimen/dp_10" />
+
+            <TextView
+                android:id="@+id/cinema_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_10"
+                android:layout_toRightOf="@id/cinema_img"
+                android:text="CGV影城"
+                android:textColor="#fff"
+                android:textSize="@dimen/sp_16" />
+
+            <TextView
+                android:id="@+id/cinema_place"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/cinema_name"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_marginRight="@dimen/dp_10"
+                android:layout_toRightOf="@id/cinema_img"
+                android:text="nhjsnhshfksjhnfsjkh"
+                android:textColor="#fff"
+                android:textSize="@dimen/sp_12" />
+
+            <ImageView
+                android:layout_width="@dimen/dp_24"
+                android:layout_height="@dimen/dp_24"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/dp_30"
+                android:src="@drawable/navigation" />
+
+        </RelativeLayout>
+
+        <recycler.coverflow.RecyclerCoverFlow
+            android:id="@+id/cinema_flow"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_223"
+            android:layout_marginTop="@dimen/dp_20" />
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/cinema_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_30"></android.support.v7.widget.RecyclerView>
+
+
+</LinearLayout>
+    <ImageView
+        android:id="@+id/cinema_return"
+        android:src="@drawable/ic_xiangqing_back"
+        android:layout_width="@dimen/dp_60"
+        android:layout_height="@dimen/dp_60"
+        android:layout_alignParentBottom="true"
+        />
+</RelativeLayout>
