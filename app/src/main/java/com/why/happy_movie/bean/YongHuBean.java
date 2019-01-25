@@ -26,8 +26,17 @@ public class YongHuBean {
         private String nickName;
         private String phone;
         private int sex;
+        String email;
 
-        public long getBirthday() {
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public long getBirthday() {
             return birthday;
         }
 
