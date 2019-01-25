@@ -6,6 +6,7 @@ import com.why.happy_movie.bean.MovieListBean;
 import com.why.happy_movie.bean.MoviesDBean;
 import com.why.happy_movie.bean.Result;
 import com.why.happy_movie.bean.YingYuanBean;
+import com.why.happy_movie.bean.YongHuBean;
 
 import java.io.File;
 import java.util.List;
@@ -154,5 +155,38 @@ public interface Interfacea {
                                                      @Query("movieId")int movieId);
 
 
+    /**
+     * 根据用户ID查询用户信息
+     * @param userId
+     * @param sessionId
+     * @return
+     */
+    @GET("user/v1/verify/getUserInfoByUserId")
+    Observable<Result<YongHuBean>> getUserInfoByUserId(@Header("userId") int userId,
+                                                       @Header("sessionId")String sessionId);
+
+
+    /**
+     * 上传头像
+     * @param userId
+     * @param sessionId
+     * @param body
+     * @return
+     */
+    @POST("user/v1/verify/uploadHeadPic")
+    Observable<Result> uploadHeadPic(@Header("userId") int userId,
+                                                  @Header("sessionId")String sessionId,
+                                                  @Body MultipartBody body);
+
+
+    /**
+     * 签到
+     * @param userId
+     * @param sessionId
+     * @return
+     */
+    @GET("user/v1/verify/userSignIn")
+    Observable<Result> userSignIn(@Header("userId") int userId,
+                                                        @Header("sessionId")String sessionId);
 
 }
