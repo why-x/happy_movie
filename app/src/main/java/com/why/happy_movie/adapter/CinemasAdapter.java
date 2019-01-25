@@ -50,7 +50,10 @@ public class CinemasAdapter extends RecyclerView.Adapter<CinemasAdapter.MyViewHo
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(mContext,CinemaActivity.class);
+                intent.putExtra("name1",mDatas.get(position).getName());
+                intent.putExtra("logo",mDatas.get(position).getLogo());
                 intent.putExtra("cid",mDatas.get(position).getId());
+                intent.putExtra("address",mDatas.get(position).getAddress());
                 mContext.startActivity(intent);
             }
         });

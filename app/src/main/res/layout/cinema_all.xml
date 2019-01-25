@@ -2,6 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fff"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 <LinearLayout
     android:orientation="vertical"
@@ -24,6 +26,7 @@
                 android:id="@+id/cinema_img"
                 android:layout_width="@dimen/dp_70"
                 android:layout_height="@dimen/dp_70"
+                app:roundedCornerRadius="@dimen/dp_5"
                 android:layout_marginTop="@dimen/dp_10" />
 
             <TextView
@@ -49,8 +52,8 @@
                 android:textSize="@dimen/sp_12" />
 
             <ImageView
-                android:layout_width="@dimen/dp_24"
-                android:layout_height="@dimen/dp_24"
+                android:layout_width="@dimen/dp_28"
+                android:layout_height="@dimen/dp_28"
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="@dimen/dp_30"
                 android:src="@drawable/navigation" />
@@ -58,10 +61,9 @@
         </RelativeLayout>
 
         <recycler.coverflow.RecyclerCoverFlow
-            android:id="@+id/cinema_flow"
+            android:id="@+id/rcf_cinema_flow"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_223"
-            android:layout_marginTop="@dimen/dp_20" />
+            android:layout_height="@dimen/dp_223"></recycler.coverflow.RecyclerCoverFlow>
 
     </LinearLayout>
 
@@ -69,8 +71,9 @@
         android:id="@+id/cinema_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_30"></android.support.v7.widget.RecyclerView>
-
+        android:layout_marginLeft="@dimen/dp_24"
+        android:layout_marginRight="@dimen/dp_24"
+        android:layout_marginTop="@dimen/dp_10"></android.support.v7.widget.RecyclerView>
 
 </LinearLayout>
     <ImageView
@@ -78,6 +81,8 @@
         android:src="@drawable/ic_xiangqing_back"
         android:layout_width="@dimen/dp_60"
         android:layout_height="@dimen/dp_60"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:layout_marginBottom="@dimen/dp_24"
         android:layout_alignParentBottom="true"
         />
 </RelativeLayout>
