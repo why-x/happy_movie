@@ -51,7 +51,9 @@
             android:enabled="true"
             android:process=":remote" />
 
-        <activity android:name="com.why.happy_movie.activity.CinemaActivity"></activity>
+        <activity android:name="com.why.happy_movie.activity.CinemaActivity" />
+        <activity android:name="com.why.happy_movie.activity.IdeaActivity" />
+        <activity android:name="com.why.happy_movie.activity.MyLoveActivity"></activity>
     </application>
 
 </manifest>

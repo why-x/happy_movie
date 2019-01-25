@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/dp_24"
+    android:paddingRight="@dimen/dp_24">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_15"
+        android:text="意见反馈"
+        android:textColor="#333333"
+        android:textSize="@dimen/sp_14" />
+    <LinearLayout
+        android:id="@+id/idea_lall"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="@dimen/dp_70"
+            android:layout_height="@dimen/dp_70"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dp_120"
+            android:src="@drawable/idea_success" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dp_30"
+            android:text="反馈成功"
+            android:textColor="#333333"
+            android:textSize="@dimen/sp_16" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_30"
+            android:gravity="center"
+            android:text="感谢您对维度影院的支持，我们会认真处理您的反馈，尽快修复和完善相关功能。"
+            android:textColor="#666666"
+            android:textSize="@dimen/sp_12" />
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/idea_lall2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_64"
+        android:layout_marginTop="@dimen/dp_30"
+        android:padding="@dimen/dp_15"
+        android:background="@drawable/shape_yyt2">
+        <EditText
+            android:textSize="@dimen/sp_12"
+            android:background="@android:color/transparent"
+            android:textColorHint="#999999"
+            android:hint="写下您对产品的感受吧！工作人员将会在第一时间评估处理。"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/idea_lall3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/idea_put"
+            android:layout_width="@dimen/dp_48"
+            android:layout_height="@dimen/dp_25"
+            android:layout_marginTop="@dimen/dp_20"
+            android:background="@drawable/idea_shape"
+            android:text="提交"
+            android:textColor="#fff"
+            android:textSize="@dimen/sp_12" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"></LinearLayout>
+
+    <ImageView
+        android:id="@+id/idea_return"
+        android:layout_width="@dimen/dp_60"
+        android:layout_height="@dimen/dp_60"
+        android:layout_marginBottom="@dimen/dp_20"
+        android:src="@drawable/ic_xiangqing_back" />
+</LinearLayout>

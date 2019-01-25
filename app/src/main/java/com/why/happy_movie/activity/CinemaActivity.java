@@ -43,8 +43,6 @@ public class CinemaActivity extends AppCompatActivity implements View.OnClickLis
     RecyclerView cinemaTime;
     @BindView(R.id.cinema_return)
     ImageView cinemaReturn;
-    private RecommendCinemasPresenter recommendCinemasPresenter;
-    private NearCinemasPresenter nearCinemasPresenter;
     private int ccid;
 
 

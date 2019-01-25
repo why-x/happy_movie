@@ -19,7 +19,9 @@ import android.widget.Toast;
 import com.bw.movie.R;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.why.happy_movie.MApp;
+import com.why.happy_movie.activity.IdeaActivity;
 import com.why.happy_movie.activity.LoginActivity;
+import com.why.happy_movie.activity.MyLoveActivity;
 import com.why.happy_movie.bean.Result;
 import com.why.happy_movie.bean.UserBean;
 import com.why.happy_movie.myactivity.MessageActivity;
@@ -58,28 +60,28 @@ public class home_three extends Fragment implements View.OnClickListener {
     Unbinder unbinder;
     @BindView(R.id.my_name)
     TextView my_name;
-    boolean zai=false;
+    boolean zai = false;
     private List<UserBean> userBeans;
-    int userId =1771;
-    String sessionId="15482908826721771";
+    int userId = 1771;
+    String sessionId = "15482908826721771";
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.my_frag_all, container, false);
         unbinder = ButterKnife.bind(this, view);
-         zai = MApp.sharedPreferences.getBoolean("zai", false);
+        zai = MApp.sharedPreferences.getBoolean("zai", false);
 
         userBeans = MApp.userBeanDao.loadAll();
-         if(zai){
-             if(userBeans.size()>0){
-                 String headPic = userBeans.get(0).getHeadPic();
-                 myHead.setImageURI(headPic);
-                 my_name.setText(userBeans.get(0).getNickName());
-                 userId =  userBeans.get(0).getUserId();
-                 sessionId = userBeans.get(0).getSessionId();
-             }
-         }
+        if (zai) {
+            if (userBeans.size() > 0) {
+                String headPic = userBeans.get(0).getHeadPic();
+                myHead.setImageURI(headPic);
+                my_name.setText(userBeans.get(0).getNickName());
+                userId = userBeans.get(0).getUserId();
+                sessionId = userBeans.get(0).getSessionId();
+            }
+        }
         return view;
     }
 
@@ -90,7 +92,8 @@ public class home_three extends Fragment implements View.OnClickListener {
         my_name.setOnClickListener(this);
         myLogout.setOnClickListener(this);
         mySign.setOnClickListener(this);
-
+        myLove.setOnClickListener(this);
+        myFeedback.setOnClickListener(this);
     }
 
     @Override
@@ -101,44 +104,52 @@ public class home_three extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.my_message:
-                if(!zai){
+                if (!zai) {
                     Toast.makeText(getContext(), "请先登录……", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                Intent intentm=new Intent(getActivity(),MessageActivity.class);
+                Intent intentm = new Intent(getActivity(), MessageActivity.class);
                 startActivity(intentm);
                 break;
-            case  R.id.my_name:
-                if(zai){
+            case R.id.my_name:
+                if (zai) {
                     return;
                 }
-                Intent intentlo=new Intent(getActivity(),LoginActivity.class);
+                Intent intentlo = new Intent(getActivity(), LoginActivity.class);
                 startActivity(intentlo);
                 break;
-            case  R.id.my_logout:
-                if(!zai){
+            case R.id.my_logout:
+                if (!zai) {
                     Toast.makeText(getContext(), "请先登录……", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 SharedPreferences.Editor edit = MApp.sharedPreferences.edit();
-                edit.putBoolean("zai",false);
+                edit.putBoolean("zai", false);
                 edit.commit();
-                zai=false;
+                zai = false;
                 Toast.makeText(getContext(), "退出登录……", Toast.LENGTH_SHORT).show();
-                myHead.setImageURI("res:///"+R.drawable.my_head);
+                myHead.setImageURI("res:///" + R.drawable.my_head);
                 my_name.setText("登录");
                 Intent intent = new Intent(getContext(), LoginActivity.class);
                 startActivity(intent);
                 break;
             case R.id.my_sign:
-                if(!zai){
+                if (!zai) {
                     Toast.makeText(getContext(), "请先登录……", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 SignPresenter signPresenter = new SignPresenter(new Qian());
-                signPresenter.reqeust(userId,sessionId);
+                signPresenter.reqeust(userId, sessionId);
+                break;
+            case R.id.my_love:
+                Intent intent1 = new Intent(getActivity(), MyLoveActivity.class);
+                startActivity(intent1);
+                break;
+            case R.id.my_feedback:
+                Intent intent2 = new Intent(getActivity(), IdeaActivity.class);
+                startActivity(intent2);
                 break;
         }
     }
@@ -147,13 +158,13 @@ public class home_three extends Fragment implements View.OnClickListener {
     public void onResume() {
         super.onResume();
         zai = MApp.sharedPreferences.getBoolean("zai", false);
-        if(zai){
-            if(userBeans.size()>0){
+        if (zai) {
+            if (userBeans.size() > 0) {
                 userBeans = MApp.userBeanDao.loadAll();
                 String headPic = userBeans.get(0).getHeadPic();
                 myHead.setImageURI(headPic);
                 my_name.setText(userBeans.get(0).getNickName());
-                userId =  userBeans.get(0).getUserId();
+                userId = userBeans.get(0).getUserId();
                 sessionId = userBeans.get(0).getSessionId();
             }
         }
@@ -163,7 +174,7 @@ public class home_three extends Fragment implements View.OnClickListener {
 
         @Override
         public void success(Result data) {
-            Toast.makeText(getContext(), ""+data.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "" + data.getMessage(), Toast.LENGTH_SHORT).show();
         }
 
         @Override
