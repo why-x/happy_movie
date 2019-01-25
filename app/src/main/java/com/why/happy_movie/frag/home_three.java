@@ -98,7 +98,7 @@ public class home_three extends Fragment implements View.OnClickListener {
         myLove.setOnClickListener(this);
         myFeedback.setOnClickListener(this);
         myRccord.setOnClickListener(this);
-
+        myVersion.setOnClickListener(this);
     }
 
     @Override
@@ -159,6 +159,9 @@ public class home_three extends Fragment implements View.OnClickListener {
             case R.id.my_rccord:
                 Intent intent3=new Intent(getActivity(),MyRccordActivity.class);
                 startActivity(intent3);
+                break;
+            case R.id.my_version:
+                Toast.makeText(getActivity(),"当前版本，已是最新版本！",Toast.LENGTH_SHORT).show();
                 break;
 
         }
