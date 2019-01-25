@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.why.happy_movie.activity.MyLoveActivity">
+    tools:context="com.why.happy_movie.activity.MyRccordActivity">
     <RadioGroup
         android:id="@+id/rg_yy"
         android:layout_width="wrap_content"
@@ -16,8 +16,7 @@
 
         <RadioButton
             android:checked="true"
-
-            android:id="@+id/movie"
+            android:id="@+id/w_pay"
             android:layout_width="@dimen/dp_83"
             android:layout_height="wrap_content"
             android:background="@drawable/yyt_sel"
@@ -26,14 +25,14 @@
             android:gravity="center"
             android:textColor="#ffffff"
             android:button="@null"
-            android:text="电影"/>
+            android:text="代付款"/>
 
         <TextView
             android:layout_width="@dimen/dp_32"
             android:layout_height="wrap_content" />
 
         <RadioButton
-            android:id="@+id/cinema"
+            android:id="@+id/ok_pay"
             android:layout_width="@dimen/dp_83"
             android:layout_height="wrap_content"
             android:background="@drawable/yyt_sel"
@@ -42,17 +41,17 @@
             android:gravity="center"
             android:textColor="#333333"
             android:button="@null"
-            android:text="影院"/>
+            android:text="已完成"/>
 
     </RadioGroup>
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/love_recycler"
+        android:id="@+id/pay_recycler"
         android:layout_margin="@dimen/dp_30"
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
     <ImageView
-        android:id="@+id/love_return"
+        android:id="@+id/pay_return"
         android:layout_margin="@dimen/dp_24"
         android:layout_width="@dimen/dp_60"
         android:layout_height="@dimen/dp_60"

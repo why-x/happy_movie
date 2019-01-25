@@ -22,6 +22,7 @@ import com.why.happy_movie.MApp;
 import com.why.happy_movie.activity.IdeaActivity;
 import com.why.happy_movie.activity.LoginActivity;
 import com.why.happy_movie.activity.MyLoveActivity;
+import com.why.happy_movie.activity.MyRccordActivity;
 import com.why.happy_movie.bean.Result;
 import com.why.happy_movie.bean.UserBean;
 import com.why.happy_movie.myactivity.MessageActivity;
@@ -61,6 +62,8 @@ public class home_three extends Fragment implements View.OnClickListener {
     @BindView(R.id.my_name)
     TextView my_name;
     boolean zai = false;
+    @BindView(R.id.my_rccord)
+    ImageButton myRccord;
     private List<UserBean> userBeans;
     int userId = 1771;
     String sessionId = "15482908826721771";
@@ -94,6 +97,8 @@ public class home_three extends Fragment implements View.OnClickListener {
         mySign.setOnClickListener(this);
         myLove.setOnClickListener(this);
         myFeedback.setOnClickListener(this);
+        myRccord.setOnClickListener(this);
+
     }
 
     @Override
@@ -151,6 +156,11 @@ public class home_three extends Fragment implements View.OnClickListener {
                 Intent intent2 = new Intent(getActivity(), IdeaActivity.class);
                 startActivity(intent2);
                 break;
+            case R.id.my_rccord:
+                Intent intent3=new Intent(getActivity(),MyRccordActivity.class);
+                startActivity(intent3);
+                break;
+
         }
     }
 

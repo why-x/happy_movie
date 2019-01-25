@@ -1,15 +1,16 @@
 package com.why.happy_movie.myactivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
 import com.bw.movie.R;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.why.happy_movie.MApp;
+import com.why.happy_movie.activity.ResetPwdActivity;
 import com.why.happy_movie.bean.Result;
 import com.why.happy_movie.bean.UserBean;
 import com.why.happy_movie.bean.YongHuBean;
@@ -24,7 +25,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MessageActivity extends AppCompatActivity implements View.OnClickListener,DataCall<Result<YongHuBean>> {
+public class MessageActivity extends AppCompatActivity implements View.OnClickListener, DataCall<Result<YongHuBean>> {
 
 
     @BindView(R.id.my_return)
@@ -41,9 +42,11 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
     TextView my_phone;
     @BindView(R.id.emaile)
     TextView emaile;
-    YongHuBean yongHuBean=new YongHuBean();
-    int userId =1771;
-    String sessionId="15482908826721771";
+    YongHuBean yongHuBean = new YongHuBean();
+    int userId = 1771;
+    String sessionId = "15482908826721771";
+    @BindView(R.id.my_reset)
+    ImageView myReset;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,25 +60,30 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
         sessionId = userBeans.get(0).getSessionId();
 
         UserInfoPresenter userInfoPresenter = new UserInfoPresenter(this);
-        userInfoPresenter.reqeust(userId,sessionId);
+        userInfoPresenter.reqeust(userId, sessionId);
+        myReset.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.my_return:
                 finish();
+                break;
+            case R.id.my_reset:
+                Intent intent=new Intent(MessageActivity.this,ResetPwdActivity.class);
+                startActivity(intent);
                 break;
         }
     }
 
     @Override
     public void success(Result<YongHuBean> data) {
-        yongHuBean= data.getResult();
+        yongHuBean = data.getResult();
         my_head.setImageURI(yongHuBean.getHeadPic());
         my_name.setText(yongHuBean.getNickName());
         int sex = yongHuBean.getSex();
-        my_sex.setText(sex==1? "男":"女");
+        my_sex.setText(sex == 1 ? "男" : "女");
         long birthday = yongHuBean.getBirthday();
         Date date = new Date(birthday);
         SimpleDateFormat fomat2 = new SimpleDateFormat("yyyy-MM-dd");

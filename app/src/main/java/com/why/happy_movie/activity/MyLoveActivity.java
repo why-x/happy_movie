@@ -13,6 +13,9 @@ import com.bw.movie.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+/**
+ * 我的关注
+ */
 public class MyLoveActivity extends AppCompatActivity implements View.OnClickListener {
 
     @BindView(R.id.movie)
