@@ -6,20 +6,25 @@
     android:orientation="horizontal"
     android:paddingBottom="@dimen/dp_10">
 
-
+<LinearLayout
+    android:paddingBottom="@dimen/dp_10"
+    android:background="@drawable/shape_yyt2"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/movie_img"
         android:layout_width="@dimen/dp_103"
         android:layout_height="@dimen/dp_129"
         android:layout_marginLeft="@dimen/dp_10"
-        android:layout_marginTop="@dimen/dp_30"
+        android:layout_marginTop="@dimen/dp_10"
         app:roundedCornerRadius="@dimen/dp_5" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_129"
         android:layout_marginLeft="@dimen/dp_10"
-        android:layout_marginTop="@dimen/dp_30"
+        android:layout_marginTop="@dimen/dp_10"
         android:orientation="vertical">
 
         <TextView
@@ -52,5 +57,5 @@
             android:textSize="@dimen/sp_12" />
     </LinearLayout>
 
-
+</LinearLayout>
 </LinearLayout>
