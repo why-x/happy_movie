@@ -65,13 +65,13 @@
         android:paddingLeft="@dimen/dp_30">
 
         <LinearLayout
+            android:id="@+id/my_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
 
-            <ImageButton
-                android:id="@+id/my_message"
+            <ImageView
                 android:layout_width="@dimen/dp_24"
                 android:layout_height="@dimen/dp_24"
                 android:layout_gravity="center"
@@ -219,12 +219,12 @@
 
 
     <LinearLayout
+        android:id="@+id/my_logout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="vertical">
-        <ImageButton
-            android:id="@+id/my_logout"
+        <ImageView
             android:layout_toRightOf="@id/my_version"
             android:layout_width="@dimen/dp_24"
             android:layout_gravity="center"
