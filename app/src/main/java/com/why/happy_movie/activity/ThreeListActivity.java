@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
@@ -18,11 +19,15 @@ import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.baidu.mapapi.map.MapView;
 import com.bw.movie.R;
+import com.why.happy_movie.MApp;
 import com.why.happy_movie.adapter.ThreeListAdapter;
 import com.why.happy_movie.bean.MovieListBean;
 import com.why.happy_movie.bean.Result;
+import com.why.happy_movie.bean.UserBean;
 import com.why.happy_movie.presenter.ComingSoonMoviePresenter;
 import com.why.happy_movie.presenter.HotMoviePresenter;
+import com.why.happy_movie.presenter.MyCanclePresenter;
+import com.why.happy_movie.presenter.MyLovePresenter;
 import com.why.happy_movie.presenter.ReleaseMoviePresenter;
 import com.why.happy_movie.utils.DataCall;
 import com.why.happy_movie.utils.exception.ApiException;
@@ -56,6 +61,12 @@ public class ThreeListActivity extends AppCompatActivity  implements DataCall<Re
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_three_list);
+
+        List<UserBean> userBeans = MApp.userBeanDao.loadAll();
+        if(userBeans.size()>0){
+            userId=  userBeans.get(0).getUserId();
+            sessionId =  userBeans.get(0).getSessionId();
+        }
 
         hotMoviePresenter = new HotMoviePresenter(this);
         hotMoviePresenter.reqeust(userId,sessionId,page,count);
@@ -142,6 +153,23 @@ public class ThreeListActivity extends AppCompatActivity  implements DataCall<Re
 
         RecyclerView recyclerView = findViewById(R.id.list);
         threeListAdapter = new ThreeListAdapter(this, remendianyinglist);
+        threeListAdapter.xihuan(new ThreeListAdapter.MyLove() {
+            @Override
+            public void onLove(int possion) {
+                MovieListBean movieListBean = remendianyinglist.get(possion);
+                int id = movieListBean.getId();
+                MyLovePresenter myLovePresenter = new MyLovePresenter(new Xihuan());
+                myLovePresenter.reqeust(userId,sessionId,id);
+            }
+
+            @Override
+            public void onCancle(int possion) {
+                MovieListBean movieListBean = remendianyinglist.get(possion);
+                int id = movieListBean.getId();
+                MyCanclePresenter myCanclePresenter = new MyCanclePresenter(new Cancle());
+                myCanclePresenter.reqeust(userId,sessionId,id);
+            }
+        });
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(threeListAdapter);
 
@@ -207,6 +235,33 @@ public class ThreeListActivity extends AppCompatActivity  implements DataCall<Re
             double weidu = location.getLongitude();
             double jingdu = location.getLatitude();
             addre.setText(addr);
+        }
+    }
+
+    class Xihuan implements DataCall<Result> {
+
+        @Override
+        public void success(Result data) {
+            Toast.makeText(ThreeListActivity.this, ""+data.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void fail(ApiException e) {
+
+        }
+    }
+
+    private class Cancle implements DataCall<Result> {
+
+
+        @Override
+        public void success(Result data) {
+            Toast.makeText(ThreeListActivity.this, ""+data.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void fail(ApiException e) {
+
         }
     }
 }

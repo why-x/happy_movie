@@ -15,15 +15,20 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.bw.movie.R;
+import com.why.happy_movie.MApp;
 import com.why.happy_movie.adapter.CinemasAdapter;
 import com.why.happy_movie.bean.Result;
+import com.why.happy_movie.bean.UserBean;
 import com.why.happy_movie.bean.YingYuanBean;
+import com.why.happy_movie.presenter.MyLikePresenter;
+import com.why.happy_movie.presenter.MyNoLikePresenter;
 import com.why.happy_movie.presenter.NearCinemasPresenter;
 import com.why.happy_movie.presenter.RecommendCinemasPresenter;
 import com.why.happy_movie.utils.DataCall;
@@ -62,6 +67,12 @@ public class home_two extends Fragment implements DataCall<Result<List<YingYuanB
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.home_two,container,false);
+
+        List<UserBean> userBeans = MApp.userBeanDao.loadAll();
+        if(userBeans.size()>0){
+            userId = userBeans.get(0).getUserId();
+           sessionId = userBeans.get(0).getSessionId();
+        }
 
         recommendCinemasPresenter = new RecommendCinemasPresenter(this);
         nearCinemasPresenter = new NearCinemasPresenter(new Fujin());
@@ -133,6 +144,21 @@ public class home_two extends Fragment implements DataCall<Result<List<YingYuanB
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         cinemasAdapter = new CinemasAdapter(getContext(), yingYuanBeanList);
         recyclerView.setAdapter(cinemasAdapter);
+        cinemasAdapter.getLike(new CinemasAdapter.Like() {
+            @Override
+            public void onSuccess(int possion) {
+                int id = yingYuanBeanList.get(possion).getId();
+                MyLikePresenter myLikePresenter = new MyLikePresenter(new MyLike());
+                myLikePresenter.reqeust(userId,sessionId,id);
+            }
+
+            @Override
+            public void onFaile(int possion) {
+                int id = yingYuanBeanList.get(possion).getId();
+                MyNoLikePresenter myNoLikePresenter = new MyNoLikePresenter(new NoLike());
+                myNoLikePresenter.reqeust(userId,sessionId,id);
+            }
+        });
 
 
         return view;
@@ -179,6 +205,30 @@ public class home_two extends Fragment implements DataCall<Result<List<YingYuanB
             weidu = location.getLongitude();
             jingdu = location.getLatitude();
             addre.setText(addr);
+        }
+    }
+
+    private class MyLike implements DataCall<Result> {
+        @Override
+        public void success(Result data) {
+            Toast.makeText(getContext(), ""+data.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void fail(ApiException e) {
+
+        }
+    }
+
+    private class NoLike implements DataCall<Result> {
+        @Override
+        public void success(Result data) {
+            Toast.makeText(getContext(), ""+data.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void fail(ApiException e) {
+
         }
     }
 }

@@ -172,7 +172,9 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         @Override
         public void success(Result<MoviesDBean> data) {
             moviesDBean = data.getResult();
-           // Toast.makeText(DetailsActivity.this, "11"+moviesDBean.getImageUrl(), Toast.LENGTH_SHORT).show();
+            int followMovie = moviesDBean.getFollowMovie();
+            dLove.setChecked(followMovie==1?true:false);
+            // Toast.makeText(DetailsActivity.this, "11"+moviesDBean.getImageUrl(), Toast.LENGTH_SHORT).show();
         }
 
         @Override

@@ -255,6 +255,13 @@ public interface Interfacea {
                                     @Header("sessionId") String sessionId,
                                     @Query("cinemaId") int cinemaId);
 
+
+
+    @GET("cinema/v1/verify/cancelFollowCinema")
+    Observable<Result> cancelFollowCinema(@Header("userId") int userId,
+                                    @Header("sessionId") String sessionId,
+                                    @Query("cinemaId") int cinemaId);
+
     /**
      * 查询用户关注的影片列表
      *
@@ -282,6 +289,20 @@ public interface Interfacea {
     Observable<Result> followMovie(@Header("userId") int userId,
                                    @Header("sessionId") String sessionId,
                                    @Query("movieId") int movieId);
+
+
+    /**
+     * 取消关注电影
+     * @param userId
+     * @param sessionId
+     * @param movieId
+     * @return
+     */
+    @GET("movie/v1/verify/cancelFollowMovie")
+    Observable<Result> cancelFollowMovie(@Header("userId") int userId,
+                                   @Header("sessionId") String sessionId,
+                                   @Query("movieId") int movieId);
+
 
     /**
      * 用户购票记录查询列表

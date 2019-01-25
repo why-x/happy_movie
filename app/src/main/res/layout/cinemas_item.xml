@@ -61,6 +61,7 @@
                 android:layout_weight="1"/>
 
             <CheckBox
+                android:id="@+id/like"
                 android:layout_width="@dimen/dp_14"
                 android:layout_height="@dimen/dp_14"
                 android:background="@drawable/love_sel2"

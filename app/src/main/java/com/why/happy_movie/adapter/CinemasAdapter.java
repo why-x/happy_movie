@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.bw.movie.R;
@@ -27,11 +28,16 @@ public class CinemasAdapter extends RecyclerView.Adapter<CinemasAdapter.MyViewHo
     private List<YingYuanBean> mDatas;
     private Context mContext;
     private LayoutInflater inflater;
+    Like like;
 
     public CinemasAdapter(Context context, List<YingYuanBean> datas){
         this.mContext=context;
         this.mDatas=datas;
         inflater=LayoutInflater.from(mContext);
+    }
+
+    public void getLike(Like like){
+        this.like=like;
     }
 
     @Override
@@ -46,6 +52,20 @@ public class CinemasAdapter extends RecyclerView.Adapter<CinemasAdapter.MyViewHo
         holder.name.setText(mDatas.get(position).getName());
         holder.address.setText(mDatas.get(position).getAddress());
         holder.juli.setText(mDatas.get(position).getDistance()+"km");
+        int followCinema = mDatas.get(position).getFollowCinema();
+        holder.like.setChecked(followCinema==1?true:false);
+        holder.like.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CheckBox checkBox = (CheckBox) v;
+                boolean checked = checkBox.isChecked();
+                if(checked){
+                    like.onSuccess(position);
+                }else {
+                    like.onFaile(position);
+                }
+            }
+        });
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,6 +92,7 @@ public class CinemasAdapter extends RecyclerView.Adapter<CinemasAdapter.MyViewHo
         TextView name;
         TextView address;
         TextView juli;
+        CheckBox like;
 
         public MyViewHolder(View view) {
             super(view);
@@ -79,7 +100,14 @@ public class CinemasAdapter extends RecyclerView.Adapter<CinemasAdapter.MyViewHo
             name = view.findViewById(R.id.name);
             address = view.findViewById(R.id.address);
             juli = view.findViewById(R.id.juli);
+            like = view.findViewById(R.id.like);
+
         }
+    }
+
+    public interface Like{
+        void onSuccess(int possion);
+        void onFaile(int possion);
     }
 
 
