@@ -45,6 +45,7 @@ public class IdeaActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.idea_activity);
         ButterKnife.bind(this);
         ideaReturn.setOnClickListener(this);
+        ideaPut.setOnClickListener(this);
         List<UserBean> userBeans = MApp.userBeanDao.loadAll();
         if (userBeans.size()>0){
             userId = userBeans.get(0).getUserId();

@@ -9,7 +9,7 @@ import com.why.happy_movie.utils.NetWorkManager;
 import io.reactivex.Observable;
 
 /**
- * 关注的影院
+ * 意见反馈
  */
 
 public class MyIdeaPresenter extends BasePresenter {

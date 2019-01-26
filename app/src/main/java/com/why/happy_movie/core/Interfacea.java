@@ -10,6 +10,7 @@ import com.why.happy_movie.bean.MyPay;
 import com.why.happy_movie.bean.Result;
 import com.why.happy_movie.bean.SearchCnimea;
 import com.why.happy_movie.bean.SearchMovie;
+import com.why.happy_movie.bean.TimeCnimea;
 import com.why.happy_movie.bean.YingYuanBean;
 import com.why.happy_movie.bean.YongHuBean;
 
@@ -334,5 +335,25 @@ public interface Interfacea {
     Observable<Result> myidea(@Header("userId") int userId,
                               @Header("sessionId") String sessionId,
                               @Field("content") String content);
+
+    /**
+     * 根据电影ID查询当前排片该电影的影院列表
+     * @param movieId
+     * @return
+     */
+    @GET("movie/v1/findCinemasListByMovieId")
+    Observable<Result<List<TimeCnimea>>> findCinemasListByMovieId(@Query("movieId") int movieId);
+
+    /**
+     * 查询新版本
+     * @param userId
+     * @param sessionId
+     * @param ak
+     * @return
+     */
+    @GET("tool/v1/findNewVersion")
+    Observable<Result> followMovie(@Header("userId") int userId,
+                                   @Header("sessionId") String sessionId,
+                                   @Query("ak") String ak);
 
 }
