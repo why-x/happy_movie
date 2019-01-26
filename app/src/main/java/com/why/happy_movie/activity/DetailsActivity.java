@@ -66,6 +66,8 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
     private LinearLayout lll;
     MoviesDBean moviesDBean = new MoviesDBean();
     private PopupWindow popupWindow;
+    private int id;
+    String movieName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,17 +78,18 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         dReturn.setOnClickListener(this);
         dPhoto.setOnClickListener(this);
         dAdvance.setOnClickListener(this);
+        dBuy.setOnClickListener(this);
 
         lll = findViewById(R.id.lll);
 
         Intent intent = getIntent();
-        int id = intent.getIntExtra("id", 1);
+        id = intent.getIntExtra("id", 1);
 
         MovieDPresenter movieDPresenter = new MovieDPresenter(this);
-        movieDPresenter.reqeust(userId,sessionId,id);
+        movieDPresenter.reqeust(userId,sessionId, id);
 
         MoviesDPresenter moviesDPresenter = new MoviesDPresenter(new DianYing());
-        moviesDPresenter.reqeust(userId,sessionId,id);
+        moviesDPresenter.reqeust(userId,sessionId, id);
 
     }
 
@@ -156,6 +159,12 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
                     }
                 });
                 break;
+            case R.id.d_buy:
+                Intent intent = new Intent(this, BuyCinemaActivity.class);
+                intent.putExtra("movieId",id);
+                intent.putExtra("name",movieName);
+                startActivity(intent);
+                break;
                 
         }
     }
@@ -165,6 +174,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         MovieDBean result = data.getResult();
         detailsMovie.setImageURI(result.getImageUrl());
         d_name.setText(result.getName());
+        movieName=result.getName();
     }
 
     @Override

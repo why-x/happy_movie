@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#fff"
+    tools:context="com.why.happy_movie.activity.BuyCinemaActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_35"
+        android:textSize="@dimen/sp_16"
+        android:layout_marginLeft="@dimen/dp_24"/>
+
+    <TextView
+        android:layout_marginLeft="@dimen/dp_24"
+        android:layout_marginTop="@dimen/sp_10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#b11450"
+        android:textSize="@dimen/sp_10"
+        android:text="选择合适的影院"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/list5"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:layout_marginRight="@dimen/dp_24"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/sp_10"></android.support.v7.widget.RecyclerView>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/back"
+        android:layout_width="@dimen/dp_60"
+        android:layout_height="@dimen/dp_60"
+        android:src="@drawable/ic_xiangqing_back"
+        android:layout_marginLeft="@dimen/dp_24"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dp_24"/>
+</RelativeLayout>
