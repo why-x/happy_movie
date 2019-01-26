@@ -419,7 +419,7 @@ public interface Interfacea {
      * @return
      */
     //movie/v1/findAllMovieComment
-    @GET("tool/v1/findNewVersion")
+    @GET("movie/v1/findAllMovieComment")
     Observable<Result<List<MyComment>>> mycomment(@Header("userId") int userId,
                                                   @Header("sessionId") String sessionId,
                                                   @Query("movieId") int movieId,

@@ -21,7 +21,17 @@ public class MyComment {
         private String commentHeadPic;
         private int hotComment;
         private int isGreat;
-        private String movieComment;
+
+    public String getCommentContent() {
+
+        return commentContent;
+    }
+
+    public void setCommentContent(String commentContent) {
+        this.commentContent = commentContent;
+    }
+
+    private String commentContent;
         private int commentUserId;
         private String commentUserName;
 
@@ -81,13 +91,7 @@ public class MyComment {
             this.isGreat = isGreat;
         }
 
-        public String getMovieComment() {
-            return movieComment;
-        }
 
-        public void setMovieComment(String movieComment) {
-            this.movieComment = movieComment;
-        }
 
         public int getCommentUserId() {
             return commentUserId;
@@ -104,4 +108,5 @@ public class MyComment {
         public void setCommentUserName(String commentUserName) {
             this.commentUserName = commentUserName;
         }
+
 }
