@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
@@ -25,6 +26,7 @@ import com.dou361.ijkplayer.widget.PlayerView;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.why.happy_movie.MApp;
 import com.why.happy_movie.adapter.JuZhaoAdapter;
+import com.why.happy_movie.adapter.VideoAdapter;
 import com.why.happy_movie.bean.MovieDBean;
 import com.why.happy_movie.bean.MoviesDBean;
 import com.why.happy_movie.bean.Result;
@@ -37,6 +39,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cn.jzvd.JZVideoPlayerStandard;
 
 public class DetailsActivity extends AppCompatActivity implements View.OnClickListener,DataCall<Result<MovieDBean>> {
 
@@ -140,14 +143,16 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
                 popupWindow.showAtLocation(lll,0,0,0);
                 ImageView back1 = inflate2.findViewById(R.id.back);
                 List<MoviesDBean.ShortFilmListBean> shortFilmList = moviesDBean.getShortFilmList();
-                MoviesDBean.ShortFilmListBean shortFilmListBean = shortFilmList.get(0);
-
-
+               RecyclerView list4 = inflate2.findViewById(R.id.list4);
+                list4.setLayoutManager(new LinearLayoutManager(this));
+                VideoAdapter videoAdapter = new VideoAdapter(this,shortFilmList);
+                list4.setAdapter(videoAdapter);
 
                 back1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         popupWindow.dismiss();
+                        JZVideoPlayerStandard.releaseAllVideos();
                     }
                 });
                 break;

@@ -13,7 +13,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.bw.movie"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -62,9 +62,11 @@ dependencies {
     implementation('com.jcodecraeer:xrecyclerview:1.5.9') {
         exclude group: 'com.android.support'
     }
+    implementation 'cn.jzvd:jiaozivideoplayer:6.2.9'
     implementation 'org.greenrobot:greendao:3.2.2'
     implementation 'org.greenrobot:greendao-generator:3.2.2'
     implementation 'com.github.bumptech.glide:glide:4.8.0'
     implementation 'com.dou361.ijkplayer:jjdxm-ijkplayer:1.0.5'
     implementation files('libs/BaiduLBS_Android.jar')
+
 }
