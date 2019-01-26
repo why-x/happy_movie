@@ -43,13 +43,14 @@
             android:textColor="#ffffff"
             android:textSize="@dimen/sp_14" />
 
-        <ImageButton
-            android:background="@android:color/transparent"
-            android:layout_marginTop="@dimen/dp_20"
+        <ImageView
+            android:id="@+id/my_news"
+            android:layout_marginTop="@dimen/dp_10"
             android:layout_width="@dimen/dp_24"
             android:layout_height="@dimen/dp_24"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="@dimen/dp_24"
+            android:background="@android:color/transparent"
             android:src="@drawable/my_remind" />
     </RelativeLayout>
 

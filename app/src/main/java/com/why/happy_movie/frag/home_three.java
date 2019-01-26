@@ -64,6 +64,8 @@ public class home_three extends Fragment implements View.OnClickListener {
     boolean zai = false;
     @BindView(R.id.my_rccord)
     ImageButton myRccord;
+    @BindView(R.id.my_news)
+    ImageView myNews;
     private List<UserBean> userBeans;
     int userId = 1771;
     String sessionId = "15482908826721771";
@@ -165,11 +167,11 @@ public class home_three extends Fragment implements View.OnClickListener {
                     Toast.makeText(getContext(), "请先登录……", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                Intent intent3=new Intent(getActivity(),MyRccordActivity.class);
+                Intent intent3 = new Intent(getActivity(), MyRccordActivity.class);
                 startActivity(intent3);
                 break;
             case R.id.my_version:
-                Toast.makeText(getActivity(),"当前版本，已是最新版本！",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "当前版本，已是最新版本！", Toast.LENGTH_SHORT).show();
                 break;
 
         }

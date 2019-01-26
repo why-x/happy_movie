@@ -210,12 +210,12 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
     private class MyUpdateCall implements DataCall<Result<MyUpdate>> {
         @Override
         public void success(Result<MyUpdate> data) {
-            Toast.makeText(getBaseContext(),data.getMessage(),Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getBaseContext(),data.getMessage(),Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public void fail(ApiException e) {
-            Toast.makeText(getBaseContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+            Toast.makeText(getBaseContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
 
         }
     }
