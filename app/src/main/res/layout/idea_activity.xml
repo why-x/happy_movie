@@ -57,6 +57,7 @@
         android:padding="@dimen/dp_15"
         android:background="@drawable/shape_yyt2">
         <EditText
+            android:id="@+id/myidea"
             android:textSize="@dimen/sp_12"
             android:background="@android:color/transparent"
             android:textColorHint="#999999"

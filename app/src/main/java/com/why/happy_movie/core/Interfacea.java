@@ -256,11 +256,10 @@ public interface Interfacea {
                                     @Query("cinemaId") int cinemaId);
 
 
-
     @GET("cinema/v1/verify/cancelFollowCinema")
     Observable<Result> cancelFollowCinema(@Header("userId") int userId,
-                                    @Header("sessionId") String sessionId,
-                                    @Query("cinemaId") int cinemaId);
+                                          @Header("sessionId") String sessionId,
+                                          @Query("cinemaId") int cinemaId);
 
     /**
      * 查询用户关注的影片列表
@@ -293,6 +292,7 @@ public interface Interfacea {
 
     /**
      * 取消关注电影
+     *
      * @param userId
      * @param sessionId
      * @param movieId
@@ -300,12 +300,13 @@ public interface Interfacea {
      */
     @GET("movie/v1/verify/cancelFollowMovie")
     Observable<Result> cancelFollowMovie(@Header("userId") int userId,
-                                   @Header("sessionId") String sessionId,
-                                   @Query("movieId") int movieId);
+                                         @Header("sessionId") String sessionId,
+                                         @Query("movieId") int movieId);
 
 
     /**
      * 用户购票记录查询列表
+     *
      * @param userId
      * @param sessionId
      * @param page
@@ -319,5 +320,19 @@ public interface Interfacea {
                                           @Query("page") int page,
                                           @Query("count") int count,
                                           @Query("status") int status);
+
+    /**
+     * 意见反馈
+     *
+     * @param userId
+     * @param sessionId
+     * @param content
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("tool/v1/verify/recordFeedBack")
+    Observable<Result> myidea(@Header("userId") int userId,
+                              @Header("sessionId") String sessionId,
+                              @Field("content") String content);
 
 }
