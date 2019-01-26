@@ -7,6 +7,7 @@ import com.why.happy_movie.bean.MovieListBean;
 import com.why.happy_movie.bean.MovieScheduleListBean;
 import com.why.happy_movie.bean.MoviesDBean;
 import com.why.happy_movie.bean.MyPay;
+import com.why.happy_movie.bean.MyUpdate;
 import com.why.happy_movie.bean.Result;
 import com.why.happy_movie.bean.SearchCnimea;
 import com.why.happy_movie.bean.SearchMovie;
@@ -244,7 +245,7 @@ public interface Interfacea {
 
 
     /**
-     * 关注影院  未完善 bean类
+     * 关注影院
      *
      * @param userId
      * @param sessionId
@@ -278,7 +279,7 @@ public interface Interfacea {
                                                             @Query("count") int count);
 
     /**
-     * 关注电影  未完善bean类
+     * 关注电影
      *
      * @param userId
      * @param sessionId
@@ -336,6 +337,9 @@ public interface Interfacea {
                               @Header("sessionId") String sessionId,
                               @Field("content") String content);
 
+    @FormUrlEncoded
+
+
     /**
      * 根据电影ID查询当前排片该电影的影院列表
      * @param movieId
@@ -345,7 +349,8 @@ public interface Interfacea {
     Observable<Result<List<TimeCnimea>>> findCinemasListByMovieId(@Query("movieId") int movieId);
 
     /**
-     * 查询新版本
+     * 查询新版本 未做p
+     *
      * @param userId
      * @param sessionId
      * @param ak
@@ -355,5 +360,54 @@ public interface Interfacea {
     Observable<Result> followMovie(@Header("userId") int userId,
                                    @Header("sessionId") String sessionId,
                                    @Query("ak") String ak);
+
+    /**
+     * 修改用户信息
+     *
+     * @param userId
+     * @param sessionId
+     * @param nickName
+     * @param sex
+     * @param email
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("user/v1/verify/modifyUserInfo")
+    Observable<Result<MyUpdate>> myupdate(@Header("userId") int userId,
+                                          @Header("sessionId") String sessionId,
+                                          @Field("nickName") String nickName,
+                                          @Field("sex") int sex,
+                                          @Field("email") String email);
+
+    /**
+     * 上传用户头像  未完善bean类
+     *
+     * @param userId
+     * @param sessionId
+     * @param image
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("user/v1/verify/uploadHeadPic")
+    Observable<Result> onhead(@Header("userId") int userId,
+                              @Header("sessionId") String sessionId,
+                              @Field("image") File image);
+
+    /**
+     * 修改密码
+     * @param userId
+     * @param sessionId
+     * @param oldPwd
+     * @param newPwd
+     * @param newPwd2
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("user/v1/verify/modifyUserPwd")
+    Observable<Result> updatepwd(@Header("userId") int userId,
+                                 @Header("sessionId") String sessionId,
+                                 @Field("oldPwd") String oldPwd,
+                                 @Field("newPwd") String newPwd,
+                                 @Field("newPwd2") String newPwd2);
 
 }
