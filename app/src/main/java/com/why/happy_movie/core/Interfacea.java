@@ -337,7 +337,6 @@ public interface Interfacea {
                               @Header("sessionId") String sessionId,
                               @Field("content") String content);
 
-    @FormUrlEncoded
 
 
     /**
@@ -345,6 +344,7 @@ public interface Interfacea {
      * @param movieId
      * @return
      */
+
     @GET("movie/v1/findCinemasListByMovieId")
     Observable<Result<List<TimeCnimea>>> findCinemasListByMovieId(@Query("movieId") int movieId);
 
