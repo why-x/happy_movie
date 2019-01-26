@@ -55,7 +55,9 @@
         <activity android:name="com.why.happy_movie.activity.IdeaActivity" />
         <activity android:name="com.why.happy_movie.activity.MyLoveActivity" />
         <activity android:name="com.why.happy_movie.activity.MyRccordActivity" />
-        <activity android:name="com.why.happy_movie.activity.ResetPwdActivity"></activity>
+        <activity android:name="com.why.happy_movie.activity.ResetPwdActivity" />
+        <activity android:name="com.why.happy_movie.activity.BuyCinemaActivity" />
+        <activity android:name="com.why.happy_movie.activity.BuyMoieListActivity"></activity>
     </application>
 
 </manifest>
