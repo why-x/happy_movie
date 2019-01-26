@@ -149,6 +149,10 @@ public class home_three extends Fragment implements View.OnClickListener {
                 signPresenter.reqeust(userId, sessionId);
                 break;
             case R.id.my_love:
+                if (!zai) {
+                    Toast.makeText(getContext(), "请先登录……", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Intent intent1 = new Intent(getActivity(), MyLoveActivity.class);
                 startActivity(intent1);
                 break;
@@ -157,6 +161,10 @@ public class home_three extends Fragment implements View.OnClickListener {
                 startActivity(intent2);
                 break;
             case R.id.my_rccord:
+                if (!zai) {
+                    Toast.makeText(getContext(), "请先登录……", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Intent intent3=new Intent(getActivity(),MyRccordActivity.class);
                 startActivity(intent3);
                 break;
