@@ -6,6 +6,7 @@ import com.why.happy_movie.bean.MovieDBean;
 import com.why.happy_movie.bean.MovieListBean;
 import com.why.happy_movie.bean.MovieScheduleListBean;
 import com.why.happy_movie.bean.MoviesDBean;
+import com.why.happy_movie.bean.MyComment;
 import com.why.happy_movie.bean.MyPay;
 import com.why.happy_movie.bean.MyUpdate;
 import com.why.happy_movie.bean.Result;
@@ -337,8 +338,6 @@ public interface Interfacea {
                               @Header("sessionId") String sessionId,
                               @Field("content") String content);
 
-    @FormUrlEncoded
-
 
     /**
      * 根据电影ID查询当前排片该电影的影院列表
@@ -409,5 +408,22 @@ public interface Interfacea {
                                  @Field("oldPwd") String oldPwd,
                                  @Field("newPwd") String newPwd,
                                  @Field("newPwd2") String newPwd2);
+
+    /**
+     * 查询影片评论
+     * @param userId
+     * @param sessionId
+     * @param movieId
+     * @param page
+     * @param count
+     * @return
+     */
+    //movie/v1/findAllMovieComment
+    @GET("tool/v1/findNewVersion")
+    Observable<Result<List<MyComment>>> mycomment(@Header("userId") int userId,
+                                                  @Header("sessionId") String sessionId,
+                                                  @Query("movieId") int movieId,
+                                                  @Query("page") int page,
+                                                  @Query("count") int count);
 
 }

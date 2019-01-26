@@ -79,7 +79,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         dPhoto.setOnClickListener(this);
         dAdvance.setOnClickListener(this);
         dBuy.setOnClickListener(this);
-
+        dComment.setOnClickListener(this);
         lll = findViewById(R.id.lll);
 
         Intent intent = getIntent();
@@ -164,6 +164,12 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
                 intent.putExtra("movieId",id);
                 intent.putExtra("name",movieName);
                 startActivity(intent);
+                break;
+            case R.id.d_comment:
+                View inflate3 = View.inflate(this, R.layout.popu_advance, null);
+                PopupWindow popupWindow = new PopupWindow(inflate3, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                popupWindow.showAsDropDown(lll,0,0,0);
+
                 break;
                 
         }
