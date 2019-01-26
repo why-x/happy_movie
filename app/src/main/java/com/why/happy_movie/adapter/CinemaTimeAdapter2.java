@@ -22,11 +22,16 @@ public class CinemaTimeAdapter2 extends RecyclerView.Adapter<CinemaTimeAdapter2.
     private List<MovieScheduleListBean> mDatas;
     private Context mContext;
     private LayoutInflater inflater;
+    XuanZuoclass xuanZuoclass;
 
     public CinemaTimeAdapter2(Context context, List<MovieScheduleListBean> datas){
         this.mContext=context;
         this.mDatas=datas;
         inflater=LayoutInflater.from(mContext);
+    }
+
+    public void getxuan(XuanZuoclass xuanZuoclass){
+        this.xuanZuoclass=xuanZuoclass;
     }
 
     @Override
@@ -41,6 +46,12 @@ public class CinemaTimeAdapter2 extends RecyclerView.Adapter<CinemaTimeAdapter2.
         holder.begintime.setText(mDatas.get(position).getBeginTime());
         holder.endtime.setText(mDatas.get(position).getEndTime()+"  end");
         holder.price.setText(""+mDatas.get(position).getPrice());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                xuanZuoclass.onSuccess(position);
+            }
+        });
     }
 
     //重写onCreateViewHolder方法，返回一个自定义的ViewHolder
@@ -67,4 +78,7 @@ public class CinemaTimeAdapter2 extends RecyclerView.Adapter<CinemaTimeAdapter2.
     }
 
 
+    public interface XuanZuoclass{
+        void onSuccess(int position);
+    }
 }

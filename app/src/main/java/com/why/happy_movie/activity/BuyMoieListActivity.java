@@ -37,9 +37,12 @@ public class BuyMoieListActivity extends AppCompatActivity implements DataCall<R
     private TextView daoyan;
     private TextView shichang;
     private TextView chandi;
+    MoviesDBean moviesDBean = new MoviesDBean();
     private RecyclerView recyclerView;
     List<MovieScheduleListBean> movieScheduleListBeans = new ArrayList<>();
     private CinemaTimeAdapter2 cinemaTimeAdapter2;
+    private String name;
+    private String address;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,10 +72,25 @@ public class BuyMoieListActivity extends AppCompatActivity implements DataCall<R
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         cinemaTimeAdapter2 = new CinemaTimeAdapter2(this, movieScheduleListBeans);
         recyclerView.setAdapter(cinemaTimeAdapter2);
+        cinemaTimeAdapter2.getxuan(new CinemaTimeAdapter2.XuanZuoclass() {
+            @Override
+            public void onSuccess(int position) {
+                MovieScheduleListBean movieScheduleListBean = movieScheduleListBeans.get(position);
+                Intent intent = new Intent(BuyMoieListActivity.this, StatActivity.class);
+                intent.putExtra("movienamem",moviesDBean.getName());
+                intent.putExtra("cinemaname",name);
+                intent.putExtra("address",address);
+                intent.putExtra("shijian",movieScheduleListBean.getBeginTime()+"-"+movieScheduleListBean.getEndTime());
+                intent.putExtra("ting",movieScheduleListBean.getScreeningHall());
+                intent.putExtra("paiqiid",movieScheduleListBean.getId());
+                intent.putExtra("price",movieScheduleListBean.getPrice());
+                startActivity(intent);
+            }
+        });
 
         Intent intent = getIntent();
-        String name = intent.getStringExtra("name");
-        String address = intent.getStringExtra("address");
+        name = intent.getStringExtra("name");
+        address = intent.getStringExtra("address");
         movieId = intent.getIntExtra("movieId", 0);
         cinemaid = intent.getIntExtra("cinemaid", 0);
 
@@ -108,6 +126,7 @@ public class BuyMoieListActivity extends AppCompatActivity implements DataCall<R
         @Override
         public void success(Result<MoviesDBean> data) {
             MoviesDBean result = data.getResult();
+            moviesDBean = result;
             iv4.setImageURI(result.getImageUrl());
             moviename.setText(result.getName());
             leixing.setText("类型："+result.getMovieTypes());

@@ -57,7 +57,8 @@
         <activity android:name="com.why.happy_movie.activity.MyRccordActivity" />
         <activity android:name="com.why.happy_movie.activity.ResetPwdActivity" />
         <activity android:name="com.why.happy_movie.activity.BuyCinemaActivity" />
-        <activity android:name="com.why.happy_movie.activity.BuyMoieListActivity"></activity>
+        <activity android:name="com.why.happy_movie.activity.BuyMoieListActivity" />
+        <activity android:name="com.why.happy_movie.activity.StatActivity"></activity>
     </application>
 
 </manifest>
