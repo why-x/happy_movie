@@ -1,19 +1,43 @@
 package com.why.happy_movie.activity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bw.movie.R;
+import com.bw.movie.wxapi.WXPayEntryActivity;
+import com.why.happy_movie.MApp;
+import com.why.happy_movie.bean.PayBean;
+import com.why.happy_movie.bean.Result;
+import com.why.happy_movie.bean.UserBean;
+import com.why.happy_movie.core.Interfacea;
+import com.why.happy_movie.presenter.BuyMovieTicketPresenter;
+import com.why.happy_movie.presenter.PayPresenter;
+import com.why.happy_movie.utils.DataCall;
+import com.why.happy_movie.utils.NetWorkManager;
+import com.why.happy_movie.utils.exception.ApiException;
+import com.why.happy_movie.utils.util.MD5Utils;
 import com.why.happy_movie.view.SeatTable;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
+import java.util.List;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 
 public class StatActivity extends AppCompatActivity {
 
@@ -25,12 +49,24 @@ public class StatActivity extends AppCompatActivity {
     public SeatTable seatTableView;
     private double price;
     double zongprice=0;
+    int mount=0;
     private TextView txtprice;
+    private ImageView xiadan;
+    private int paiqiid;
+    private int userId;
+    private String sessionId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stat);
+
+        List<UserBean> userBeans = MApp.userBeanDao.loadAll();
+        if(userBeans.size()>0){
+            userId = userBeans.get(0).getUserId();
+            sessionId = userBeans.get(0).getSessionId();
+
+        }
 
         yingcheng = findViewById(R.id.yingcheng);
         txt_address = findViewById(R.id.address);
@@ -39,6 +75,7 @@ public class StatActivity extends AppCompatActivity {
         tct_ting = findViewById(R.id.ting);
         txtprice = findViewById(R.id.price);
         ImageView  back = findViewById(R.id.back);
+        xiadan = findViewById(R.id.xiadan);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,6 +84,7 @@ public class StatActivity extends AppCompatActivity {
         });
 
         Intent intent = getIntent();
+        paiqiid = intent.getIntExtra("paiqiid", 0);
         String cinemaname = intent.getStringExtra("cinemaname");
         String address = intent.getStringExtra("address");
         String movienamem = intent.getStringExtra("movienamem");
@@ -85,6 +123,7 @@ public class StatActivity extends AppCompatActivity {
             @Override
             public void checked(int row, int column) {
                 zongprice+=price;
+                mount++;
                 DecimalFormat df2 = new DecimalFormat("#0.00");
                 String format = df2.format(zongprice);
                 txtprice.setText(format+"");
@@ -93,6 +132,7 @@ public class StatActivity extends AppCompatActivity {
             @Override
             public void unCheck(int row, int column) {
                 zongprice-=price;
+                mount--;
                 DecimalFormat df2 = new DecimalFormat("#0.00");
                 String format = df2.format(zongprice);
                 txtprice.setText(format+"");
@@ -101,7 +141,96 @@ public class StatActivity extends AppCompatActivity {
 
         });
         seatTableView.setData(10,15);
+
+        xiadan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mount==0){
+                    Toast.makeText(StatActivity.this, "请选坐下单……", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                LayoutInflater factory = LayoutInflater.from(StatActivity.this);
+                View view = factory.inflate(R.layout.popu_stat, null);
+
+                final Dialog dialog = new Dialog(StatActivity.this,R.style.DialogTheme);
+                dialog.setContentView(view);
+                dialog.getWindow().setGravity(Gravity.BOTTOM);
+                Window dialogWindow = dialog.getWindow();
+                WindowManager m = getWindow().getWindowManager();
+                Display d = m.getDefaultDisplay(); // 获取屏幕宽、高度
+                WindowManager.LayoutParams p = dialogWindow.getAttributes(); // 获取对话框当前的参数值
+                //p.height = (int) (d.getHeight() * 0.15); // 高度设置为屏幕的0.6，根据实际情况调整
+                p.width = (int) (d.getWidth()); // 宽度设置为屏幕的0.65，根据实际情况调整
+                dialogWindow.setAttributes(p);
+                dialog.show();
+
+
+
+
+                TextView textView = view.findViewById(R.id.chuangjian);
+                textView.setText("微信支付"+zongprice+"元");
+                textView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        /**
+                         * 创建订单
+                         */
+                        BuyMovieTicketPresenter buyMovieTicketPresenter = new BuyMovieTicketPresenter(new  XiaDan());
+                        String md5=userId+""+paiqiid+""+mount+"movie";
+                        String s = MD5Utils.md5(md5);
+                        buyMovieTicketPresenter.reqeust(userId,sessionId,paiqiid,mount,s);
+
+                    }
+                });
+                ImageView back  = view.findViewById(R.id.back);
+                back.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+            }
+        });
     }
 
 
+    private class XiaDan implements DataCall<Result> {
+
+        @Override
+        public void success(Result data) {
+            Toast.makeText(StatActivity.this, ""+data.getMessage(), Toast.LENGTH_SHORT).show();
+            if(data.getStatus().equals("0000")){
+                String orderId = data.getOrderId();
+                Interfacea interfacea = NetWorkManager.getInstance().create(Interfacea.class);
+                interfacea.pay(userId,sessionId,1,orderId).subscribeOn(Schedulers.newThread())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(new Consumer<PayBean>() {
+                            @Override
+                            public void accept(PayBean payBean) throws Exception {
+                                Intent intent = new Intent(StatActivity.this,WXPayEntryActivity.class);
+                                startActivity(intent);
+                            }
+                        });
+
+            }
+        }
+
+        @Override
+        public void fail(ApiException e) {
+
+        }
+    }
+
+    private class PayClass implements DataCall<Result<PayBean>> {
+        @Override
+        public void success(Result<PayBean> data) {
+
+        }
+
+        @Override
+        public void fail(ApiException e) {
+
+        }
+    }
 }

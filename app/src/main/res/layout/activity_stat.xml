@@ -220,6 +220,7 @@
             android:layout_weight="1"/>
 
         <ImageView
+            android:id="@+id/xiadan"
             android:layout_width="@dimen/dp_50"
             android:layout_height="@dimen/dp_50"
             android:layout_gravity="center"
