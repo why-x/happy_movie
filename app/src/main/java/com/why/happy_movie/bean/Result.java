@@ -7,6 +7,15 @@ public class Result<T> {
     String message;
     T result;
     String headPath;
+    String orderId;
+
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
 
     public String getStatus() {
         return status;

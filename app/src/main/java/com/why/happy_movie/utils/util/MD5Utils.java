@@ -1,6 +1,8 @@
 package com.why.happy_movie.utils.util;
 
 import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 public class MD5Utils {
     //公盐
     private static final String PUBLIC_SALT = "w928r982r";
@@ -14,29 +16,35 @@ public class MD5Utils {
      * @return  MD5加密字符串
      */
     public static String md5(String password){
-        return encodeByMD5(PUBLIC_SALT+password);
+        return encodeByMD5(password);
     }
      
     /**
      * md5加密算法
-     * @param  originString
      * @return 
      */
-    private static String encodeByMD5(String originString){  
-        if (originString != null){  
-            try{  
-                //创建具有指定算法名称的信息摘要  
-                MessageDigest md = MessageDigest.getInstance("MD5");  
-                //使用指定的字节数组对摘要进行最后更新，然后完成摘要计算  
-                byte[] results = md.digest(originString.getBytes());  
-                //将得到的字节数组变成字符串返回  
-                String resultString = byteArrayToHexString(results);  
-                return resultString.toUpperCase();  
-            } catch(Exception ex){  
-                ex.printStackTrace();  
-            }  
-        }  
-        return null;  
+    private static String encodeByMD5(String sourceStr){
+        String result = "";
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(sourceStr.getBytes());
+            byte b[] = md.digest();
+            int i;
+            StringBuffer buf = new StringBuffer("");
+            for (int offset = 0; offset < b.length; offset++) {
+                i = b[offset];
+                if (i < 0)
+                    i += 256;
+                if (i < 16)
+                    buf.append("0");
+                buf.append(Integer.toHexString(i));
+            }
+            result = buf.toString();
+        } catch (NoSuchAlgorithmException e) {
+            System.out.println(e);
+        }
+        return result;
+
     } 
      
     /**  

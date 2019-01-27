@@ -9,6 +9,7 @@ import com.why.happy_movie.bean.MoviesDBean;
 import com.why.happy_movie.bean.MyComment;
 import com.why.happy_movie.bean.MyPay;
 import com.why.happy_movie.bean.MyUpdate;
+import com.why.happy_movie.bean.PayBean;
 import com.why.happy_movie.bean.Result;
 import com.why.happy_movie.bean.SearchCnimea;
 import com.why.happy_movie.bean.SearchMovie;
@@ -419,12 +420,56 @@ public interface Interfacea {
      * @param count
      * @return
      */
+    /**
+     * 电影评论列表
+     * @param userId
+     * @param sessionId
+     * @param movieId
+     * @param page
+     * @param count
+     * @return
+     */
     @GET("movie/v1/findAllMovieComment")
     Observable<Result<List<MyComment>>> mycomment(@Header("userId") int userId,
                                    @Header("sessionId") String sessionId,
                                    @Query("movieId") int movieId,
                                  @Query("page") int page,
                                  @Query("count") int count);
+
+
+    /**
+     * 创建订单
+     * @param userId
+     * @param sessionId
+     * @param scheduleId
+     * @param amount
+     * @param sign
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("movie/v1/verify/buyMovieTicket")
+    Observable<Result> buyMovieTicket(@Header("userId") int userId,
+                                      @Header("sessionId") String sessionId,
+                                      @Field("scheduleId")int scheduleId,
+                                      @Field("amount")int amount ,
+                                      @Field("sign")String sign);
+
+
+    /**
+     * 支付
+     * @param userId
+     * @param sessionId
+     * @param payType
+     * @param orderId
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("movie/v1/verify/pay")
+    Observable<PayBean> pay(@Header("userId") int userId,
+                                    @Header("sessionId") String sessionId,
+                                    @Field("payType")int payType,
+                                    @Field("orderId")String orderId);
+
 
 
 }
