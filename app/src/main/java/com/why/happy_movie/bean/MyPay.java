@@ -1,26 +1,27 @@
 package com.why.happy_movie.bean;
 
 public class MyPay {
+
         /**
-         * amount : 3
-         * beginTime : 40800000
-         * cinemaName : 青春光线电影院
-         * createTime : 1533805513000
-         * endTime : 47880000
-         * id : 52
-         * movieName : 西虹市首富
-         * orderId : 20180809170513183
-         * price : 66.5
-         * screeningHall : 2号厅
+         * amount : 2
+         * beginTime : 20:00:00
+         * cinemaName : CGV影城（清河店）
+         * createTime : 1548570508000
+         * endTime : 21:48:00
+         * id : 5871
+         * movieName : 江湖儿女
+         * orderId : 20190127142828837
+         * price : 0.28
+         * screeningHall : 7号厅
          * status : 1
-         * userId : 5
+         * userId : 1771
          */
 
         private int amount;
-        private int beginTime;
+        private String beginTime;
         private String cinemaName;
         private long createTime;
-        private int endTime;
+        private String endTime;
         private int id;
         private String movieName;
         private String orderId;
@@ -37,11 +38,11 @@ public class MyPay {
             this.amount = amount;
         }
 
-        public int getBeginTime() {
+        public String getBeginTime() {
             return beginTime;
         }
 
-        public void setBeginTime(int beginTime) {
+        public void setBeginTime(String beginTime) {
             this.beginTime = beginTime;
         }
 
@@ -61,11 +62,11 @@ public class MyPay {
             this.createTime = createTime;
         }
 
-        public int getEndTime() {
+        public String getEndTime() {
             return endTime;
         }
 
-        public void setEndTime(int endTime) {
+        public void setEndTime(String endTime) {
             this.endTime = endTime;
         }
 

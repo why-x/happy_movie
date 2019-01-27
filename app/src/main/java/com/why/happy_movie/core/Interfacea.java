@@ -410,7 +410,15 @@ public interface Interfacea {
                                  @Field("newPwd2") String newPwd2);
 
 
-
+    /**
+     * 查询影片评论
+     * @param userId
+     * @param sessionId
+     * @param movieId
+     * @param page
+     * @param count
+     * @return
+     */
     @GET("movie/v1/findAllMovieComment")
     Observable<Result<List<MyComment>>> mycomment(@Header("userId") int userId,
                                    @Header("sessionId") String sessionId,

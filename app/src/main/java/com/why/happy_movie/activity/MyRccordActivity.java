@@ -92,9 +92,11 @@ public class MyRccordActivity extends AppCompatActivity implements View.OnClickL
     private class MyPayCall implements DataCall<Result<List<MyPay>>> {
         @Override
         public void success(Result<List<MyPay>> data) {
+            Toast.makeText(getBaseContext(),data.getMessage(),Toast.LENGTH_SHORT).show();
+
             List<MyPay> result = data.getResult();
             myRccordAdapter.addAll(result);
-            Toast.makeText(getBaseContext(),data.getMessage(),Toast.LENGTH_SHORT).show();
+            myRccordAdapter.notifyDataSetChanged();
         }
 
         @Override
