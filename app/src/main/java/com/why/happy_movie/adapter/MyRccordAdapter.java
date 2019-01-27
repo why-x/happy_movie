@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.bw.movie.R;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.why.happy_movie.bean.MyComment;
+import com.why.happy_movie.bean.MyPay;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,7 @@ public class MyRccordAdapter extends RecyclerView.Adapter<MyRccordAdapter.MyHold
         this.context = context;
     }
 
-    List<MyComment> list=new ArrayList<>();
+    List<MyPay> list=new ArrayList<>();
     @NonNull
     @Override
     public MyHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -37,7 +38,14 @@ public class MyRccordAdapter extends RecyclerView.Adapter<MyRccordAdapter.MyHold
 
     @Override
     public void onBindViewHolder(@NonNull MyHolder myHolder, int i) {
-
+        MyPay myPay = list.get(i);
+        myHolder.moviename.setText(myPay.getMovieName());
+        myHolder.ordernumber.setText(myPay.getOrderId());
+        myHolder.cinemaname.setText(myPay.getCinemaName());
+        myHolder.moviehall.setText(myPay.getScreeningHall());
+        myHolder.rccordtime.setText(myPay.getBeginTime()+myPay.getEndTime());
+        myHolder.rccordnum.setText(myPay.getAmount()+"张");
+        myHolder.rccordmoney.setText(myPay.getPrice()+"元");
 
     }
 
@@ -46,13 +54,25 @@ public class MyRccordAdapter extends RecyclerView.Adapter<MyRccordAdapter.MyHold
         return list.size();
     }
 
+    public void addAll(List<MyPay> result) {
+        if (result!=null){
+            list.addAll(result);
+        }
+    }
 
 
     public class MyHolder extends RecyclerView.ViewHolder {
-
+        TextView moviename,ordernumber,cinemaname,moviehall,rccordtime,rccordnum,rccordmoney;
 
         public MyHolder(@NonNull View itemView) {
             super(itemView);
+            moviename=itemView.findViewById(R.id.moviename);
+            ordernumber=itemView.findViewById(R.id.ordernumber);
+            cinemaname=itemView.findViewById(R.id.cinemaname);
+            moviehall=itemView.findViewById(R.id.moviehall);
+            rccordtime=itemView.findViewById(R.id.rccordtime);
+            rccordnum=itemView.findViewById(R.id.rccordnum);
+            rccordmoney=itemView.findViewById(R.id.rccordmoney);
 
         }
     }
