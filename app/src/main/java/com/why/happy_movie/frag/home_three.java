@@ -22,6 +22,7 @@ import com.why.happy_movie.MApp;
 import com.why.happy_movie.activity.IdeaActivity;
 import com.why.happy_movie.activity.LoginActivity;
 import com.why.happy_movie.activity.MyLoveActivity;
+import com.why.happy_movie.activity.MyNewsActivity;
 import com.why.happy_movie.activity.MyRccordActivity;
 import com.why.happy_movie.bean.Result;
 import com.why.happy_movie.bean.UserBean;
@@ -101,6 +102,7 @@ public class home_three extends Fragment implements View.OnClickListener {
         myFeedback.setOnClickListener(this);
         myRccord.setOnClickListener(this);
         myVersion.setOnClickListener(this);
+        myNews.setOnClickListener(this);
     }
 
     @Override
@@ -171,8 +173,22 @@ public class home_three extends Fragment implements View.OnClickListener {
                 startActivity(intent3);
                 break;
             case R.id.my_version:
+                if (!zai) {
+                    Toast.makeText(getContext(), "请先登录……", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Toast.makeText(getActivity(), "当前版本，已是最新版本！", Toast.LENGTH_SHORT).show();
                 break;
+
+            case R.id.my_news:
+                if (!zai) {
+                    Toast.makeText(getContext(), "请先登录……", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Intent intent4=new Intent(getActivity(),MyNewsActivity.class);
+                startActivity(intent4);
+                break;
+
 
         }
     }

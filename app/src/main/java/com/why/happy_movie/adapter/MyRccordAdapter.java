@@ -43,7 +43,7 @@ public class MyRccordAdapter extends RecyclerView.Adapter<MyRccordAdapter.MyHold
         myHolder.ordernumber.setText(myPay.getOrderId());
         myHolder.cinemaname.setText(myPay.getCinemaName());
         myHolder.moviehall.setText(myPay.getScreeningHall());
-        myHolder.rccordtime.setText(myPay.getBeginTime()+myPay.getEndTime());
+        myHolder.rccordtime.setText(myPay.getBeginTime()+"  "+myPay.getEndTime());
         myHolder.rccordnum.setText(myPay.getAmount()+"张");
         myHolder.rccordmoney.setText(myPay.getPrice()+"元");
 

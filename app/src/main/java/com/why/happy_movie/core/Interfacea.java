@@ -467,5 +467,20 @@ public interface Interfacea {
                             @Field("payType") int payType,
                             @Field("orderId") String orderId);
 
+    /**
+     * 查询系统消息列表
+     *
+     * @param userId
+     * @param sessionId
+     * @param page
+     * @param count
+     * @return
+     */
+    @GET("tool/v1/verify/findAllSysMsgList")
+    Observable<PayBean> mynews(@Header("userId") int userId,
+                               @Header("sessionId") String sessionId,
+                               @Query("page") int page,
+                               @Query("count") int count);
+
 
 }
