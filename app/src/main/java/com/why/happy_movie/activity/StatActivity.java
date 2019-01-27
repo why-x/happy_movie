@@ -4,7 +4,6 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -12,26 +11,25 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bw.movie.R;
-import com.bw.movie.wxapi.WXPayEntryActivity;
+import com.tencent.mm.opensdk.modelpay.PayReq;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.why.happy_movie.MApp;
 import com.why.happy_movie.bean.PayBean;
 import com.why.happy_movie.bean.Result;
 import com.why.happy_movie.bean.UserBean;
 import com.why.happy_movie.core.Interfacea;
 import com.why.happy_movie.presenter.BuyMovieTicketPresenter;
-import com.why.happy_movie.presenter.PayPresenter;
 import com.why.happy_movie.utils.DataCall;
 import com.why.happy_movie.utils.NetWorkManager;
 import com.why.happy_movie.utils.exception.ApiException;
 import com.why.happy_movie.utils.util.MD5Utils;
 import com.why.happy_movie.view.SeatTable;
 
-import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.List;
 
@@ -56,10 +54,16 @@ public class StatActivity extends AppCompatActivity {
     private int userId;
     private String sessionId;
 
+    private IWXAPI api;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stat);
+
+        api = WXAPIFactory.createWXAPI(this, "wxb3852e6a6b7d9516");//第二个参数为APPID
+        api.registerApp("wxb3852e6a6b7d9516");
 
         List<UserBean> userBeans = MApp.userBeanDao.loadAll();
         if(userBeans.size()>0){
@@ -208,8 +212,17 @@ public class StatActivity extends AppCompatActivity {
                         .subscribe(new Consumer<PayBean>() {
                             @Override
                             public void accept(PayBean payBean) throws Exception {
-                                Intent intent = new Intent(StatActivity.this,WXPayEntryActivity.class);
-                                startActivity(intent);
+                                PayReq req = new PayReq();
+                                req.appId = payBean.getAppId();
+                                req.partnerId = payBean.getPartnerId();
+                                req.prepayId = payBean.getPrepayId();
+                                req.nonceStr = payBean.getNonceStr();
+                                req.timeStamp = payBean.getTimeStamp();
+                                req.packageValue = payBean.getPackageValue();
+                                req.sign = payBean.getSign();
+                                // 在支付之前，如果应用没有注册到微信，应该先调用IWXMsg.registerApp将应用注册到微信
+                                //3.调用微信支付sdk支付方法
+                                api.sendReq(req);
                             }
                         });
 
