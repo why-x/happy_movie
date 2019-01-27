@@ -1,29 +1,33 @@
 package com.why.happy_movie.bean;
 
 public class MyComment {
-        /**
-         * commentId : 3
-         * commentTime : 1533117674000
-         * greatNum : 0
-         * replyNum : 0
-         * commentHeadPic : http://172.17.8.100/images/head_pic/bwjy.jpg
-         * hotComment : 0
-         * isGreat : 1
-         * movieComment : 恐龙界的霸主！
-         * commentUserId : 6
-         * commentUserName : 谁的益达
-         */
 
-        private int commentId;
-        private long commentTime;
-        private int greatNum;
-        private int replyNum;
-        private String commentHeadPic;
-        private int hotComment;
-        private int isGreat;
+
+    /**
+     * commentContent : 666
+     * commentHeadPic : http://mobile.bwstudent.com/images/movie/head_pic/2019-01-24/20190124142703.jpg
+     * commentId : 1976
+     * commentTime : 1548486055000
+     * commentUserId : 1654
+     * commentUserName : 小兔
+     * greatNum : 1
+     * hotComment : 0
+     * isGreat : 0
+     * replyNum : 0
+     */
+
+    private String commentContent;
+    private String commentHeadPic;
+    private int commentId;
+    private long commentTime;
+    private int commentUserId;
+    private String commentUserName;
+    private int greatNum;
+    private int hotComment;
+    private int isGreat;
+    private int replyNum;
 
     public String getCommentContent() {
-
         return commentContent;
     }
 
@@ -31,82 +35,75 @@ public class MyComment {
         this.commentContent = commentContent;
     }
 
-    private String commentContent;
-        private int commentUserId;
-        private String commentUserName;
+    public String getCommentHeadPic() {
+        return commentHeadPic;
+    }
 
-        public int getCommentId() {
-            return commentId;
-        }
+    public void setCommentHeadPic(String commentHeadPic) {
+        this.commentHeadPic = commentHeadPic;
+    }
 
-        public void setCommentId(int commentId) {
-            this.commentId = commentId;
-        }
+    public int getCommentId() {
+        return commentId;
+    }
 
-        public long getCommentTime() {
-            return commentTime;
-        }
+    public void setCommentId(int commentId) {
+        this.commentId = commentId;
+    }
 
-        public void setCommentTime(long commentTime) {
-            this.commentTime = commentTime;
-        }
+    public long getCommentTime() {
+        return commentTime;
+    }
 
-        public int getGreatNum() {
-            return greatNum;
-        }
+    public void setCommentTime(long commentTime) {
+        this.commentTime = commentTime;
+    }
 
-        public void setGreatNum(int greatNum) {
-            this.greatNum = greatNum;
-        }
+    public int getCommentUserId() {
+        return commentUserId;
+    }
 
-        public int getReplyNum() {
-            return replyNum;
-        }
+    public void setCommentUserId(int commentUserId) {
+        this.commentUserId = commentUserId;
+    }
 
-        public void setReplyNum(int replyNum) {
-            this.replyNum = replyNum;
-        }
+    public String getCommentUserName() {
+        return commentUserName;
+    }
 
-        public String getCommentHeadPic() {
-            return commentHeadPic;
-        }
+    public void setCommentUserName(String commentUserName) {
+        this.commentUserName = commentUserName;
+    }
 
-        public void setCommentHeadPic(String commentHeadPic) {
-            this.commentHeadPic = commentHeadPic;
-        }
+    public int getGreatNum() {
+        return greatNum;
+    }
 
-        public int getHotComment() {
-            return hotComment;
-        }
+    public void setGreatNum(int greatNum) {
+        this.greatNum = greatNum;
+    }
 
-        public void setHotComment(int hotComment) {
-            this.hotComment = hotComment;
-        }
+    public int getHotComment() {
+        return hotComment;
+    }
 
-        public int getIsGreat() {
-            return isGreat;
-        }
+    public void setHotComment(int hotComment) {
+        this.hotComment = hotComment;
+    }
 
-        public void setIsGreat(int isGreat) {
-            this.isGreat = isGreat;
-        }
+    public int getIsGreat() {
+        return isGreat;
+    }
 
+    public void setIsGreat(int isGreat) {
+        this.isGreat = isGreat;
+    }
 
+    public int getReplyNum() {
+        return replyNum;
+    }
 
-        public int getCommentUserId() {
-            return commentUserId;
-        }
-
-        public void setCommentUserId(int commentUserId) {
-            this.commentUserId = commentUserId;
-        }
-
-        public String getCommentUserName() {
-            return commentUserName;
-        }
-
-        public void setCommentUserName(String commentUserName) {
-            this.commentUserName = commentUserName;
-        }
-
+    public void setReplyNum(int replyNum) {
+        this.replyNum = replyNum;
+    }
 }

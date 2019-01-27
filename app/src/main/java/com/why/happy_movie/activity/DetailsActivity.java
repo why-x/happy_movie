@@ -247,6 +247,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
             Toast.makeText(getBaseContext(), data.getMessage(), Toast.LENGTH_SHORT).show();
             List<MyComment> result = data.getResult();
             myCommentAdapter.addAll(result);
+            myCommentAdapter.notifyDataSetChanged();
         }
 
         @Override

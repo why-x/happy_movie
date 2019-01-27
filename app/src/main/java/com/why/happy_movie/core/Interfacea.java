@@ -338,8 +338,6 @@ public interface Interfacea {
                               @Header("sessionId") String sessionId,
                               @Field("content") String content);
 
-    @FormUrlEncoded
-
 
     /**
      * 根据电影ID查询当前排片该电影的影院列表
@@ -410,5 +408,15 @@ public interface Interfacea {
                                  @Field("oldPwd") String oldPwd,
                                  @Field("newPwd") String newPwd,
                                  @Field("newPwd2") String newPwd2);
+
+
+
+    @GET("movie/v1/findAllMovieComment")
+    Observable<Result<List<MyComment>>> mycomment(@Header("userId") int userId,
+                                   @Header("sessionId") String sessionId,
+                                   @Query("movieId") int movieId,
+                                 @Query("page") int page,
+                                 @Query("count") int count);
+
 
 }

@@ -11,8 +11,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.bw.movie.R;
-import com.why.happy_movie.adapter.MyCommentAdapter;
-import com.why.happy_movie.adapter.MyRccordAdapter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
