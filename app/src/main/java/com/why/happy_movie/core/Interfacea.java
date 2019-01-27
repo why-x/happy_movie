@@ -342,6 +342,7 @@ public interface Interfacea {
 
     /**
      * 根据电影ID查询当前排片该电影的影院列表
+     *
      * @param movieId
      * @return
      */
@@ -395,6 +396,7 @@ public interface Interfacea {
 
     /**
      * 修改密码
+     *
      * @param userId
      * @param sessionId
      * @param oldPwd
@@ -413,6 +415,7 @@ public interface Interfacea {
 
     /**
      * 查询影片评论
+     *
      * @param userId
      * @param sessionId
      * @param movieId
@@ -420,25 +423,18 @@ public interface Interfacea {
      * @param count
      * @return
      */
-    /**
-     * 电影评论列表
-     * @param userId
-     * @param sessionId
-     * @param movieId
-     * @param page
-     * @param count
-     * @return
-     */
+
     @GET("movie/v1/findAllMovieComment")
     Observable<Result<List<MyComment>>> mycomment(@Header("userId") int userId,
-                                   @Header("sessionId") String sessionId,
-                                   @Query("movieId") int movieId,
-                                 @Query("page") int page,
-                                 @Query("count") int count);
+                                                  @Header("sessionId") String sessionId,
+                                                  @Query("movieId") int movieId,
+                                                  @Query("page") int page,
+                                                  @Query("count") int count);
 
 
     /**
      * 创建订单
+     *
      * @param userId
      * @param sessionId
      * @param scheduleId
@@ -450,13 +446,14 @@ public interface Interfacea {
     @POST("movie/v1/verify/buyMovieTicket")
     Observable<Result> buyMovieTicket(@Header("userId") int userId,
                                       @Header("sessionId") String sessionId,
-                                      @Field("scheduleId")int scheduleId,
-                                      @Field("amount")int amount ,
-                                      @Field("sign")String sign);
+                                      @Field("scheduleId") int scheduleId,
+                                      @Field("amount") int amount,
+                                      @Field("sign") String sign);
 
 
     /**
      * 支付
+     *
      * @param userId
      * @param sessionId
      * @param payType
@@ -466,10 +463,9 @@ public interface Interfacea {
     @FormUrlEncoded
     @POST("movie/v1/verify/pay")
     Observable<PayBean> pay(@Header("userId") int userId,
-                                    @Header("sessionId") String sessionId,
-                                    @Field("payType")int payType,
-                                    @Field("orderId")String orderId);
-
+                            @Header("sessionId") String sessionId,
+                            @Field("payType") int payType,
+                            @Field("orderId") String orderId);
 
 
 }
