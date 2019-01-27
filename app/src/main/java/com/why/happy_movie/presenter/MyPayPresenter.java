@@ -9,9 +9,7 @@ import com.why.happy_movie.utils.NetWorkManager;
 import io.reactivex.Observable;
 
 /**
- * @author dingtao
- * @date 2018/12/28 11:23
- * qq:1940870847
+ * 用户购票记录查询列表
  */
 
 public class MyPayPresenter extends BasePresenter {
