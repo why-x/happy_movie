@@ -56,6 +56,7 @@ public class StatActivity extends AppCompatActivity {
     private int userId;
     private String sessionId;
     public static Activity activity;
+    public static boolean zai=false;
     private IWXAPI api;
 
 
@@ -64,6 +65,7 @@ public class StatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stat);
         activity=this;
+        zai=true;
         api = WXAPIFactory.createWXAPI(this, "wxb3852e6a6b7d9516");//第二个参数为APPID
         api.registerApp("wxb3852e6a6b7d9516");
 

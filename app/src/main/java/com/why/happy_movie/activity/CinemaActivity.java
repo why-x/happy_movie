@@ -59,6 +59,9 @@ public class CinemaActivity extends AppCompatActivity implements View.OnClickLis
     private MovieScheduleListPresenter movieScheduleListPresenter;
     List<MovieScheduleListBean> listBeans = new ArrayList<>();
     private CinemaTimeAdapter cinemaTimeAdapter;
+    private String address;
+    private String name1;
+    private MovieListBean movieListBean;
 
 
     @Override
@@ -71,9 +74,9 @@ public class CinemaActivity extends AppCompatActivity implements View.OnClickLis
 
         Intent intent = getIntent();
         ccid = intent.getIntExtra("cid",0);
-        String name1 = intent.getStringExtra("name1");
+        name1 = intent.getStringExtra("name1");
         String logo = intent.getStringExtra("logo");
-        String address = intent.getStringExtra("address");
+        address = intent.getStringExtra("address");
         cinemaPlace.setText(address);
         cinemaImg.setImageURI(logo);
         cinemaName.setText(name1);
@@ -100,6 +103,21 @@ public class CinemaActivity extends AppCompatActivity implements View.OnClickLis
         cinemaTime.setLayoutManager(new LinearLayoutManager(this));
         cinemaTimeAdapter = new CinemaTimeAdapter(this, listBeans);
         cinemaTime.setAdapter(cinemaTimeAdapter);
+        cinemaTimeAdapter.getXuan(new CinemaTimeAdapter.XuanZuo() {
+            @Override
+            public void onXuanZuo(int possion) {
+                MovieScheduleListBean movieScheduleListBean = listBeans.get(possion);
+                Intent intent = new Intent(CinemaActivity.this, StatActivity.class);
+                intent.putExtra("movienamem",movieListBean.getName());
+                intent.putExtra("cinemaname",name1);
+                intent.putExtra("address", address);
+                intent.putExtra("shijian",movieScheduleListBean.getBeginTime()+"-"+movieScheduleListBean.getEndTime());
+                intent.putExtra("ting",movieScheduleListBean.getScreeningHall());
+                intent.putExtra("paiqiid",movieScheduleListBean.getId());
+                intent.putExtra("price",movieScheduleListBean.getPrice());
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -117,7 +135,7 @@ public class CinemaActivity extends AppCompatActivity implements View.OnClickLis
     public void success(Result<List<CimemaldListBean>> data) {
         List<CimemaldListBean> result = data.getResult();
         for (int i = 0; i < result.size() ; i++) {
-            MovieListBean movieListBean = new MovieListBean();
+            movieListBean = new MovieListBean();
             movieListBean.setImageUrl(result.get(i).getImageUrl());
             movieListBean.setName(result.get(i).getName());
             movieListBean.setId(result.get(i).getId());

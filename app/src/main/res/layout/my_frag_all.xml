@@ -103,13 +103,13 @@
         android:background="@drawable/my_border">
 
         <LinearLayout
+            android:id="@+id/my_love"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <ImageButton
-                android:id="@+id/my_love"
+            <ImageView
                 android:layout_gravity="center"
                 android:layout_width="@dimen/dp_24"
                 android:layout_height="@dimen/dp_24"
@@ -127,13 +127,13 @@
 
 
     <LinearLayout
+        android:id="@+id/my_rccord"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="vertical">
 
-        <ImageButton
-            android:id="@+id/my_rccord"
+        <ImageView
             android:layout_width="@dimen/dp_24"
             android:layout_height="@dimen/dp_24"
             android:layout_gravity="center"
@@ -169,13 +169,13 @@
         android:background="@drawable/my_border">
 
         <LinearLayout
+            android:id="@+id/my_feedback"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <ImageButton
-                android:id="@+id/my_feedback"
+            <ImageView
                 android:layout_width="@dimen/dp_24"
                 android:layout_height="@dimen/dp_24"
                 android:layout_gravity="center"
@@ -192,14 +192,14 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/my_version"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical">
 
 
-            <ImageButton
-                android:id="@+id/my_version"
+            <ImageView
                 android:layout_width="@dimen/dp_24"
                 android:layout_height="@dimen/dp_24"
                 android:layout_gravity="center"

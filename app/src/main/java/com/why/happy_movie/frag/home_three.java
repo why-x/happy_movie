@@ -52,11 +52,11 @@ public class home_three extends Fragment implements View.OnClickListener {
     @BindView(R.id.my_message)
     LinearLayout myMessage;
     @BindView(R.id.my_love)
-    ImageButton myLove;
+    LinearLayout myLove;
     @BindView(R.id.my_feedback)
-    ImageButton myFeedback;
+    LinearLayout myFeedback;
     @BindView(R.id.my_version)
-    ImageView myVersion;
+    LinearLayout myVersion;
     @BindView(R.id.my_logout)
     LinearLayout myLogout;
     Unbinder unbinder;
@@ -64,7 +64,7 @@ public class home_three extends Fragment implements View.OnClickListener {
     TextView my_name;
     boolean zai = false;
     @BindView(R.id.my_rccord)
-    ImageButton myRccord;
+    LinearLayout myRccord;
     @BindView(R.id.my_news)
     ImageView myNews;
     private List<UserBean> userBeans;

@@ -231,4 +231,17 @@ public class home_two extends Fragment implements DataCall<Result<List<YingYuanB
 
         }
     }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+
+        List<UserBean> userBeans = MApp.userBeanDao.loadAll();
+        if(userBeans.size()>0){
+            userId = userBeans.get(0).getUserId();
+            sessionId = userBeans.get(0).getSessionId();
+        }
+        recommendCinemasPresenter = new RecommendCinemasPresenter(this);
+        nearCinemasPresenter = new NearCinemasPresenter(new Fujin());
+    }
 }

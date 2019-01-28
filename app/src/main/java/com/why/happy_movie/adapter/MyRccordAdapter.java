@@ -1,6 +1,7 @@
 package com.why.happy_movie.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 
 import com.bw.movie.R;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.why.happy_movie.activity.BuyMoieListActivity;
+import com.why.happy_movie.activity.StatActivity;
 import com.why.happy_movie.bean.MyComment;
 import com.why.happy_movie.bean.MyPay;
 
@@ -23,9 +26,15 @@ import java.util.List;
 public class MyRccordAdapter extends RecyclerView.Adapter<MyRccordAdapter.MyHolder> {
 
     Context context;
+    ZhiFu zhiFu;
+
 
     public MyRccordAdapter(Context context) {
         this.context = context;
+    }
+
+    public void getZhifu(ZhiFu zhiFu){
+        this.zhiFu=zhiFu;
     }
 
     List<MyPay> list=new ArrayList<>();
@@ -38,8 +47,8 @@ public class MyRccordAdapter extends RecyclerView.Adapter<MyRccordAdapter.MyHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyHolder myHolder, int i) {
-        MyPay myPay = list.get(i);
+    public void onBindViewHolder(@NonNull MyHolder myHolder, final int i) {
+        final MyPay myPay = list.get(i);
         myHolder.moviename.setText(myPay.getMovieName());
         myHolder.ordernumber.setText(myPay.getOrderId());
         myHolder.cinemaname.setText(myPay.getCinemaName());
@@ -50,6 +59,12 @@ public class MyRccordAdapter extends RecyclerView.Adapter<MyRccordAdapter.MyHold
         if (myPay.getStatus()==2){
             myHolder.buy.setVisibility(View.GONE);
         }
+        myHolder.buy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                zhiFu.onZhiFu(i);
+            }
+        });
     }
 
     @Override
@@ -79,5 +94,9 @@ public class MyRccordAdapter extends RecyclerView.Adapter<MyRccordAdapter.MyHold
             buy = itemView.findViewById(R.id.moviebuy);
 
         }
+    }
+
+    public interface ZhiFu{
+        void onZhiFu(int possion);
     }
 }

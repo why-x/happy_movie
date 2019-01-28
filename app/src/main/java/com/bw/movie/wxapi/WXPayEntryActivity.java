@@ -107,6 +107,9 @@ public class WXPayEntryActivity extends AppCompatActivity implements IWXAPIEvent
     @Override
     protected void onPause() {
         super.onPause();
-        StatActivity.activity.finish();
+       if(StatActivity.zai){
+           StatActivity.activity.finish();
+           StatActivity.zai=false;
+       }
     }
 }
