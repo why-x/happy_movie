@@ -160,7 +160,6 @@ public class home_two extends Fragment implements DataCall<Result<List<YingYuanB
             }
         });
 
-
         return view;
     }
 
@@ -207,6 +206,7 @@ public class home_two extends Fragment implements DataCall<Result<List<YingYuanB
             addre.setText(addr);
         }
     }
+
 
     private class MyLike implements DataCall<Result> {
         @Override
