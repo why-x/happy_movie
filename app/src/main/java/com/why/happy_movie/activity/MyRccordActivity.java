@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -44,6 +45,8 @@ public class MyRccordActivity extends AppCompatActivity implements View.OnClickL
     private MyRccordAdapter myRccordAdapter;
     private int userId;
     private String sessionId;
+    private LinearLayoutManager linearLayoutManager;
+    private MyPayPresenter myPayPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,10 +64,10 @@ public class MyRccordActivity extends AppCompatActivity implements View.OnClickL
         wPay.setOnClickListener(this);
         okPay.setOnClickListener(this);
         payReturn.setOnClickListener(this);
-        MyPayPresenter myPayPresenter=new MyPayPresenter(new MyPayCall());
+        myPayPresenter = new MyPayPresenter(new MyPayCall());
         myPayPresenter.reqeust(userId,sessionId,1,5,1);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         payRecycler.setLayoutManager(linearLayoutManager);
         myRccordAdapter = new MyRccordAdapter(this);
@@ -77,10 +80,22 @@ public class MyRccordActivity extends AppCompatActivity implements View.OnClickL
             case R.id.w_pay:
                 wPay.setTextColor(Color.WHITE);
                 okPay.setTextColor(Color.BLACK);
+                payRecycler.setLayoutManager(linearLayoutManager);
+                myRccordAdapter = new MyRccordAdapter(this);
+                payRecycler.setAdapter(myRccordAdapter);
+                myPayPresenter.reqeust(userId,sessionId,1,5,1);
+
                 break;
             case R.id.ok_pay:
                 wPay.setTextColor(Color.BLACK);
                 okPay.setTextColor(Color.WHITE);
+                View inflate = View.inflate(this, R.layout.rccord_item1, null);
+
+                payRecycler.setLayoutManager(linearLayoutManager);
+                myRccordAdapter = new MyRccordAdapter(this);
+                payRecycler.setAdapter(myRccordAdapter);
+                myPayPresenter.reqeust(userId,sessionId,1,5,2);
+
                 break;
             case R.id.pay_return:
                 finish();

@@ -216,9 +216,9 @@ public class StatActivity extends AppCompatActivity {
                 String orderId = data.getOrderId();
                 Interfacea interfacea = NetWorkManager.getInstance().create(Interfacea.class);
                 interfacea.pay(userId,sessionId,1,orderId).subscribeOn(Schedulers.newThread())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(new Consumer<PayBean>() {
-                            @Override
+                                                .observeOn(AndroidSchedulers.mainThread())
+                                                .subscribe(new Consumer<PayBean>() {
+                                            @Override
                             public void accept(PayBean payBean) throws Exception {
                                 PayReq req = new PayReq();
                                 req.appId = payBean.getAppId();
