@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.bw.movie.R;
@@ -46,7 +47,9 @@ public class MyRccordAdapter extends RecyclerView.Adapter<MyRccordAdapter.MyHold
         myHolder.rccordtime.setText(myPay.getBeginTime()+"  "+myPay.getEndTime());
         myHolder.rccordnum.setText(myPay.getAmount()+"张");
         myHolder.rccordmoney.setText(myPay.getPrice()+"元");
-
+        if (myPay.getStatus()==2){
+            myHolder.buy.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -63,7 +66,7 @@ public class MyRccordAdapter extends RecyclerView.Adapter<MyRccordAdapter.MyHold
 
     public class MyHolder extends RecyclerView.ViewHolder {
         TextView moviename,ordernumber,cinemaname,moviehall,rccordtime,rccordnum,rccordmoney;
-
+        Button buy;
         public MyHolder(@NonNull View itemView) {
             super(itemView);
             moviename=itemView.findViewById(R.id.moviename);
@@ -73,6 +76,7 @@ public class MyRccordAdapter extends RecyclerView.Adapter<MyRccordAdapter.MyHold
             rccordtime=itemView.findViewById(R.id.rccordtime);
             rccordnum=itemView.findViewById(R.id.rccordnum);
             rccordmoney=itemView.findViewById(R.id.rccordmoney);
+            buy = itemView.findViewById(R.id.moviebuy);
 
         }
     }

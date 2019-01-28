@@ -6,7 +6,7 @@ android {
         moviekey {
             keyAlias 'bw_movie'
             keyPassword '123456'
-            storeFile file('C:/Users/admin/Desktop/movie.keystore')
+            storeFile file('C:/Users/lenovo/Desktop/movie.keystore')
             storePassword '123456'
         }
     }
