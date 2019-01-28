@@ -101,7 +101,6 @@ public class LoginActivity extends AppCompatActivity implements DataCall<Result<
                 req.scope = "snsapi_userinfo";
                 req.state = "wechat_sdk_微信登录"; // 自行填写
                 api.sendReq(req);
-
             }
         });
 
