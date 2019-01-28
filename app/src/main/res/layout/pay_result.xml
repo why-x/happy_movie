@@ -44,12 +44,13 @@
 
 		<Button
 			android:id="@+id/back"
-		android:layout_width="wrap_content"
+		android:layout_width="@dimen/dp_120"
 		android:layout_height="wrap_content"
 		android:text="返回"
 		android:textColor="#fff"
 		android:textSize="@dimen/sp_18"
-		android:background="@drawable/details_btn"/>
+			android:padding="@dimen/dp_10"
+		android:background="@drawable/idea_shape"/>
 
 		<TextView
 			android:layout_width="@dimen/dp_30"
@@ -57,12 +58,13 @@
 			/>
 		<Button
             android:id="@+id/chakan"
-			android:layout_width="wrap_content"
+			android:layout_width="@dimen/dp_120"
 			android:layout_height="wrap_content"
 			android:text="查看订单"
 			android:textColor="#fff"
 			android:textSize="@dimen/sp_18"
-			android:background="@drawable/details_btn"/>
+			android:padding="@dimen/dp_10"
+			android:background="@drawable/idea_shape"/>
 	</LinearLayout>
 	
 </LinearLayout>

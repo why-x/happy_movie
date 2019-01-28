@@ -182,6 +182,8 @@ public class StatActivity extends AppCompatActivity {
 
                         boolean zai = MApp.sharedPreferences.getBoolean("zai", false);
                         if(!zai){
+                            Intent intent1 = new Intent(StatActivity.this,LoginActivity.class);
+                            startActivity(intent1);
                             Toast.makeText(StatActivity.this, "请先登录……", Toast.LENGTH_SHORT).show();
                             return;
                         }

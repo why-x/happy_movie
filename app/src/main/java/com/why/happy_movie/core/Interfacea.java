@@ -14,6 +14,7 @@ import com.why.happy_movie.bean.Result;
 import com.why.happy_movie.bean.SearchCnimea;
 import com.why.happy_movie.bean.SearchMovie;
 import com.why.happy_movie.bean.TimeCnimea;
+import com.why.happy_movie.bean.WxLoginBean;
 import com.why.happy_movie.bean.YingYuanBean;
 import com.why.happy_movie.bean.YongHuBean;
 
@@ -481,6 +482,17 @@ public interface Interfacea {
                                @Header("sessionId") String sessionId,
                                @Query("page") int page,
                                @Query("count") int count);
+
+
+    /**
+     * 微信登陆
+     * @param code
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("user/v1/weChatBindingLogin")
+    Observable<Result<WxLoginBean>> wxlogin(@Field("code")String code);
+
 
 
 }

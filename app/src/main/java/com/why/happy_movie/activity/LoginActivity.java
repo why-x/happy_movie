@@ -1,5 +1,6 @@
 package com.why.happy_movie.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,9 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.bw.movie.R;
+import com.tencent.mm.opensdk.modelmsg.SendAuth;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.why.happy_movie.MApp;
 import com.why.happy_movie.bean.LoginBean;
 import com.why.happy_movie.bean.Result;
@@ -35,20 +39,31 @@ public class LoginActivity extends AppCompatActivity implements DataCall<Result<
     private String trim;
     private String trim1;
     private ImageView btn_ying;
+    private ImageView weixin_login;
+    private IWXAPI api;
+    public static Activity activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        activity=this;
         loginPresenter = new LoginPresenter(this);
 
         sp = getSharedPreferences("sp",MODE_PRIVATE);
+
+        //通过WXAPIFactory工厂获取IWXApI的示例
+        api = WXAPIFactory.createWXAPI(this,"wxb3852e6a6b7d9516",true);
+        //将应用的appid注册到微信
+        api.registerApp("wxb3852e6a6b7d9516");
+
 
         btn_ying = findViewById(R.id.btn_ying);
         ed_login_number = findViewById(R.id.ed_login_number);
         ed_login_password = findViewById(R.id.ed_login_password);
         Button btn_login = findViewById(R.id.btn_login);
         save_pwd = findViewById(R.id.save_pwd);
+        weixin_login = findViewById(R.id.weixin_login);
 
         if(sp.getBoolean("jizhu",false)){
             String phone = sp.getString("phone","");
@@ -73,6 +88,20 @@ public class LoginActivity extends AppCompatActivity implements DataCall<Result<
                 trim1 = ed_login_password.getText().toString().trim();
                 String encrypt = EncryptUtil.encrypt(trim1);
                 loginPresenter.reqeust(trim,encrypt);
+            }
+        });
+
+        /**
+         * 微信登录
+         */
+        weixin_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SendAuth.Req req = new SendAuth.Req();
+                req.scope = "snsapi_userinfo";
+                req.state = "wechat_sdk_微信登录"; // 自行填写
+                api.sendReq(req);
+
             }
         });
 
