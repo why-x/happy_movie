@@ -3,6 +3,9 @@ package com.bw.movie.wxapi;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,6 +16,8 @@ import com.tencent.mm.opensdk.modelbase.BaseResp;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
+import com.why.happy_movie.activity.MyRccordActivity;
+import com.why.happy_movie.activity.StatActivity;
 import com.why.happy_movie.utils.util.LogUtils;
 
 /**
@@ -25,6 +30,8 @@ public class WXPayEntryActivity extends AppCompatActivity implements IWXAPIEvent
     private IWXAPI api;
 
     private TextView payResult;
+    private ImageView iv_faile;
+    private ImageView iv_success;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,9 +40,28 @@ public class WXPayEntryActivity extends AppCompatActivity implements IWXAPIEvent
         LogUtils.e("com.bw.movie.wxapi包哈哈哈啊");
 
         payResult = findViewById(R.id.pay_result);
+        iv_faile = findViewById(R.id.iv_faile);
+        iv_success = findViewById(R.id.iv_success);
+        Button  chakan = findViewById(R.id.chakan);
+        chakan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(WXPayEntryActivity.this,MyRccordActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         api = WXAPIFactory.createWXAPI(this, "wxb3852e6a6b7d9516");
         api.handleIntent(getIntent(), this);
+
+        Button back = findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     @Override
@@ -56,16 +82,20 @@ public class WXPayEntryActivity extends AppCompatActivity implements IWXAPIEvent
             switch (resp.errCode) {
                 case BaseResp.ErrCode.ERR_OK:
                     //支付成功后的逻辑
+                    iv_success.setVisibility(View.VISIBLE);
                     result = "微信支付成功";
                     break;
                 case BaseResp.ErrCode.ERR_COMM:
-                    result = "微信支付失败：" + resp.errCode + "，" + resp.errStr;
+                    iv_faile.setVisibility(View.VISIBLE);
+                    result = "微信支付失败";
                     break;
                 case BaseResp.ErrCode.ERR_USER_CANCEL:
-                    result = "微信支付取消：" + resp.errCode + "，" + resp.errStr;
+                    iv_faile.setVisibility(View.VISIBLE);
+                    result = "微信支付取消";
                     break;
                 default:
-                    result = "微信支付未知异常：" + resp.errCode + "，" + resp.errStr;
+                    iv_faile.setVisibility(View.VISIBLE);
+                    result = "微信支付未知异常";
                     break;
             }
             payResult.setText(result);
@@ -73,4 +103,10 @@ public class WXPayEntryActivity extends AppCompatActivity implements IWXAPIEvent
         Toast.makeText(this, result, Toast.LENGTH_LONG).show();
     }
 
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        StatActivity.activity.finish();
+    }
 }

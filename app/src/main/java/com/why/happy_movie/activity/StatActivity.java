@@ -1,6 +1,8 @@
 package com.why.happy_movie.activity;
 
+import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -53,7 +55,7 @@ public class StatActivity extends AppCompatActivity {
     private int paiqiid;
     private int userId;
     private String sessionId;
-
+    public static Activity activity;
     private IWXAPI api;
 
 
@@ -61,7 +63,7 @@ public class StatActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stat);
-
+        activity=this;
         api = WXAPIFactory.createWXAPI(this, "wxb3852e6a6b7d9516");//第二个参数为APPID
         api.registerApp("wxb3852e6a6b7d9516");
 
@@ -177,6 +179,12 @@ public class StatActivity extends AppCompatActivity {
                 textView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
+                        boolean zai = MApp.sharedPreferences.getBoolean("zai", false);
+                        if(!zai){
+                            Toast.makeText(StatActivity.this, "请先登录……", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
                         /**
                          * 创建订单
                          */
