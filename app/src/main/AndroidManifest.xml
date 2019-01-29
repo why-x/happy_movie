@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.bw.movie">
 
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -61,6 +62,7 @@
         <activity android:name="com.why.happy_movie.activity.StatActivity"></activity>
         <activity android:name="com.why.happy_movie.activity.MyNewsActivity"></activity>
 
+
         <!-- 微信支付 -->
         <activity
             android:name="com.bw.movie.wxapi.WXPayEntryActivity"
@@ -70,6 +72,8 @@
         <!--微信登录-->
         <activity android:name=".wxapi.WXEntryActivity"
             android:exported="true"/>
+
+
 
     </application>
 

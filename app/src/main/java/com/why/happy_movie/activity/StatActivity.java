@@ -189,6 +189,12 @@ public class StatActivity extends AppCompatActivity {
                             Toast.makeText(StatActivity.this, "请先登录……", Toast.LENGTH_SHORT).show();
                             return;
                         }
+                        List<UserBean> userBeans = MApp.userBeanDao.loadAll();
+                        if(userBeans.size()>0){
+                            userId = userBeans.get(0).getUserId();
+                            sessionId = userBeans.get(0).getSessionId();
+
+                        }
                         /**
                          * 创建订单
                          */

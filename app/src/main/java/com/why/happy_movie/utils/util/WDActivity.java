@@ -152,4 +152,15 @@ public abstract class WDActivity extends AppCompatActivity {
         }
         return null;
     }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
 }

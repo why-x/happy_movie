@@ -46,4 +46,14 @@ public class MainActivity extends AppCompatActivity {
         handler.sendEmptyMessageDelayed(1,1000);
 
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
 }
