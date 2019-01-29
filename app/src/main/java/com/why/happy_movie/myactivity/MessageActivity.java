@@ -3,7 +3,12 @@ package com.why.happy_movie.myactivity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
@@ -21,17 +26,21 @@ import com.why.happy_movie.bean.Result;
 import com.why.happy_movie.bean.UserBean;
 import com.why.happy_movie.bean.YongHuBean;
 import com.why.happy_movie.presenter.MyUpdatePresenter;
+import com.why.happy_movie.presenter.UpHeadPresenter;
 import com.why.happy_movie.presenter.UserInfoPresenter;
 import com.why.happy_movie.utils.DataCall;
 import com.why.happy_movie.utils.exception.ApiException;
 import com.why.happy_movie.utils.util.UIUtils;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.why.happy_movie.utils.util.WDActivity.PHOTO;
 
 public class MessageActivity extends AppCompatActivity implements View.OnClickListener, DataCall<Result<YongHuBean>> {
 
@@ -62,6 +71,25 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
     private String email;
     private String nickName;
     private List<UserBean> userBeans;
+    List<Object> objects = new ArrayList<>();
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(data==null){
+            return;
+        }
+        if(requestCode==0){
+            String filePath = getFilePath(null,requestCode,data);
+            objects.add(filePath);
+            Uri data1 = data.getData();
+            my_head.setImageURI(data1);
+            userBeans.get(0).setHeadPic(data1.toString());
+            UpHeadPresenter upHeadPresenter = new UpHeadPresenter(new UpHeadC());
+            upHeadPresenter.reqeust(userId,sessionId,objects);
+            objects.clear();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +105,16 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
         UserInfoPresenter userInfoPresenter = new UserInfoPresenter(this);
         userInfoPresenter.reqeust(userId, sessionId);
         myReset.setOnClickListener(this);
+
+
+        my_head.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(Intent.ACTION_PICK);
+                intent1.setType("image/*");
+                startActivityForResult(intent1,0);
+            }
+        });
         //修改用户信息
         myupdate();
     }
@@ -231,4 +269,45 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 
+
+
+    /**
+     * 得到图片的路径
+     *
+     * @param fileName
+     * @param requestCode
+     * @param data
+     * @return
+     */
+    public String getFilePath(String fileName, int requestCode, Intent data) {
+        if (requestCode == 1) {
+            return fileName;
+        } else if (requestCode == PHOTO) {
+            Uri uri = data.getData();
+            String[] proj = {MediaStore.Images.Media.DATA};
+            Cursor actualimagecursor = managedQuery(uri, proj, null, null, null);
+            int actual_image_column_index = actualimagecursor
+                    .getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            actualimagecursor.moveToFirst();
+            String img_path = actualimagecursor
+                    .getString(actual_image_column_index);
+            // 4.0以上平台会自动关闭cursor,所以加上版本判断,OK
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+                actualimagecursor.close();
+            return img_path;
+        }
+        return null;
+    }
+
+    private class UpHeadC implements DataCall<Result> {
+        @Override
+        public void success(Result data) {
+            Toast.makeText(MessageActivity.this, ""+data.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void fail(ApiException e) {
+
+        }
+    }
 }

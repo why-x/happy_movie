@@ -6,25 +6,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.baidu.location.LocationClient;
 import com.bw.movie.R;
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.why.happy_movie.adapter.CinemaFlowAdapter;
 import com.why.happy_movie.adapter.CinemaFlowAdapter2;
 import com.why.happy_movie.adapter.CinemaTimeAdapter;
 import com.why.happy_movie.bean.CimemaldListBean;
 import com.why.happy_movie.bean.MovieListBean;
 import com.why.happy_movie.bean.MovieScheduleListBean;
 import com.why.happy_movie.bean.Result;
-import com.why.happy_movie.bean.YingYuanBean;
 import com.why.happy_movie.presenter.CimemaldListPresenter;
 import com.why.happy_movie.presenter.MovieScheduleListPresenter;
-import com.why.happy_movie.presenter.NearCinemasPresenter;
-import com.why.happy_movie.presenter.RecommendCinemasPresenter;
 import com.why.happy_movie.utils.DataCall;
 import com.why.happy_movie.utils.exception.ApiException;
 
@@ -62,6 +59,8 @@ public class CinemaActivity extends AppCompatActivity implements View.OnClickLis
     private String address;
     private String name1;
     private MovieListBean movieListBean;
+    private RelativeLayout lll;
+    private PopupWindow popupWindow;
 
 
     @Override
@@ -69,6 +68,8 @@ public class CinemaActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cinema_all);
         ButterKnife.bind(this);
+        lll = findViewById(R.id.lll);
+
 
         movieScheduleListPresenter = new MovieScheduleListPresenter(new MovieList());
 
@@ -81,6 +82,33 @@ public class CinemaActivity extends AppCompatActivity implements View.OnClickLis
         cinemaImg.setImageURI(logo);
         cinemaName.setText(name1);
         cinemaReturn.setOnClickListener(this);
+
+        /**
+         * pop详情
+         */
+        RelativeLayout rll = findViewById(R.id.rll);
+        rll.setOnClickListener(new View.OnClickListener() {
+
+
+
+            @Override
+            public void onClick(View v) {
+                View inflate1 = View.inflate(CinemaActivity.this, R.layout.popu_cinema, null);
+                popupWindow = new PopupWindow(inflate1, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                popupWindow.showAtLocation(lll, 0, 0, 0);
+                TextView txt_address = inflate1.findViewById(R.id.address);
+                txt_address.setText(address);
+                TextView txt_phone  = inflate1.findViewById(R.id.phone);
+                txt_phone.setText("010-18801039327");
+                ImageView back = inflate1.findViewById(R.id.back);
+                back.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        popupWindow.dismiss();
+                    }
+                });
+            }
+        });
 
         CimemaldListPresenter cimemaldListPresenter = new CimemaldListPresenter(this);
         cimemaldListPresenter.reqeust(ccid);

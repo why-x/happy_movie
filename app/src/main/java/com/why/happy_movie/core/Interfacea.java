@@ -7,6 +7,7 @@ import com.why.happy_movie.bean.MovieListBean;
 import com.why.happy_movie.bean.MovieScheduleListBean;
 import com.why.happy_movie.bean.MoviesDBean;
 import com.why.happy_movie.bean.MyComment;
+import com.why.happy_movie.bean.MyNewsBean;
 import com.why.happy_movie.bean.MyPay;
 import com.why.happy_movie.bean.MyUpdate;
 import com.why.happy_movie.bean.PayBean;
@@ -478,10 +479,10 @@ public interface Interfacea {
      * @return
      */
     @GET("tool/v1/verify/findAllSysMsgList")
-    Observable<PayBean> mynews(@Header("userId") int userId,
-                               @Header("sessionId") String sessionId,
-                               @Query("page") int page,
-                               @Query("count") int count);
+    Observable<Result<List<MyNewsBean>>> mynews(@Header("userId") int userId,
+                                        @Header("sessionId") String sessionId,
+                                        @Query("page") int page,
+                                        @Query("count") int count);
 
 
     /**
@@ -492,7 +493,5 @@ public interface Interfacea {
     @FormUrlEncoded
     @POST("user/v1/weChatBindingLogin")
     Observable<Result<WxLoginBean>> wxlogin(@Field("code")String code);
-
-
 
 }

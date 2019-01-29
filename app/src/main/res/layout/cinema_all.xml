@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fff"
+    android:id="@+id/lll"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 <LinearLayout
@@ -16,6 +17,7 @@
         android:orientation="vertical">
 
         <RelativeLayout
+            android:id="@+id/rll"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_90"
             android:layout_marginTop="@dimen/dp_15"
