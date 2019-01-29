@@ -14,6 +14,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -64,6 +65,12 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
     String sessionId = "15482908826721771";
     @BindView(R.id.my_reset)
     ImageView myReset;
+    @BindView(R.id.r2)
+    RelativeLayout r2;
+    @BindView(R.id.r2_2)
+    RelativeLayout r22;
+    @BindView(R.id.r3)
+    RelativeLayout r3;
     private int index = 0;// 记录单选对话框的下标
     private MyUpdatePresenter myUpdatePresenter;
     private String newsex;
@@ -76,17 +83,17 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(data==null){
+        if (data == null) {
             return;
         }
-        if(requestCode==0){
-            String filePath = getFilePath(null,requestCode,data);
+        if (requestCode == 0) {
+            String filePath = getFilePath(null, requestCode, data);
             objects.add(filePath);
             Uri data1 = data.getData();
             my_head.setImageURI(data1);
             userBeans.get(0).setHeadPic(data1.toString());
             UpHeadPresenter upHeadPresenter = new UpHeadPresenter(new UpHeadC());
-            upHeadPresenter.reqeust(userId,sessionId,objects);
+            upHeadPresenter.reqeust(userId, sessionId, objects);
             objects.clear();
         }
     }
@@ -112,7 +119,7 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
             public void onClick(View v) {
                 Intent intent1 = new Intent(Intent.ACTION_PICK);
                 intent1.setType("image/*");
-                startActivityForResult(intent1,0);
+                startActivityForResult(intent1, 0);
             }
         });
         //修改用户信息
@@ -120,9 +127,12 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void myupdate() {
-        my_name.setOnClickListener(this);
+        r2.setOnClickListener(this);
+        r3.setOnClickListener(this);
+        r22.setOnClickListener(this);
+        /*my_name.setOnClickListener(this);
         my_sex.setOnClickListener(this);
-        emaile.setOnClickListener(this);
+        emaile.setOnClickListener(this);*/
         myUpdatePresenter = new MyUpdatePresenter(new MyUpdateCall());
 
     }
@@ -137,7 +147,7 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
                 Intent intent = new Intent(MessageActivity.this, ResetPwdActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.my_name:
+            case R.id.r2:
                 final EditText editText = new EditText(this);
                 editText.setText(yongHuBean.getNickName());
                 AlertDialog builder1 = new AlertDialog.Builder(this).
@@ -154,7 +164,7 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
                         }).setNegativeButton("取消", null).create();
                 builder1.show();
                 break;
-            case R.id.my_sex:
+            case R.id.r3:
                 int sex1 = yongHuBean.getSex();
                 int sexid = 0;
                 if (sex1 == 1) {
@@ -190,7 +200,7 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
                 builder2.show();
 
                 break;
-            case R.id.emaile:
+            case R.id.r2_2:
                 final EditText editemail = new EditText(this);
                 editemail.setText(yongHuBean.getEmail());
                 AlertDialog builder3 = new AlertDialog.Builder(this)
@@ -270,7 +280,6 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
     }
 
 
-
     /**
      * 得到图片的路径
      *
@@ -302,7 +311,7 @@ public class MessageActivity extends AppCompatActivity implements View.OnClickLi
     private class UpHeadC implements DataCall<Result> {
         @Override
         public void success(Result data) {
-            Toast.makeText(MessageActivity.this, ""+data.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(MessageActivity.this, "" + data.getMessage(), Toast.LENGTH_SHORT).show();
         }
 
         @Override
