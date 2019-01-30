@@ -7,6 +7,7 @@ import android.os.Looper;
 import android.os.Handler;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.tencent.bugly.crashreport.CrashReport;
 import com.why.happy_movie.dao.DaoMaster;
 import com.why.happy_movie.dao.DaoSession;
 import com.why.happy_movie.dao.UserBeanDao;
@@ -37,6 +38,8 @@ public class MApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        CrashReport.initCrashReport(getApplicationContext(), "cea6e3352b", false);
 
         DaoSession daoSession = DaoMaster.newDevSession(this, UserBeanDao.TABLENAME);
         userBeanDao = daoSession.getUserBeanDao();
