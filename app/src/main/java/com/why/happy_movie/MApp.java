@@ -5,9 +5,12 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Looper;
 import android.os.Handler;
+import android.support.multidex.MultiDex;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.tencent.bugly.crashreport.CrashReport;
+import com.umeng.analytics.MobclickAgent;
+import com.umeng.commonsdk.UMConfigure;
 import com.why.happy_movie.dao.DaoMaster;
 import com.why.happy_movie.dao.DaoSession;
 import com.why.happy_movie.dao.UserBeanDao;
@@ -39,6 +42,8 @@ public class MApp extends Application {
     public void onCreate() {
         super.onCreate();
 
+        UMConfigure.init(this,  UMConfigure.DEVICE_TYPE_PHONE, null);
+
         CrashReport.initCrashReport(getApplicationContext(), "cea6e3352b", false);
 
         DaoSession daoSession = DaoMaster.newDevSession(this, UserBeanDao.TABLENAME);
@@ -52,6 +57,7 @@ public class MApp extends Application {
         sharedPreferences = getSharedPreferences("sp",MODE_PRIVATE);
 
         Fresco.initialize(this);
+        MultiDex.install(this);
     }
 
     public static SharedPreferences getShare(){
