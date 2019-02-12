@@ -495,12 +495,27 @@ public interface Interfacea {
     Observable<Result<WxLoginBean>> wxlogin(@Field("code")String code);
 
 
+    /**
+     * 评论点赞
+     * @param userId
+     * @param sessionId
+     * @param commentId
+     * @return
+     */
     @FormUrlEncoded
     @POST("movie/v1/verify/movieCommentGreat")
     Observable<Result> movieCommentGreat(@Header("userId") int userId,
                             @Header("sessionId") String sessionId,
                             @Field("commentId") int commentId);
 
+
+
+    @FormUrlEncoded
+    @POST("movie/v1/verify/movieComment")
+    Observable<Result> movieComment(@Header("userId") int userId,
+                                         @Header("sessionId") String sessionId,
+                                         @Field("movieId") int movieId,
+                                         @Field("commentContent")String commentContent);
 
 
 }
