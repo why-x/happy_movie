@@ -33,6 +33,7 @@ import com.why.happy_movie.bean.MoviesDBean;
 import com.why.happy_movie.bean.MyComment;
 import com.why.happy_movie.bean.Result;
 import com.why.happy_movie.bean.UserBean;
+import com.why.happy_movie.presenter.MovieCommertGreatPresenter;
 import com.why.happy_movie.presenter.MovieDPresenter;
 import com.why.happy_movie.presenter.MoviesDPresenter;
 import com.why.happy_movie.presenter.MyCommentPresenter;
@@ -74,6 +75,7 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
     private MyCommentAdapter myCommentAdapter;
     private int userId;
     private String sessionId;
+    private List<MyComment> result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -188,12 +190,23 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
                 ImageView coreturn2 = inflate3.findViewById(R.id.ad_return);
                 MyCommentPresenter myCommentPresenter = new MyCommentPresenter(new CommentCall());
                 myCommentPresenter.reqeust(userId, sessionId, id, 1, 5);
-
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
                 linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
                 comrecycler.setLayoutManager(linearLayoutManager);
                 myCommentAdapter = new MyCommentAdapter(this);
                 comrecycler.setAdapter(myCommentAdapter);
+                myCommentAdapter.getgreat(new MyCommentAdapter.Great12() {
+                    @Override
+                    public void ongreat(int i) {
+                        MovieCommertGreatPresenter movieCommertGreatPresenter = new MovieCommertGreatPresenter(new DianZan());
+                        movieCommertGreatPresenter.reqeust(userId,sessionId,result.get(i).getCommentId());
+                    }
+
+                    @Override
+                    public void fogreat(int i) {
+
+                    }
+                });
                 coreturn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -241,11 +254,24 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 
+    class DianZan implements DataCall<Result> {
+
+        @Override
+        public void success(Result data) {
+            Toast.makeText(DetailsActivity.this, ""+data.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void fail(ApiException e) {
+
+        }
+    }
+
     private class CommentCall implements DataCall<Result<List<MyComment>>> {
         @Override
         public void success(Result<List<MyComment>> data) {
             Toast.makeText(getBaseContext(), data.getMessage(), Toast.LENGTH_SHORT).show();
-            List<MyComment> result = data.getResult();
+            result = data.getResult();
             myCommentAdapter.addAll(result);
             myCommentAdapter.notifyDataSetChanged();
         }

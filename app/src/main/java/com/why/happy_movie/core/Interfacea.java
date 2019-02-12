@@ -494,4 +494,13 @@ public interface Interfacea {
     @POST("user/v1/weChatBindingLogin")
     Observable<Result<WxLoginBean>> wxlogin(@Field("code")String code);
 
+
+    @FormUrlEncoded
+    @POST("movie/v1/verify/movieCommentGreat")
+    Observable<Result> movieCommentGreat(@Header("userId") int userId,
+                            @Header("sessionId") String sessionId,
+                            @Field("commentId") int commentId);
+
+
+
 }

@@ -52,7 +52,7 @@
             android:background="@android:color/transparent"
             android:src="@drawable/ic_xiangqing_back" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/publish"
             android:layout_width="@dimen/dp_60"
             android:layout_height="@dimen/dp_60"
