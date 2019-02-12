@@ -22,6 +22,8 @@ import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.bw.movie.R;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.why.happy_movie.activity.ThreeListActivity;
 import com.why.happy_movie.adapter.CinemaFlowAdapter;
@@ -31,9 +33,11 @@ import com.why.happy_movie.bean.Result;
 import com.why.happy_movie.presenter.ComingSoonMoviePresenter;
 import com.why.happy_movie.presenter.HotMoviePresenter;
 import com.why.happy_movie.presenter.ReleaseMoviePresenter;
+import com.why.happy_movie.utils.CacheManager;
 import com.why.happy_movie.utils.DataCall;
 import com.why.happy_movie.utils.exception.ApiException;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,11 +70,15 @@ public class home_one extends Fragment implements DataCall<Result<List<MovieList
     private LocationClient mLocationClient;
     private TextView addre;
     private MyLocationListener myListener = new MyLocationListener();
+    private CacheManager cacheManager;
+    private Gson gson;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.home_one,container,false);
+        cacheManager = new CacheManager();
+        gson = new Gson();
 
         hotMoviePresenter = new HotMoviePresenter(this);
         hotMoviePresenter.reqeust(userId,sessionId,page,count);
@@ -179,16 +187,31 @@ public class home_one extends Fragment implements DataCall<Result<List<MovieList
         return view;
     }
 
+    /**
+     * 热门电影
+     * @param data
+     */
     @Override
     public void success(Result<List<MovieListBean>> data) {
        MovieListBeanlist.addAll(data.getResult());
         cinemaFlowAdapter.notifyDataSetChanged();
         remendianyinglist.addAll(data.getResult());
         dianyingAdapter.notifyDataSetChanged();
+
+        List<MovieListBean> result = data.getResult();
+        String s = gson.toJson(result);
+        cacheManager.saveDataToFile(getContext(),s,"rm");
     }
 
     @Override
     public void fail(ApiException e) {
+        String rm = cacheManager.loadDataFromFile(getContext(), "rm");
+        Type type = new TypeToken<List<MovieListBean>>() {}.getType();
+        List<MovieListBean> result = gson.fromJson(rm, type);
+        MovieListBeanlist.addAll(result);
+        cinemaFlowAdapter.notifyDataSetChanged();
+        remendianyinglist.addAll(result);
+        dianyingAdapter.notifyDataSetChanged();
 
     }
 
@@ -201,11 +224,19 @@ public class home_one extends Fragment implements DataCall<Result<List<MovieList
         public void success(Result<List<MovieListBean>> data) {
             zhengzailist.addAll(data.getResult());
             zhangzaiadapter.notifyDataSetChanged();
+
+            List<MovieListBean> result = data.getResult();
+            String s = gson.toJson(result);
+            cacheManager.saveDataToFile(getContext(),s,"zz");
         }
 
         @Override
         public void fail(ApiException e) {
-
+            String rm = cacheManager.loadDataFromFile(getContext(), "zz");
+            Type type = new TypeToken<List<MovieListBean>>() {}.getType();
+            List<MovieListBean> result = gson.fromJson(rm, type);
+            zhengzailist.addAll(result);
+            zhangzaiadapter.notifyDataSetChanged();
         }
     }
 
@@ -218,11 +249,19 @@ public class home_one extends Fragment implements DataCall<Result<List<MovieList
         public void success(Result<List<MovieListBean>> data) {
             jijianglist.addAll(data.getResult());
             jijiangadapter.notifyDataSetChanged();
+
+            List<MovieListBean> result = data.getResult();
+            String s = gson.toJson(result);
+            cacheManager.saveDataToFile(getContext(),s,"jj");
         }
 
         @Override
         public void fail(ApiException e) {
-
+            String rm = cacheManager.loadDataFromFile(getContext(), "jj");
+            Type type = new TypeToken<List<MovieListBean>>() {}.getType();
+            List<MovieListBean> result = gson.fromJson(rm, type);
+            jijianglist.addAll(result);
+            jijiangadapter.notifyDataSetChanged();
         }
     }
 
