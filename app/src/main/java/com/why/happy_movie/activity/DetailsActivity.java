@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -34,6 +35,7 @@ import com.why.happy_movie.bean.MyComment;
 import com.why.happy_movie.bean.Result;
 import com.why.happy_movie.bean.UserBean;
 import com.why.happy_movie.presenter.MovieCommertGreatPresenter;
+import com.why.happy_movie.presenter.MovieCommertPresenter;
 import com.why.happy_movie.presenter.MovieDPresenter;
 import com.why.happy_movie.presenter.MoviesDPresenter;
 import com.why.happy_movie.presenter.MyCommentPresenter;
@@ -183,9 +185,33 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
                 break;
             case R.id.d_comment:
                 View inflate3 = View.inflate(this, R.layout.popu_advance, null);
+                final LinearLayout ll4 = inflate3.findViewById(R.id.ll4);
+                ll4.setVisibility(View.GONE);
+                final EditText et_pl  = inflate3.findViewById(R.id.et_pl);
+                Button fabiaopl = inflate3.findViewById(R.id.fabiaopl);
+                fabiaopl.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String trim = et_pl.getText().toString().trim();
+                        if(trim.equals("")){
+                            return;
+                        }
+                        MovieCommertPresenter movieCommertPresenter = new MovieCommertPresenter(new Fpl());
+                        movieCommertPresenter.reqeust(userId,sessionId,id,trim);
+                    }
+                });
+                final RecyclerView comrecycler = inflate3.findViewById(R.id.comment_recycler);
+                ImageView  publish = inflate3.findViewById(R.id.publish);
+                publish.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        comrecycler.setVisibility(View.GONE);
+                        ll4.setVisibility(View.VISIBLE);
+                    }
+                });
                 final PopupWindow popupWindow = new PopupWindow(inflate3, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                popupWindow.setFocusable(true);
                 popupWindow.showAtLocation(lll, 0, 0, 0);
-                RecyclerView comrecycler = inflate3.findViewById(R.id.comment_recycler);
                 ImageView coreturn = inflate3.findViewById(R.id.comment_return);
                 ImageView coreturn2 = inflate3.findViewById(R.id.ad_return);
                 MyCommentPresenter myCommentPresenter = new MyCommentPresenter(new CommentCall());
@@ -255,6 +281,19 @@ public class DetailsActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     class DianZan implements DataCall<Result> {
+
+        @Override
+        public void success(Result data) {
+            Toast.makeText(DetailsActivity.this, ""+data.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void fail(ApiException e) {
+
+        }
+    }
+
+    class Fpl implements DataCall<Result> {
 
         @Override
         public void success(Result data) {
