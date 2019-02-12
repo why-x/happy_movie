@@ -6,8 +6,11 @@ import android.content.SharedPreferences;
 import android.os.Looper;
 import android.os.Handler;
 import android.support.multidex.MultiDex;
+import android.util.Log;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.tencent.android.tpush.XGIOperateCallback;
+import com.tencent.android.tpush.XGPushManager;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.commonsdk.UMConfigure;
@@ -58,6 +61,18 @@ public class MApp extends Application {
 
         Fresco.initialize(this);
         MultiDex.install(this);
+
+        XGPushManager.registerPush(this, new XGIOperateCallback() {
+            @Override
+            public void onSuccess(Object data, int flag) {
+            //token在设备卸载重装的时候有可能会变
+                Log.d("TPush", "注册成功，设备token为：" + data);
+            }
+            @Override
+            public void onFail(Object data, int errCode, String msg) {
+                Log.d("TPush", "注册失败，错误码：" + errCode + ",错误信息：" + msg);
+            }
+        });
     }
 
     public static SharedPreferences getShare(){

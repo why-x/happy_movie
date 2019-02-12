@@ -23,8 +23,15 @@ android {
 
         ndk {
             // 设置支持的SO库架构
-            abiFilters 'armeabi' , 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+            abiFilters 'armeabi' , 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a', 'mips', 'mips64'
         }
+
+        manifestPlaceholders = [
+
+                XG_ACCESS_ID:"2100326390",
+                XG_ACCESS_KEY : "A7X57BL1M4EQ",
+        ]
+
         multiDexEnabled true
     }
     buildTypes {
@@ -108,6 +115,13 @@ dependencies {
     implementation 'com.tencent.bugly:nativecrashreport:3.6.0.1'
     implementation 'com.umeng.umsdk:analytics:8.0.0'
     implementation 'com.umeng.umsdk:common:2.0.0'
-
+    //信鸽jar
+    implementation 'com.tencent.xinge:xinge:3.2.7-Release'
+    //jg包
+    implementation'com.tencent.jg:jg:1.1'
+    //wup包
+    implementation 'com.tencent.wup:wup:1.0.0.E-release'
+    //mid包
+    implementation 'com.tencent.mid:mid:4.0.6-release'
     implementation 'com.android.support:multidex:1.0.3'
 }
