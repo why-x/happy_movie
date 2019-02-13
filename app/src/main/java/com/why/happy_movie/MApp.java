@@ -23,7 +23,11 @@ import com.why.happy_movie.dao.UserBeanDao;
  * 佛曰： 永无BUG 盘他！
  */
 public class MApp extends Application {
-
+    /**
+     * 如果有自己的Application，继承MulitDexApplication。
+     * 如果当前代码已经继承自其它Application没办法修改那也行，
+     * 就重写 Application的attachBaseContext()这个方法。
+     */
 
     /** 主线程ID */
     private static int mMainThreadId = -1;
@@ -60,7 +64,6 @@ public class MApp extends Application {
         sharedPreferences = getSharedPreferences("sp",MODE_PRIVATE);
 
         Fresco.initialize(this);
-        MultiDex.install(this);
 
         XGPushManager.registerPush(this, new XGIOperateCallback() {
             @Override
@@ -73,6 +76,18 @@ public class MApp extends Application {
                 Log.d("TPush", "注册失败，错误码：" + errCode + ",错误信息：" + msg);
             }
         });
+    }
+
+    /**
+     * 如果有自己的Application，继承MulitDexApplication。
+     * 如果当前代码已经继承自其它Application没办法修改那也行，
+     * 就重写 Application的attachBaseContext()这个方法。
+     */
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
+
     }
 
     public static SharedPreferences getShare(){
