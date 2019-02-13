@@ -1,6 +1,7 @@
 package com.why.happy_movie.core;
 
 import com.why.happy_movie.bean.CimemaldListBean;
+import com.why.happy_movie.bean.CinemaCommert;
 import com.why.happy_movie.bean.LoginBean;
 import com.why.happy_movie.bean.MovieDBean;
 import com.why.happy_movie.bean.MovieListBean;
@@ -517,5 +518,21 @@ public interface Interfacea {
                                          @Field("movieId") int movieId,
                                          @Field("commentContent")String commentContent);
 
+
+    /**
+     * 查询影院用户评论列表
+     * @param userId
+     * @param sessionId
+     * @param cinemaId
+     * @param page
+     * @param count
+     * @return
+     */
+    @GET("cinema/v1/findAllCinemaComment")
+    Observable<Result<List<CinemaCommert>>> findAllCinemaComment(@Header("userId") int userId,
+                                                                 @Header("sessionId") String sessionId,
+                                                                 @Query("cinemaId") int cinemaId,
+                                                                 @Query("page") int page,
+                                                                 @Query("count") int count);
 
 }

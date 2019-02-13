@@ -8,19 +8,25 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bw.movie.R;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.why.happy_movie.MApp;
 import com.why.happy_movie.adapter.CinemaFlowAdapter2;
 import com.why.happy_movie.adapter.CinemaTimeAdapter;
 import com.why.happy_movie.bean.CimemaldListBean;
+import com.why.happy_movie.bean.CinemaCommert;
 import com.why.happy_movie.bean.MovieListBean;
 import com.why.happy_movie.bean.MovieScheduleListBean;
 import com.why.happy_movie.bean.Result;
+import com.why.happy_movie.bean.UserBean;
 import com.why.happy_movie.presenter.CimemaldListPresenter;
+import com.why.happy_movie.presenter.CinemaCommertPresenter;
 import com.why.happy_movie.presenter.MovieScheduleListPresenter;
 import com.why.happy_movie.utils.DataCall;
 import com.why.happy_movie.utils.exception.ApiException;
@@ -69,6 +75,12 @@ public class CinemaActivity extends BaseActivity implements View.OnClickListener
         setContentView(R.layout.cinema_all);
         ButterKnife.bind(this);
         lll = findViewById(R.id.lll);
+        List<UserBean> userBeans = MApp.userBeanDao.loadAll();
+        if(userBeans.size()>0){
+            userId = userBeans.get(0).getUserId();
+            sessionId = userBeans.get(0).getSessionId();
+
+        }
 
 
         movieScheduleListPresenter = new MovieScheduleListPresenter(new MovieList());
@@ -94,6 +106,28 @@ public class CinemaActivity extends BaseActivity implements View.OnClickListener
             @Override
             public void onClick(View v) {
                 View inflate1 = View.inflate(CinemaActivity.this, R.layout.popu_cinema, null);
+                RadioButton  rb1 = inflate1.findViewById(R.id.rb1);
+                RadioButton  rb2 = inflate1.findViewById(R.id.rb2);
+                final LinearLayout ll6  = inflate1.findViewById(R.id.ll6);
+                final LinearLayout ll7  = inflate1.findViewById(R.id.ll7);
+                ll7.setVisibility(View.GONE);
+                rb1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ll6.setVisibility(View.VISIBLE);
+                        ll7.setVisibility(View.GONE);
+                    }
+                });
+                rb2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ll6.setVisibility(View.GONE);
+                        ll7.setVisibility(View.VISIBLE);
+                    }
+                });
+                CinemaCommertPresenter cinemaCommertPresenter = new CinemaCommertPresenter(new PingLun());
+                cinemaCommertPresenter.reqeust(userId,sessionId,ccid,1,10);
+
                 popupWindow = new PopupWindow(inflate1, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
                 popupWindow.showAtLocation(lll, 0, 0, 0);
                 TextView txt_address = inflate1.findViewById(R.id.address);
@@ -185,6 +219,19 @@ public class CinemaActivity extends BaseActivity implements View.OnClickListener
             List<MovieScheduleListBean> result = data.getResult();
             listBeans.addAll(result);
             cinemaTimeAdapter.notifyDataSetChanged();
+        }
+
+        @Override
+        public void fail(ApiException e) {
+
+        }
+    }
+
+    private class PingLun implements DataCall<Result<List<CinemaCommert>>> {
+
+        @Override
+        public void success(Result<List<CinemaCommert>> data) {
+
         }
 
         @Override
