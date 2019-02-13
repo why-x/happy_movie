@@ -25,7 +25,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_24"
-                android:layout_marginTop="@dimen/sp_20"
+                android:layout_marginTop="@dimen/dp_30"
                 android:text="1111111111"
                 android:textColor="#fff"
                 android:textSize="@dimen/sp_12" />

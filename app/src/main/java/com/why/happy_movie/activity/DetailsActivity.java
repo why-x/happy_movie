@@ -309,7 +309,7 @@ public class DetailsActivity extends BaseActivity implements View.OnClickListene
     private class CommentCall implements DataCall<Result<List<MyComment>>> {
         @Override
         public void success(Result<List<MyComment>> data) {
-            Toast.makeText(getBaseContext(), data.getMessage(), Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getBaseContext(), data.getMessage(), Toast.LENGTH_SHORT).show();
             result = data.getResult();
             myCommentAdapter.addAll(result);
             myCommentAdapter.notifyDataSetChanged();

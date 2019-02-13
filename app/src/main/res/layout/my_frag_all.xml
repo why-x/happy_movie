@@ -8,7 +8,7 @@
     <RelativeLayout
         android:id="@+id/r1"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_200"
+        android:layout_height="@dimen/dp_220"
         android:background="@drawable/my_back">
 
         <com.facebook.drawee.view.SimpleDraweeView
@@ -17,7 +17,7 @@
             android:layout_width="@dimen/dp_72"
             android:layout_height="@dimen/dp_72"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/dp_50"
+            android:layout_marginTop="@dimen/dp_63"
             android:src="@drawable/my_head" />
 
         <TextView
@@ -45,7 +45,7 @@
 
         <ImageView
             android:id="@+id/my_news"
-            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_30"
             android:layout_width="@dimen/dp_24"
             android:layout_height="@dimen/dp_24"
             android:layout_alignParentLeft="true"
