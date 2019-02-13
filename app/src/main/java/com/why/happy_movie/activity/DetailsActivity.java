@@ -48,7 +48,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.jzvd.JZVideoPlayerStandard;
 
-public class DetailsActivity extends AppCompatActivity implements View.OnClickListener, DataCall<Result<MovieDBean>> {
+public class DetailsActivity extends BaseActivity implements View.OnClickListener, DataCall<Result<MovieDBean>> {
 
     @BindView(R.id.d_love)
     CheckBox dLove;

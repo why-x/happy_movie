@@ -1,5 +1,6 @@
 package com.why.happy_movie.frag;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -23,6 +24,8 @@ import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.bw.movie.R;
 import com.why.happy_movie.MApp;
+import com.why.happy_movie.activity.LoginActivity;
+import com.why.happy_movie.activity.ThreeListActivity;
 import com.why.happy_movie.adapter.CinemasAdapter;
 import com.why.happy_movie.bean.Result;
 import com.why.happy_movie.bean.UserBean;
@@ -147,6 +150,13 @@ public class home_two extends Fragment implements DataCall<Result<List<YingYuanB
         cinemasAdapter.getLike(new CinemasAdapter.Like() {
             @Override
             public void onSuccess(int possion) {
+                boolean zai = MApp.sharedPreferences.getBoolean("zai", false);
+                if(!zai){
+                    Intent intent = new Intent(getContext(),LoginActivity.class);
+                    startActivity(intent);
+                    Toast.makeText(getContext(), "请先登录……", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 int id = yingYuanBeanList.get(possion).getId();
                 MyLikePresenter myLikePresenter = new MyLikePresenter(new MyLike());
                 myLikePresenter.reqeust(userId,sessionId,id);
@@ -154,6 +164,13 @@ public class home_two extends Fragment implements DataCall<Result<List<YingYuanB
 
             @Override
             public void onFaile(int possion) {
+                boolean zai = MApp.sharedPreferences.getBoolean("zai", false);
+                if(!zai){
+                    Intent intent = new Intent(getContext(),LoginActivity.class);
+                    startActivity(intent);
+                    Toast.makeText(getContext(), "请先登录……", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 int id = yingYuanBeanList.get(possion).getId();
                 MyNoLikePresenter myNoLikePresenter = new MyNoLikePresenter(new NoLike());
                 myNoLikePresenter.reqeust(userId,sessionId,id);
@@ -236,6 +253,18 @@ public class home_two extends Fragment implements DataCall<Result<List<YingYuanB
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
 
+        List<UserBean> userBeans = MApp.userBeanDao.loadAll();
+        if(userBeans.size()>0){
+            userId = userBeans.get(0).getUserId();
+            sessionId = userBeans.get(0).getSessionId();
+        }
+        recommendCinemasPresenter = new RecommendCinemasPresenter(this);
+        nearCinemasPresenter = new NearCinemasPresenter(new Fujin());
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         List<UserBean> userBeans = MApp.userBeanDao.loadAll();
         if(userBeans.size()>0){
             userId = userBeans.get(0).getUserId();

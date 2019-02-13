@@ -46,7 +46,7 @@ import io.reactivex.schedulers.Schedulers;
 /**
  * 购票记录
  */
-public class MyRccordActivity extends AppCompatActivity implements View.OnClickListener {
+public class MyRccordActivity extends BaseActivity implements View.OnClickListener {
 
     @BindView(R.id.w_pay)
     RadioButton wPay;

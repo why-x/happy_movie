@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.bw.movie.R;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.why.happy_movie.MApp;
+import com.why.happy_movie.activity.BaseActivity;
 import com.why.happy_movie.activity.ResetPwdActivity;
 import com.why.happy_movie.bean.MyUpdate;
 import com.why.happy_movie.bean.Result;
@@ -43,7 +44,7 @@ import butterknife.ButterKnife;
 
 import static com.why.happy_movie.utils.util.WDActivity.PHOTO;
 
-public class MessageActivity extends AppCompatActivity implements View.OnClickListener, DataCall<Result<YongHuBean>> {
+public class MessageActivity extends BaseActivity implements View.OnClickListener, DataCall<Result<YongHuBean>> {
 
 
     @BindView(R.id.my_return)

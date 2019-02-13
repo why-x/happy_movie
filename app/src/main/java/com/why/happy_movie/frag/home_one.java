@@ -1,6 +1,9 @@
 package com.why.happy_movie.frag;
 
+import android.animation.ObjectAnimator;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,6 +17,8 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +46,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import recycler.coverflow.CoverFlowLayoutManger;
 import recycler.coverflow.RecyclerCoverFlow;
 
 /**
@@ -72,6 +78,10 @@ public class home_one extends Fragment implements DataCall<Result<List<MovieList
     private MyLocationListener myListener = new MyLocationListener();
     private CacheManager cacheManager;
     private Gson gson;
+    private RadioGroup radioGroup;
+    private LinearLayout ll5;
+    private ViewGroup.LayoutParams layoutParams;
+    private ViewGroup.LayoutParams layoutParams1;
 
     @Nullable
     @Override
@@ -79,6 +89,7 @@ public class home_one extends Fragment implements DataCall<Result<List<MovieList
         View view = inflater.inflate(R.layout.home_one,container,false);
         cacheManager = new CacheManager();
         gson = new Gson();
+        radioGroup = view.findViewById(R.id.rg_ll);
 
         hotMoviePresenter = new HotMoviePresenter(this);
         hotMoviePresenter.reqeust(userId,sessionId,page,count);
@@ -106,22 +117,42 @@ public class home_one extends Fragment implements DataCall<Result<List<MovieList
         RecyclerCoverFlow recyclerCoverFlow = view.findViewById(R.id.rcf_cinema_flow);
         cinemaFlowAdapter = new CinemaFlowAdapter(getContext(), MovieListBeanlist);
         recyclerCoverFlow.setAdapter(cinemaFlowAdapter);
+        recyclerCoverFlow.setOnItemSelectedListener(new CoverFlowLayoutManger.OnSelected() {//滑动监听
+            @Override
+            public void onItemSelected(int position) {
+                radioGroup.check(radioGroup.getChildAt(position).getId());
+            }
+        });
 
         ImageView sou = view.findViewById(R.id.sou);
         et_sou = view.findViewById(R.id.et_sou);
         tv_sou = view.findViewById(R.id.tv_sou);
+        ll5 = view.findViewById(R.id.ll5);
+        //这是隐藏进去的动画
+        layoutParams = ll5.getLayoutParams();
+        layoutParams1 = sou.getLayoutParams();
+
+        float aa =  layoutParams.width-80;
+        ObjectAnimator animator = ObjectAnimator.ofFloat(ll5, "translationX", 30f, aa);
+        animator.setDuration(10);
+        animator.start();
         sou.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                et_sou.setVisibility(View.VISIBLE);
-                tv_sou.setVisibility(View.VISIBLE);
+                float aa =  home_one.this.layoutParams.width-80;
+                ObjectAnimator animator = ObjectAnimator.ofFloat(ll5, "translationX", aa, 30f);
+                animator.setDuration(1000);
+                animator.start();
             }
         });
         tv_sou.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                et_sou.setVisibility(View.GONE);
-                tv_sou.setVisibility(View.GONE);
+                //这是隐藏进去的动画
+                float aa =  home_one.this.layoutParams.width-80;
+                ObjectAnimator animator = ObjectAnimator.ofFloat(ll5, "translationX", 30f, aa);
+                animator.setDuration(1000);
+                animator.start();
             }
         });
 

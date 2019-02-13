@@ -22,7 +22,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class IdeaActivity extends AppCompatActivity implements View.OnClickListener {
+public class IdeaActivity extends BaseActivity implements View.OnClickListener {
 
     @BindView(R.id.idea_lall)
     LinearLayout ideaLall;
@@ -63,6 +63,10 @@ public class IdeaActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.idea_put:
                 String idea = myidea.getText().toString().trim();
+                if(idea.equals("")){
+                    Toast.makeText(this, "请输入内容……", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 MyIdeaPresenter myIdeaPresenter = new MyIdeaPresenter(new IdeaCall());
                 myIdeaPresenter.reqeust(userId,sessionId,idea);
                 break;

@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
+import android.view.WindowManager;
 
 import butterknife.ButterKnife;
 
@@ -36,6 +38,9 @@ public abstract class WDActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        //透明状态栏
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
     /*    //查询登录用户，方便每个页面使用
         LoginBeanDao userInfoDao = DaoMaster.newDevSession(this,LoginBeanDao.TABLENAME).getLoginBeanDao();
         List<LoginBean> userInfos = userInfoDao.queryBuilder().where(LoginBeanDao.Properties.UserId.eq(1)).list();

@@ -23,7 +23,7 @@ import com.why.happy_movie.utils.exception.ApiException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BuyCinemaActivity extends AppCompatActivity implements DataCall<Result<List<TimeCnimea>>> {
+public class BuyCinemaActivity extends BaseActivity implements DataCall<Result<List<TimeCnimea>>> {
 
     private int movieId;
     private String name;

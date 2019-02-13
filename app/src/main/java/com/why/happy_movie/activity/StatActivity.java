@@ -39,7 +39,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
-public class StatActivity extends AppCompatActivity {
+public class StatActivity extends BaseActivity {
 
     private TextView yingcheng;
     private TextView txt_address;

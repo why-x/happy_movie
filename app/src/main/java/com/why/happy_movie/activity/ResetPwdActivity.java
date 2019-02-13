@@ -24,7 +24,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ResetPwdActivity extends AppCompatActivity implements View.OnClickListener {
+public class ResetPwdActivity extends BaseActivity implements View.OnClickListener {
 
     @BindView(R.id.my_pass)
     EditText myPhone;

@@ -29,7 +29,7 @@ import com.why.happy_movie.utils.DataCall;
 import com.why.happy_movie.utils.exception.ApiException;
 import com.why.happy_movie.utils.util.EncryptUtil;
 
-public class LoginActivity extends AppCompatActivity implements DataCall<Result<LoginBean>> {
+public class LoginActivity extends BaseActivity implements DataCall<Result<LoginBean>> {
 
     private EditText ed_login_number;
     private EditText ed_login_password;

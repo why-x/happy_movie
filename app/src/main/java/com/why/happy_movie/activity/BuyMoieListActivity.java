@@ -25,7 +25,7 @@ import com.why.happy_movie.utils.exception.ApiException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BuyMoieListActivity extends AppCompatActivity implements DataCall<Result<List<MovieScheduleListBean>>>{
+public class BuyMoieListActivity extends BaseActivity implements DataCall<Result<List<MovieScheduleListBean>>>{
 
     private int movieId;
     private int cinemaid;

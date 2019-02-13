@@ -33,7 +33,7 @@ import butterknife.ButterKnife;
 import recycler.coverflow.CoverFlowLayoutManger;
 import recycler.coverflow.RecyclerCoverFlow;
 
-public class CinemaActivity extends AppCompatActivity implements View.OnClickListener,DataCall<Result<List<CimemaldListBean>>> {
+public class CinemaActivity extends BaseActivity implements View.OnClickListener,DataCall<Result<List<CimemaldListBean>>> {
 
     int userId =1771;
     String sessionId="15482908826721771";

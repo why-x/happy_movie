@@ -18,7 +18,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import butterknife.ButterKnife;
 
-public class RegisterActivity extends AppCompatActivity implements DataCall<Result> {
+public class RegisterActivity extends BaseActivity implements DataCall<Result> {
 
     private RegisterPresenter registerPresenter;
     private EditText nicheng;

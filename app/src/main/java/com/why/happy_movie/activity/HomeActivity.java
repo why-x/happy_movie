@@ -11,7 +11,7 @@ import com.why.happy_movie.frag.home_one;
 import com.why.happy_movie.frag.home_three;
 import com.why.happy_movie.frag.home_two;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends BaseActivity {
 
     private com.why.happy_movie.frag.home_one home_one;
     private com.why.happy_movie.frag.home_two home_two;

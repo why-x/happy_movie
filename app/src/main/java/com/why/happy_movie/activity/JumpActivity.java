@@ -17,7 +17,7 @@ import com.why.happy_movie.frag.frag_two;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JumpActivity extends AppCompatActivity {
+public class JumpActivity extends BaseActivity {
 
     private List<Fragment> list;
     private RadioGroup radioGroup;

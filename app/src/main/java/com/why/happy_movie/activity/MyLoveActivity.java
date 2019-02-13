@@ -31,7 +31,7 @@ import butterknife.ButterKnife;
 /**
  * 我的关注
  */
-public class MyLoveActivity extends AppCompatActivity implements View.OnClickListener {
+public class MyLoveActivity extends BaseActivity implements View.OnClickListener {
 
     @BindView(R.id.movie)
     RadioButton movie;

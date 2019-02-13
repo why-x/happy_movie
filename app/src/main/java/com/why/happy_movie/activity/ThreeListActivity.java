@@ -1,5 +1,6 @@
 package com.why.happy_movie.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -35,7 +36,7 @@ import com.why.happy_movie.utils.exception.ApiException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ThreeListActivity extends AppCompatActivity  implements DataCall<Result<List<MovieListBean>>> {
+public class ThreeListActivity extends BaseActivity  implements DataCall<Result<List<MovieListBean>>> {
 
     private EditText et_sou;
     private TextView tv_sou;
@@ -156,6 +157,13 @@ public class ThreeListActivity extends AppCompatActivity  implements DataCall<Re
         threeListAdapter.xihuan(new ThreeListAdapter.MyLove() {
             @Override
             public void onLove(int possion) {
+                boolean zai = MApp.sharedPreferences.getBoolean("zai", false);
+                if(!zai){
+                    Intent intent = new Intent(ThreeListActivity.this,LoginActivity.class);
+                    startActivity(intent);
+                    Toast.makeText(ThreeListActivity.this, "请先登录……", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 MovieListBean movieListBean = remendianyinglist.get(possion);
                 int id = movieListBean.getId();
                 MyLovePresenter myLovePresenter = new MyLovePresenter(new Xihuan());
@@ -164,6 +172,13 @@ public class ThreeListActivity extends AppCompatActivity  implements DataCall<Re
 
             @Override
             public void onCancle(int possion) {
+                boolean zai = MApp.sharedPreferences.getBoolean("zai", false);
+                if(!zai){
+                    Intent intent = new Intent(ThreeListActivity.this,LoginActivity.class);
+                    startActivity(intent);
+                    Toast.makeText(ThreeListActivity.this, "请先登录……", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 MovieListBean movieListBean = remendianyinglist.get(possion);
                 int id = movieListBean.getId();
                 MyCanclePresenter myCanclePresenter = new MyCanclePresenter(new Cancle());
