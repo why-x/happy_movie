@@ -284,7 +284,14 @@ public class DetailsActivity extends BaseActivity implements View.OnClickListene
 
         @Override
         public void success(Result data) {
-            Toast.makeText(DetailsActivity.this, ""+data.getMessage(), Toast.LENGTH_SHORT).show();
+//            Toast.makeText(DetailsActivity.this, ""+data.getMessage(), Toast.LENGTH_SHORT).show();
+            boolean zai = MApp.sharedPreferences.getBoolean("zai", false);
+            if(!zai){
+                Intent intent = new Intent(getBaseContext(),LoginActivity.class);
+                startActivity(intent);
+                Toast.makeText(getBaseContext(), "请先登录……", Toast.LENGTH_SHORT).show();
+                return;
+            }
         }
 
         @Override
