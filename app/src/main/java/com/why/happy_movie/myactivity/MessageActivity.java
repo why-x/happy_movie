@@ -75,7 +75,7 @@ public class MessageActivity extends BaseActivity implements View.OnClickListene
     private int index = 0;// 记录单选对话框的下标
     private MyUpdatePresenter myUpdatePresenter;
     private String newsex;
-    private int sex;
+    private  int sex2;
     private String email;
     private String nickName;
     private List<UserBean> userBeans;
@@ -160,13 +160,14 @@ public class MessageActivity extends BaseActivity implements View.OnClickListene
                                 String myname = editText.getText().toString().trim();
                                 userBeans.get(0).setNickName(myname);
                                 my_name.setText(myname);
-                                myUpdatePresenter.reqeust(userId, sessionId, myname, yongHuBean.getSex(), email);
+                                nickName=myname;
+                                myUpdatePresenter.reqeust(userId, sessionId, myname, sex2, email);
                             }
                         }).setNegativeButton("取消", null).create();
                 builder1.show();
                 break;
             case R.id.r3:
-                int sex1 = yongHuBean.getSex();
+                final int sex1 = yongHuBean.getSex();
                 int sexid = 0;
                 if (sex1 == 1) {
                     sexid = 0;
@@ -190,8 +191,10 @@ public class MessageActivity extends BaseActivity implements View.OnClickListene
                         /*Toast.makeText(getBaseContext(), "选择的性别:" + sex[index], Toast.LENGTH_SHORT)
                                 .show();*/
                         if (newsex.equals("男")) {
+                            sex2 =1;
                             myUpdatePresenter.reqeust(userId, sessionId, nickName, 1, email);
                         } else {
+                            sex2 =2;
                             myUpdatePresenter.reqeust(userId, sessionId, nickName, 2, email);
 
                         }
@@ -211,9 +214,10 @@ public class MessageActivity extends BaseActivity implements View.OnClickListene
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 String trim = editemail.getText().toString().trim();
-                                boolean email = isEmail(trim + "");
-                                if (email) {
+                                boolean email1 = isEmail(trim + "");
+                                if (email1) {
                                     emaile.setText(trim);
+                                    email = trim;
                                     myUpdatePresenter.reqeust(userId, sessionId, nickName, yongHuBean.getSex(), trim);
                                 } else {
                                     UIUtils.showToastSafe("请输入正确的邮箱");
@@ -236,6 +240,7 @@ public class MessageActivity extends BaseActivity implements View.OnClickListene
         my_name.setText(yongHuBean.getNickName());
         int sex = yongHuBean.getSex();
         my_sex.setText(sex == 1 ? "男" : "女");
+        sex2 =sex;
         long birthday = yongHuBean.getBirthday();
         Date date = new Date(birthday);
         SimpleDateFormat fomat2 = new SimpleDateFormat("yyyy-MM-dd");

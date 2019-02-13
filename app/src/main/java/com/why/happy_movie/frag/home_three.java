@@ -198,8 +198,8 @@ public class home_three extends Fragment implements View.OnClickListener {
         super.onResume();
         zai = MApp.sharedPreferences.getBoolean("zai", false);
         if (zai) {
+            userBeans = MApp.userBeanDao.loadAll();
             if (userBeans.size() > 0) {
-                userBeans = MApp.userBeanDao.loadAll();
                 String headPic = userBeans.get(0).getHeadPic();
                 myHead.setImageURI(headPic);
                 my_name.setText(userBeans.get(0).getNickName());

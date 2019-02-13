@@ -38,7 +38,8 @@
 
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:id="@+id/ll5"
+            android:layout_width="@dimen/dp_220"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:background="@drawable/search_shape"
@@ -61,14 +62,12 @@
                 android:textSize="@dimen/sp_10"
                 android:hint="输入要搜索的影片"
                 android:layout_gravity="center_vertical"
-                android:layout_height="wrap_content"
-                android:visibility="gone"/>
+                android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/tv_sou"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#ffff"
-                android:visibility="gone"
                 android:layout_gravity="center_vertical"
                 android:textSize="@dimen/sp_10"
                 android:paddingRight="@dimen/dp_10"
