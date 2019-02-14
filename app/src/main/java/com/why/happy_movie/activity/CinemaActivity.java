@@ -19,6 +19,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.why.happy_movie.MApp;
 import com.why.happy_movie.adapter.CinemaFlowAdapter2;
 import com.why.happy_movie.adapter.CinemaTimeAdapter;
+import com.why.happy_movie.adapter.MyCommentAdapter2;
 import com.why.happy_movie.bean.CimemaldListBean;
 import com.why.happy_movie.bean.CinemaCommert;
 import com.why.happy_movie.bean.MovieListBean;
@@ -67,6 +68,7 @@ public class CinemaActivity extends BaseActivity implements View.OnClickListener
     private MovieListBean movieListBean;
     private RelativeLayout lll;
     private PopupWindow popupWindow;
+    private MyCommentAdapter2 myCommentAdapter2;
 
 
     @Override
@@ -127,6 +129,22 @@ public class CinemaActivity extends BaseActivity implements View.OnClickListener
                 });
                 CinemaCommertPresenter cinemaCommertPresenter = new CinemaCommertPresenter(new PingLun());
                 cinemaCommertPresenter.reqeust(userId,sessionId,ccid,1,10);
+
+                RecyclerView list8  = inflate1.findViewById(R.id.list8);
+                list8.setLayoutManager(new LinearLayoutManager(CinemaActivity.this));
+                myCommentAdapter2 = new MyCommentAdapter2(CinemaActivity.this);
+                list8.setAdapter(myCommentAdapter2);
+                myCommentAdapter2.getgreat(new MyCommentAdapter2.Great12() {
+                    @Override
+                    public void ongreat(int i) {
+
+                    }
+
+                    @Override
+                    public void fogreat(int i) {
+
+                    }
+                });
 
                 popupWindow = new PopupWindow(inflate1, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
                 popupWindow.showAtLocation(lll, 0, 0, 0);
@@ -231,7 +249,8 @@ public class CinemaActivity extends BaseActivity implements View.OnClickListener
 
         @Override
         public void success(Result<List<CinemaCommert>> data) {
-
+            List<CinemaCommert> result = data.getResult();
+            myCommentAdapter2.addAll(result);
         }
 
         @Override

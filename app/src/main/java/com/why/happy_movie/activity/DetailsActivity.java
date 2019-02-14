@@ -34,6 +34,7 @@ import com.why.happy_movie.bean.MoviesDBean;
 import com.why.happy_movie.bean.MyComment;
 import com.why.happy_movie.bean.Result;
 import com.why.happy_movie.bean.UserBean;
+import com.why.happy_movie.presenter.CommentReply222Presenter;
 import com.why.happy_movie.presenter.MovieCommertGreatPresenter;
 import com.why.happy_movie.presenter.MovieCommertPresenter;
 import com.why.happy_movie.presenter.MovieDPresenter;
@@ -89,8 +90,6 @@ public class DetailsActivity extends BaseActivity implements View.OnClickListene
         if (userBeans.size() > 0) {
             userId = userBeans.get(0).getUserId();
             sessionId = userBeans.get(0).getSessionId();
-
-
         }
         dDetails.setOnClickListener(this);
         dReturn.setOnClickListener(this);
@@ -186,6 +185,9 @@ public class DetailsActivity extends BaseActivity implements View.OnClickListene
             case R.id.d_comment:
                 View inflate3 = View.inflate(this, R.layout.popu_advance, null);
                 final LinearLayout ll4 = inflate3.findViewById(R.id.ll4);
+                final LinearLayout ll8 = inflate3.findViewById(R.id.ll8);
+                EditText  et_pl2 = inflate3.findViewById(R.id.et_pl2);
+                final Button huifu  = inflate3.findViewById(R.id.huifu);
                 ll4.setVisibility(View.GONE);
                 final EditText et_pl  = inflate3.findViewById(R.id.et_pl);
                 Button fabiaopl = inflate3.findViewById(R.id.fabiaopl);
@@ -215,7 +217,7 @@ public class DetailsActivity extends BaseActivity implements View.OnClickListene
                 ImageView coreturn = inflate3.findViewById(R.id.comment_return);
                 ImageView coreturn2 = inflate3.findViewById(R.id.ad_return);
                 MyCommentPresenter myCommentPresenter = new MyCommentPresenter(new CommentCall());
-                myCommentPresenter.reqeust(userId, sessionId, id, 1, 5);
+                myCommentPresenter.reqeust(userId, sessionId, id, 1, 10);
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
                 linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
                 comrecycler.setLayoutManager(linearLayoutManager);
@@ -231,6 +233,20 @@ public class DetailsActivity extends BaseActivity implements View.OnClickListene
                     @Override
                     public void fogreat(int i) {
 
+                    }
+                });
+                myCommentAdapter.tjpl(new MyCommentAdapter.Tjpl2() {
+                    @Override
+                    public void ontjj2(final int i) {
+                        ll8.setVisibility(View.VISIBLE);
+                        huifu.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                CommentReply222Presenter commentReply222Presenter = new CommentReply222Presenter(new HuiFu());
+                                commentReply222Presenter.reqeust(userId,sessionId,result.get(i).getCommentId(),"佛曰：永无BUG！");
+                                ll8.setVisibility(View.GONE);
+                            }
+                        });
                     }
                 });
                 coreturn.setOnClickListener(new View.OnClickListener() {
@@ -313,6 +329,18 @@ public class DetailsActivity extends BaseActivity implements View.OnClickListene
             result = data.getResult();
             myCommentAdapter.addAll(result);
             myCommentAdapter.notifyDataSetChanged();
+        }
+
+        @Override
+        public void fail(ApiException e) {
+
+        }
+    }
+
+    private class HuiFu implements DataCall<Result> {
+        @Override
+        public void success(Result data) {
+            Toast.makeText(DetailsActivity.this, ""+data.getMessage(), Toast.LENGTH_SHORT).show();
         }
 
         @Override

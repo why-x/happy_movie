@@ -26,6 +26,15 @@ public class MyComment {
     private int hotComment;
     private int isGreat;
     private int replyNum;
+    private boolean aBoolean=false;
+
+    public boolean isaBoolean() {
+        return aBoolean;
+    }
+
+    public void setaBoolean(boolean aBoolean) {
+        this.aBoolean = aBoolean;
+    }
 
     public String getCommentContent() {
         return commentContent;
