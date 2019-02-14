@@ -58,7 +58,9 @@ public class MainActivity extends BaseActivity {
                             Manifest.permission.ACCESS_COARSE_LOCATION,
                             Manifest.permission.ACCESS_FINE_LOCATION,
                             Manifest.permission.CAMERA,
-                            Manifest.permission.READ_PHONE_STATE},0);
+                            Manifest.permission.READ_PHONE_STATE,
+                            Manifest.permission.READ_LOGS,
+                            Manifest.permission.INTERNET},0);
         }
         sp = getSharedPreferences("sp",MODE_PRIVATE);
         handler.sendEmptyMessageDelayed(1,1000);

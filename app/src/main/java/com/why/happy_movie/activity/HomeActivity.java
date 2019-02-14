@@ -1,10 +1,13 @@
 package com.why.happy_movie.activity;
 
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.bw.movie.R;
 import com.why.happy_movie.frag.home_one;
@@ -17,6 +20,7 @@ public class HomeActivity extends BaseActivity {
     private com.why.happy_movie.frag.home_two home_two;
     private com.why.happy_movie.frag.home_three home_three;
     private FragmentTransaction fragmentTransaction;
+    long mExitTime=2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,5 +61,21 @@ public class HomeActivity extends BaseActivity {
                 fragmentTransaction.commit();
             }
         });
+    }
+
+    //第一次按返回键系统的时间戳，默认为0。
+    private long firstTime = 0;
+    @Override
+    public void onBackPressed() {
+        //第二次按返回键的时间戳
+        long secondTime = System.currentTimeMillis();
+        //如果第二次的时间戳减去第一次的时间戳大于2000毫秒，则提示再按一次退出，如果小于2000毫秒则直接退出。
+        if (secondTime - firstTime > 2000) {
+            //弹出是提示消息，推荐Snackbar
+            Toast.makeText(this, "再按一次退出……", Toast.LENGTH_SHORT).show();
+            firstTime = secondTime;
+        } else {
+            finish();
+        }
     }
 }

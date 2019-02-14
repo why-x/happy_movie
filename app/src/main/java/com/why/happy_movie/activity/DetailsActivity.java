@@ -1,5 +1,7 @@
 package com.why.happy_movie.activity;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -7,8 +9,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.view.Display;
+import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -79,6 +86,7 @@ public class DetailsActivity extends BaseActivity implements View.OnClickListene
     private int userId;
     private String sessionId;
     private List<MyComment> result;
+    private Dialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,6 +116,17 @@ public class DetailsActivity extends BaseActivity implements View.OnClickListene
         MoviesDPresenter moviesDPresenter = new MoviesDPresenter(new DianYing());
         moviesDPresenter.reqeust(userId, sessionId, id);
 
+        dialog = new Dialog(DetailsActivity.this,R.style.DialogTheme);
+        dialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
+            @Override
+            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_BACK) {
+                    JZVideoPlayerStandard.releaseAllVideos();
+                }
+                return false;
+            }
+        });
+
     }
 
     @Override
@@ -115,8 +134,11 @@ public class DetailsActivity extends BaseActivity implements View.OnClickListene
         switch (v.getId()) {
             case R.id.d_details:
                 View inflate = View.inflate(this, R.layout.popu_movie, null);
-                popupWindow = new PopupWindow(inflate, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-                popupWindow.showAtLocation(lll, 0, 0, 0);
+                dialog.setContentView(inflate);
+                dialog.getWindow().setGravity(Gravity.BOTTOM);
+                dialog.show();
+               getshoud();
+
                 SimpleDraweeView iv2 = inflate.findViewById(R.id.iv2);
                 iv2.setImageURI(moviesDBean.getImageUrl());
                 TextView leixing = inflate.findViewById(R.id.leixing);
@@ -133,7 +155,7 @@ public class DetailsActivity extends BaseActivity implements View.OnClickListene
                 dowm.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        popupWindow.dismiss();
+                        dialog.dismiss();
                     }
                 });
                 break;
@@ -142,8 +164,10 @@ public class DetailsActivity extends BaseActivity implements View.OnClickListene
                 break;
             case R.id.d_photo:
                 View inflate1 = View.inflate(this, R.layout.popu_photo, null);
-                popupWindow = new PopupWindow(inflate1, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-                popupWindow.showAtLocation(lll, 0, 0, 0);
+                dialog.setContentView(inflate1);
+                dialog.getWindow().setGravity(Gravity.BOTTOM);
+                dialog.show();
+                getshoud();
                 ImageView back = inflate1.findViewById(R.id.back);
                 RecyclerView recyclerView = inflate1.findViewById(R.id.list3);
                 recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
@@ -153,14 +177,16 @@ public class DetailsActivity extends BaseActivity implements View.OnClickListene
                 back.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        popupWindow.dismiss();
+                        dialog.dismiss();
                     }
                 });
                 break;
             case R.id.d_advance:
                 View inflate2 = View.inflate(this, R.layout.popu_pian, null);
-                popupWindow = new PopupWindow(inflate2, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-                popupWindow.showAtLocation(lll, 0, 0, 0);
+                dialog.setContentView(inflate2);
+                dialog.getWindow().setGravity(Gravity.BOTTOM);
+                dialog.show();
+                getshoud();
                 ImageView back1 = inflate2.findViewById(R.id.back);
                 List<MoviesDBean.ShortFilmListBean> shortFilmList = moviesDBean.getShortFilmList();
                 RecyclerView list4 = inflate2.findViewById(R.id.list4);
@@ -171,7 +197,7 @@ public class DetailsActivity extends BaseActivity implements View.OnClickListene
                 back1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        popupWindow.dismiss();
+                        dialog.dismiss();
                         JZVideoPlayerStandard.releaseAllVideos();
                     }
                 });
@@ -186,6 +212,7 @@ public class DetailsActivity extends BaseActivity implements View.OnClickListene
                 View inflate3 = View.inflate(this, R.layout.popu_advance, null);
                 final LinearLayout ll4 = inflate3.findViewById(R.id.ll4);
                 final LinearLayout ll8 = inflate3.findViewById(R.id.ll8);
+                final RecyclerView comrecycler = inflate3.findViewById(R.id.comment_recycler);
                 Button quxiao = inflate3.findViewById(R.id.quxiao);
                 quxiao.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -207,9 +234,10 @@ public class DetailsActivity extends BaseActivity implements View.OnClickListene
                         }
                         MovieCommertPresenter movieCommertPresenter = new MovieCommertPresenter(new Fpl());
                         movieCommertPresenter.reqeust(userId,sessionId,id,trim);
+                        ll4.setVisibility(View.GONE);
+                        comrecycler.setVisibility(View.VISIBLE);
                     }
                 });
-                final RecyclerView comrecycler = inflate3.findViewById(R.id.comment_recycler);
                 ImageView  publish = inflate3.findViewById(R.id.publish);
                 publish.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -218,9 +246,10 @@ public class DetailsActivity extends BaseActivity implements View.OnClickListene
                         ll4.setVisibility(View.VISIBLE);
                     }
                 });
-                final PopupWindow popupWindow = new PopupWindow(inflate3, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-                popupWindow.setFocusable(true);
-                popupWindow.showAtLocation(lll, 0, 0, 0);
+                dialog.setContentView(inflate3);
+                dialog.getWindow().setGravity(Gravity.BOTTOM);
+                dialog.show();
+                getshoud();
                 ImageView coreturn = inflate3.findViewById(R.id.comment_return);
                 ImageView coreturn2 = inflate3.findViewById(R.id.ad_return);
                 MyCommentPresenter myCommentPresenter = new MyCommentPresenter(new CommentCall());
@@ -264,13 +293,13 @@ public class DetailsActivity extends BaseActivity implements View.OnClickListene
                 coreturn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        popupWindow.dismiss();
+                        dialog.dismiss();
                     }
                 });
                 coreturn2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        popupWindow.dismiss();
+                        dialog.dismiss();
                     }
                 });
 
@@ -367,4 +396,14 @@ public class DetailsActivity extends BaseActivity implements View.OnClickListene
 
         }
     }
+
+    public void getshoud(){
+        Window dialogWindow = dialog.getWindow();
+        WindowManager m = getWindow().getWindowManager();
+        Display d = m.getDefaultDisplay(); // 获取屏幕宽、高度
+        WindowManager.LayoutParams p = dialogWindow.getAttributes(); // 获取对话框当前的参数值
+        p.width = (int) (d.getWidth()); // 宽度设置为屏幕的0.65，根据实际情况调整
+        dialogWindow.setAttributes(p);
+    }
+
 }
