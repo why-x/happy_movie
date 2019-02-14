@@ -65,7 +65,8 @@
                     android:background="@android:color/transparent"
                     android:textColorHint="#999999"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/dp_100"
+                    android:gravity="top"
                     android:hint="写评论"/>
 
             </LinearLayout>
@@ -74,12 +75,12 @@
 
             <Button
                 android:id="@+id/fabiaopl"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/dp_58"
                 android:layout_gravity="right"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/dp_32"
                 android:textColor="#fff"
                 android:layout_marginTop="@dimen/dp_10"
-                android:textSize="@dimen/sp_12"
+                android:textSize="@dimen/sp_14"
                 android:background="@drawable/details_btn"
                 android:text="发表"/>
         </LinearLayout>
