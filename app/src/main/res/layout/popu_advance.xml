@@ -65,7 +65,7 @@
                     android:background="@android:color/transparent"
                     android:textColorHint="#999999"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp_100"
+                    android:layout_height="match_parent"
                     android:gravity="top"
                     android:hint="写评论"/>
 
@@ -108,12 +108,16 @@
             android:id="@+id/ll8"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_60"
+            android:layout_height="@dimen/dp_80"
             android:layout_alignParentBottom="true"
             android:background="#fff"
-            android:visibility="gone"
-            android:layout_marginBottom="@dimen/dp_20">
+            android:visibility="gone">
 
+            <Button
+                android:id="@+id/quxiao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="取消"/>
             <EditText
                 android:id="@+id/et_pl2"
                 android:layout_width="0dp"

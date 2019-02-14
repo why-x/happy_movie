@@ -186,7 +186,14 @@ public class DetailsActivity extends BaseActivity implements View.OnClickListene
                 View inflate3 = View.inflate(this, R.layout.popu_advance, null);
                 final LinearLayout ll4 = inflate3.findViewById(R.id.ll4);
                 final LinearLayout ll8 = inflate3.findViewById(R.id.ll8);
-                EditText  et_pl2 = inflate3.findViewById(R.id.et_pl2);
+                Button quxiao = inflate3.findViewById(R.id.quxiao);
+                quxiao.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ll8.setVisibility(View.GONE);
+                    }
+                });
+                final EditText  et_pl2 = inflate3.findViewById(R.id.et_pl2);
                 final Button huifu  = inflate3.findViewById(R.id.huifu);
                 ll4.setVisibility(View.GONE);
                 final EditText et_pl  = inflate3.findViewById(R.id.et_pl);
@@ -242,8 +249,13 @@ public class DetailsActivity extends BaseActivity implements View.OnClickListene
                         huifu.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
+                                String trim = et_pl2.getText().toString().trim();
+                                if(trim.equals("")){
+                                    Toast.makeText(DetailsActivity.this, "请输入内容……", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
                                 CommentReply222Presenter commentReply222Presenter = new CommentReply222Presenter(new HuiFu());
-                                commentReply222Presenter.reqeust(userId,sessionId,result.get(i).getCommentId(),"佛曰：永无BUG！");
+                                commentReply222Presenter.reqeust(userId,sessionId,result.get(i).getCommentId(),trim);
                                 ll8.setVisibility(View.GONE);
                             }
                         });
