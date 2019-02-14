@@ -1,11 +1,13 @@
 package com.why.happy_movie.activity;
 
+import android.animation.ObjectAnimator;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -26,6 +28,39 @@ public class HomeActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        final RadioButton home_rb1 = findViewById(R.id.home_rb1);
+        final RadioButton home_rb2 = findViewById(R.id.home_rb2);
+        final RadioButton home_rb3 = findViewById(R.id.home_rb3);
+
+        final ObjectAnimator anim3 = ObjectAnimator.ofFloat(home_rb3, "scaleY", 1f, 1.2f);
+        final ObjectAnimator anim31 = ObjectAnimator.ofFloat(home_rb3, "scaleX", 1f, 1.2f);
+        anim3.setDuration(250);
+        anim31.setDuration(250);
+        final ObjectAnimator anim32 = ObjectAnimator.ofFloat(home_rb3, "scaleY", 1f, 1f);
+        final ObjectAnimator anim33 = ObjectAnimator.ofFloat(home_rb3, "scaleX", 1f, 1f);
+        anim32.setDuration(250);
+        anim33.setDuration(250);
+
+        final ObjectAnimator anim2 = ObjectAnimator.ofFloat(home_rb2, "scaleY", 1f, 1.2f);
+        final ObjectAnimator anim21 = ObjectAnimator.ofFloat(home_rb2, "scaleX", 1f, 1.2f);
+        anim2.setDuration(250);
+        anim21.setDuration(250);
+        final ObjectAnimator anim22 = ObjectAnimator.ofFloat(home_rb2, "scaleY", 1f, 1f);
+        final ObjectAnimator anim23 = ObjectAnimator.ofFloat(home_rb2, "scaleX", 1f, 1f);
+        anim22.setDuration(250);
+        anim23.setDuration(250);
+
+        final ObjectAnimator anim1 = ObjectAnimator.ofFloat(home_rb1, "scaleY", 1f, 1.2f);
+        final ObjectAnimator anim11 = ObjectAnimator.ofFloat(home_rb1, "scaleX", 1f, 1.2f);
+        anim1.setDuration(250);
+        anim11.setDuration(250);
+        final ObjectAnimator anim12 = ObjectAnimator.ofFloat(home_rb1, "scaleY", 1f, 1f);
+        final ObjectAnimator anim13 = ObjectAnimator.ofFloat(home_rb1, "scaleX", 1f, 1f);
+        anim12.setDuration(250);
+        anim13.setDuration(250);
+        anim1.start();
+        anim11.start();
 
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
         home_one = new home_one();
@@ -50,11 +85,33 @@ public class HomeActivity extends BaseActivity {
                 switch (checkedId){
                     case R.id.home_rb1 :
                         fragmentTransaction.show(home_one);
+                        // 正式开始启动执行动画
+                        anim1.start();
+                        anim11.start();
+                        anim32.start();
+                        anim33.start();
+                        anim22.start();
+                        anim23.start();
                         break;
                     case R.id.home_rb2 :
+                        // 正式开始启动执行动画
+                        anim2.start();
+                        anim21.start();
+                        anim12.start();
+                        anim13.start();
+                        anim32.start();
+                        anim33.start();
                         fragmentTransaction.show(home_two);
                         break;
                     case R.id.home_rb3 :
+                        // 将一个TextView沿垂直方向先从原大小（1f）放大到5倍大小（5f），然后再变回原大小。
+                        // 正式开始启动执行动画
+                        anim3.start();
+                        anim31.start();
+                        anim12.start();
+                        anim13.start();
+                        anim22.start();
+                        anim23.start();
                         fragmentTransaction.show(home_three);
                         break;
                 }
