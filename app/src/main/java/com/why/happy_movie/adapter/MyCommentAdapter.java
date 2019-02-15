@@ -89,12 +89,13 @@ public class MyCommentAdapter extends RecyclerView.Adapter<MyCommentAdapter.MyHo
                 myComment.setaBoolean(true);
 
                 tjpl2.ontjj2(i);
-                CommentReplyPresenter commentReplyPresenter = new CommentReplyPresenter(new Pingll());
-                commentReplyPresenter.reqeust(userId,sessionId,myComment.getCommentId(),1,10);
                 myHolder.list9.setLayoutManager(new LinearLayoutManager(context));
                 comment2Adapter = new Comment2Adapter(context,commentReplyBeans);
                 myHolder.list9.setAdapter(comment2Adapter);
                 commentReplyBeans.clear();
+                CommentReplyPresenter commentReplyPresenter = new CommentReplyPresenter(new Pingll());
+                commentReplyPresenter.reqeust(userId,sessionId,myComment.getCommentId(),1,10);
+
             }
         });
         myHolder.hand.setOnClickListener(new View.OnClickListener() {
