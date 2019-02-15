@@ -89,7 +89,7 @@
 
         <TextView
             android:id="@+id/price"
-            android:textColor="#e8175e"
+            android:textColor="#b11450"
             android:textSize="@dimen/sp_28"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
