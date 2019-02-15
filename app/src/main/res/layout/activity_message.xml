@@ -20,15 +20,12 @@
     <RelativeLayout
         android:id="@+id/rall"
         android:layout_width="@dimen/dp_312"
-        android:layout_height="@dimen/dp_178"
+        android:layout_height="wrap_content"
         android:layout_below="@id/my_zl"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/dp_20"
         android:background="@drawable/my_border"
-        android:paddingLeft="@dimen/dp_20"
-        android:paddingTop="@dimen/dp_20"
-        android:paddingRight="@dimen/dp_20"
-        android:paddingBottom="@dimen/dp_20">
+        android:padding="@dimen/dp_20">
 
         <RelativeLayout
             android:id="@+id/r1"
@@ -45,18 +42,19 @@
 
             <com.facebook.drawee.view.SimpleDraweeView
                 android:id="@+id/my_head"
-                app:roundAsCircle="true"
-                android:layout_marginRight="@dimen/dp_5"
                 android:layout_width="@dimen/dp_30"
                 android:layout_height="@dimen/dp_30"
-                android:layout_alignParentRight="true" />
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/dp_5"
+                app:roundAsCircle="true" />
         </RelativeLayout>
+
         <View
-            android:background="#f2f2f2"
             android:layout_width="@dimen/dp_267"
-            android:layout_below="@id/r1"
             android:layout_height="@dimen/dp_1"
-            />
+            android:layout_below="@id/r1"
+            android:background="#f2f2f2" />
+
         <RelativeLayout
             android:id="@+id/r2"
             android:layout_width="match_parent"
@@ -78,17 +76,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:text="你的益边"
                 android:layout_marginRight="@dimen/dp_5"
+                android:text="你的益边"
                 android:textColor="#666666"
                 android:textSize="@dimen/sp_12" />
         </RelativeLayout>
+
         <View
-            android:background="#f2f2f2"
             android:layout_width="@dimen/dp_267"
-            android:layout_below="@id/r2"
             android:layout_height="@dimen/dp_1"
-            />
+            android:layout_below="@id/r2"
+            android:background="#f2f2f2" />
+
         <RelativeLayout
             android:id="@+id/r3"
             android:layout_width="match_parent"
@@ -110,24 +109,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/dp_5"
                 android:text="男"
                 android:textColor="#666666"
-                android:layout_marginRight="@dimen/dp_5"
                 android:textSize="@dimen/sp_12" />
         </RelativeLayout>
+
         <View
-            android:background="#f2f2f2"
             android:layout_width="@dimen/dp_267"
-            android:layout_below="@id/r3"
             android:layout_height="@dimen/dp_1"
-            />
+            android:layout_below="@id/r3"
+            android:background="#f2f2f2" />
+
         <RelativeLayout
             android:id="@+id/r4"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/sp_10"
+            android:layout_height="wrap_content"
             android:layout_below="@id/r3"
-            >
+            android:layout_marginTop="@dimen/sp_10">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -142,8 +141,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:text="1980-02-25"
                 android:layout_marginRight="@dimen/dp_5"
+                android:text="1980-02-25"
                 android:textColor="#666666"
                 android:textSize="@dimen/sp_12" />
         </RelativeLayout>
@@ -179,26 +178,26 @@
 
             <TextView
                 android:id="@+id/my_phone"
-                android:text="13021281212"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/dp_30"
-                android:textSize="@dimen/sp_14"
+                android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/dp_5"
-                android:layout_alignParentRight="true" />
+                android:text="13021281212"
+                android:textSize="@dimen/sp_14" />
         </RelativeLayout>
+
         <View
-            android:background="#f2f2f2"
             android:layout_width="@dimen/dp_267"
-            android:layout_below="@id/r1_2"
             android:layout_height="@dimen/dp_1"
-            />
+            android:layout_below="@id/r1_2"
+            android:background="#f2f2f2" />
+
         <RelativeLayout
             android:id="@+id/r2_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/r1_2"
-            android:paddingTop="@dimen/dp_10"
-            android:paddingBottom="@dimen/dp_10">
+            android:paddingTop="@dimen/dp_10">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -221,6 +220,7 @@
 
 
     </RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/rall3"
         android:layout_width="@dimen/dp_312"
@@ -249,21 +249,21 @@
 
             <ImageView
                 android:id="@+id/my_reset"
-                android:layout_width="@dimen/dp_24"
-                android:layout_height="@dimen/dp_24"
+                android:layout_width="@dimen/dp_16"
+                android:layout_height="@dimen/dp_16"
                 android:layout_alignParentRight="true"
-                android:src="@drawable/my_reset"
+                android:src="@drawable/com_icon_next_default"
                 android:text="13021281212" />
         </RelativeLayout>
 
     </RelativeLayout>
+
     <ImageView
+        android:id="@+id/my_return"
         android:layout_width="@dimen/dp_50"
         android:layout_height="@dimen/dp_50"
-        android:layout_marginLeft="@dimen/dp_24"
-        android:id="@+id/my_return"
         android:layout_alignParentBottom="true"
-        android:src="@drawable/ic_xiangqing_back"
+        android:layout_marginLeft="@dimen/dp_24"
         android:layout_marginBottom="@dimen/dp_26"
-        />
+        android:src="@drawable/ic_xiangqing_back" />
 </RelativeLayout>

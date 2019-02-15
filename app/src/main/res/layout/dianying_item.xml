@@ -17,23 +17,30 @@
            android:background="#fff"
             app:roundedCornerRadius="@dimen/dp_8" />
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_36"
             android:background="@drawable/home_shape"
             android:layout_alignParentBottom="true"
-            android:orientation="horizontal">
+            >
+            <View
+                android:id="@+id/xian"
+                android:background="@drawable/shape_yyt"
+                android:layout_centerVertical="true"
+                android:layout_width="@dimen/dp_3"
+                android:layout_height="@dimen/dp_18"
+                android:layout_marginLeft="@dimen/dp_10"/>
             <TextView
-                android:id="@+id/text_cinema_flow1"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/dp_36"
                 android:layout_marginLeft="@dimen/dp_10"
-                android:layout_weight="1"
-                android:gravity="center"
+                android:layout_toRightOf="@+id/xian"
+                android:layout_centerVertical="true"
+                android:id="@+id/text_cinema_flow1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:textColor="#fff"
                 android:text="1111111"
                 android:textSize="@dimen/sp_16" />
 
-        </LinearLayout>
+        </RelativeLayout>
     </RelativeLayout>
 </LinearLayout>

@@ -96,6 +96,8 @@
 
             <TextView
                 android:id="@+id/juqing"
+                android:maxLines="5"
+                android:ellipsize="end"
                 android:layout_width="match_parent"
                 android:layout_marginTop="@dimen/sp_10"
                 android:layout_height="wrap_content" />
@@ -135,8 +137,15 @@
                     android:padding="@dimen/sp_10"
                     android:textColor="#fff"
                     android:background="@drawable/my_sign_shape1"
-                    android:text="演员名字"/>
+                    android:text="饰演角色"/>
+
             </LinearLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/actorname"
+                android:layout_marginTop="@dimen/dp_12"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="@dimen/dp_20"
+                android:layout_height="wrap_content"/>
 
         </LinearLayout>
 

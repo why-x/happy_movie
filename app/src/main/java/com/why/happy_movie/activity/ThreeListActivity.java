@@ -63,6 +63,7 @@ public class ThreeListActivity extends BaseActivity  implements DataCall<Result<
     private LinearLayout ll5;
     private ViewGroup.LayoutParams layoutParams;
     private ViewGroup.LayoutParams layoutParams1;
+    private int one;
 
 
     @Override
@@ -70,6 +71,9 @@ public class ThreeListActivity extends BaseActivity  implements DataCall<Result<
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_three_list);
 
+
+        Intent intent = getIntent();
+        one = intent.getIntExtra("one", 1);
         List<UserBean> userBeans = MApp.userBeanDao.loadAll();
         if(userBeans.size()>0){
             userId=  userBeans.get(0).getUserId();
@@ -144,8 +148,15 @@ public class ThreeListActivity extends BaseActivity  implements DataCall<Result<
         rb_two = findViewById(R.id.rb_two);
         rb_three = findViewById(R.id.rb_three);
         RadioGroup radioGroup = findViewById(R.id.rg_aa);
-        radioGroup.check(radioGroup.getChildAt(0).getId());
-        rb_one.setTextColor(Color.WHITE);
+
+        if(one==0){
+            rb_one.setTextColor(Color.WHITE);
+        }else if(one==2){
+            rb_two.setTextColor(Color.WHITE);
+        }else if(one==4){
+            rb_three.setTextColor(Color.WHITE);
+        }
+
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -171,6 +182,8 @@ public class ThreeListActivity extends BaseActivity  implements DataCall<Result<
                 }
             }
         });
+        radioGroup.check(radioGroup.getChildAt(one).getId());
+
 
 
         RecyclerView recyclerView = findViewById(R.id.list);

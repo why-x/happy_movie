@@ -161,6 +161,7 @@ public class home_one extends Fragment implements DataCall<Result<List<MovieList
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), ThreeListActivity.class);
+                intent.putExtra("one",0);
                 startActivity(intent);
             }
         });
@@ -169,6 +170,8 @@ public class home_one extends Fragment implements DataCall<Result<List<MovieList
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), ThreeListActivity.class);
+                intent.putExtra("one",2);
+
                 startActivity(intent);
             }
         });
@@ -177,6 +180,8 @@ public class home_one extends Fragment implements DataCall<Result<List<MovieList
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), ThreeListActivity.class);
+                intent.putExtra("one",4);
+
                 startActivity(intent);
             }
         });

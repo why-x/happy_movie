@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -152,6 +153,12 @@ public class DetailsActivity extends BaseActivity implements View.OnClickListene
                 TextView juqing = inflate.findViewById(R.id.juqing);
                 chandi.setText("产地：" + moviesDBean.getPlaceOrigin());
                 juqing.setText(moviesDBean.getSummary());
+                /*//演员姓名
+                RecyclerView actorname = iv2.findViewById(R.id.actorname);
+                GridLayoutManager gridLayoutManager=new GridLayoutManager(this,3);
+                actorname.setLayoutManager(gridLayoutManager);*/
+
+
                 dowm.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
