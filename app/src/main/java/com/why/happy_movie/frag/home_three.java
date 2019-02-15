@@ -24,9 +24,11 @@ import com.why.happy_movie.activity.LoginActivity;
 import com.why.happy_movie.activity.MyLoveActivity;
 import com.why.happy_movie.activity.MyNewsActivity;
 import com.why.happy_movie.activity.MyRccordActivity;
+import com.why.happy_movie.bean.HomeInfo;
 import com.why.happy_movie.bean.Result;
 import com.why.happy_movie.bean.UserBean;
 import com.why.happy_movie.myactivity.MessageActivity;
+import com.why.happy_movie.presenter.HomeInfoPresenter;
 import com.why.happy_movie.presenter.SignPresenter;
 import com.why.happy_movie.utils.DataCall;
 import com.why.happy_movie.utils.exception.ApiException;
@@ -70,6 +72,7 @@ public class home_three extends Fragment implements View.OnClickListener {
     private List<UserBean> userBeans;
     int userId = 1771;
     String sessionId = "15482908826721771";
+    private HomeInfoPresenter homeInfoPresenter;
 
     @Nullable
     @Override
@@ -77,6 +80,8 @@ public class home_three extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.my_frag_all, container, false);
         unbinder = ButterKnife.bind(this, view);
         zai = MApp.sharedPreferences.getBoolean("zai", false);
+        homeInfoPresenter = new HomeInfoPresenter(new HomeInfoclass());
+
 
         userBeans = MApp.userBeanDao.loadAll();
         if (zai) {
@@ -134,6 +139,7 @@ public class home_three extends Fragment implements View.OnClickListener {
                     Toast.makeText(getContext(), "请先登录……", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                mySign.setText("签到");
                 SharedPreferences.Editor edit = MApp.sharedPreferences.edit();
                 edit.putBoolean("zai", false);
                 edit.commit();
@@ -206,7 +212,10 @@ public class home_three extends Fragment implements View.OnClickListener {
                 userId = userBeans.get(0).getUserId();
                 sessionId = userBeans.get(0).getSessionId();
             }
+            homeInfoPresenter.reqeust(userId,sessionId);
         }
+
+
     }
 
     class Qian implements DataCall<Result> {
@@ -214,6 +223,27 @@ public class home_three extends Fragment implements View.OnClickListener {
         @Override
         public void success(Result data) {
             Toast.makeText(getContext(), "" + data.getMessage(), Toast.LENGTH_SHORT).show();
+            mySign.setText("已签到");
+            mySign.setEnabled(false);
+        }
+
+        @Override
+        public void fail(ApiException e) {
+
+        }
+    }
+
+    private class HomeInfoclass implements DataCall<Result<HomeInfo>> {
+        @Override
+        public void success(Result<HomeInfo> data) {
+            HomeInfo result = data.getResult();
+            int userSignStatus = result.getUserSignStatus();
+            if(userSignStatus==1){
+                mySign.setText("签到");
+            }else {
+                mySign.setText("已签到");
+                mySign.setEnabled(false);
+            }
         }
 
         @Override

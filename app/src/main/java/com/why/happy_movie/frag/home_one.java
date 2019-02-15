@@ -312,7 +312,12 @@ public class home_one extends Fragment implements DataCall<Result<List<MovieList
             location.getAddress();
             double weidu = location.getLongitude();
             double jingdu = location.getLatitude();
-            addre.setText(addr);
+            if(addr.equals("")||addr==null){
+                addre.setText("定位中……");
+            }else {
+                addre.setText(addr);
+            }
+
         }
     }
 }

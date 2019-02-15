@@ -3,6 +3,7 @@ package com.why.happy_movie.core;
 import com.why.happy_movie.bean.CimemaldListBean;
 import com.why.happy_movie.bean.CinemaCommert;
 import com.why.happy_movie.bean.CommentReplyBean;
+import com.why.happy_movie.bean.HomeInfo;
 import com.why.happy_movie.bean.LoginBean;
 import com.why.happy_movie.bean.MovieDBean;
 import com.why.happy_movie.bean.MovieListBean;
@@ -575,6 +576,16 @@ public interface Interfacea {
                                                                 @Field("commentId") int commentId,
                                                                 @Field("replyContent")String replyContent);
 
+
+    /**
+     * 查询会员首页信息
+     * @param userId
+     * @param sessionId
+     * @return
+     */
+    @GET("user/v1/verify/findUserHomeInfo")
+    Observable<Result<HomeInfo>> findUserHomeInfo(@Header("userId") int userId,
+                                                  @Header("sessionId") String sessionId);
 
 
 }

@@ -283,7 +283,11 @@ public class ThreeListActivity extends BaseActivity  implements DataCall<Result<
             location.getAddress();
             double weidu = location.getLongitude();
             double jingdu = location.getLatitude();
-            addre.setText(addr);
+            if(addr.equals("")||addr==null){
+                addre.setText("定位中……");
+            }else {
+                addre.setText(addr);
+            }
         }
     }
 

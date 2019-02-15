@@ -173,7 +173,8 @@
         <com.why.happy_movie.view.SeatTable
             android:id="@+id/seatView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp_90"/>
 
 
     </LinearLayout>

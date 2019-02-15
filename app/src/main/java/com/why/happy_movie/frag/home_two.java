@@ -239,7 +239,11 @@ public class home_two extends Fragment implements DataCall<Result<List<YingYuanB
             location.getAddress();
             weidu = location.getLongitude();
             jingdu = location.getLatitude();
-            addre.setText(addr);
+            if(addr.equals("")||addr==null){
+                addre.setText("定位中……");
+            }else {
+                addre.setText(addr);
+            }
         }
     }
 
